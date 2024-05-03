@@ -33,7 +33,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 			path = path.target.pathname;
 		}
 		setActiveLink(path);
-		setNavbarOpen(false);
+		setNavbarOpen(false); // Close the menu when a link is clicked
 	};
 
 	useEffect(() => {
