@@ -19,6 +19,9 @@ const Project = ({ project }) => (
 		<div className='flex md:w-[22rem] md:h-[30rem] w-[16rem] h-[22rem] group overflow-hidden rounded-md '>
 			<Image
 				src={project.image}
+				alt={project.name}
+				width={640}
+				height={426}
 				className='w-full transition-transform duration-300 ease-in-out transform group-hover:scale-110 object-cover'
 			/>
 		</div>
@@ -75,7 +78,7 @@ const Work = () => {
 				'An AI-powered tool that generates subtitles with timestamps for videos.',
 			techStack: 'React, AI',
 			image:
-				'https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg',
+				'https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg',
 			link: 'https://www.github.com',
 		},
 		{
@@ -83,7 +86,7 @@ const Work = () => {
 			description: 'A CLI for preprocessing machine learning datasets.',
 			techStack: 'CLI, Machine Learning',
 			image:
-				'https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg',
+				'https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg',
 			link: 'https://www.github.com',
 		},
 		{
@@ -92,7 +95,7 @@ const Work = () => {
 				'A tool for annotating images with bounding boxes and labels.',
 			techStack: 'HTML, CSS, Flask, Tessaract',
 			image:
-				'https://daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg',
+				'https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg',
 			link: 'https://www.github.com',
 		},
 		{
@@ -101,7 +104,7 @@ const Work = () => {
 				'A chatbot that uses machine learning to provide human-like responses.',
 			techStack: 'Python, AI',
 			image:
-				'https://daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg',
+				'https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg',
 			link: 'https://www.github.com',
 		},
 		{
@@ -110,7 +113,7 @@ const Work = () => {
 				'A powerful AI tool for visualizing and analyzing complex data sets.',
 			techStack: 'React, AI',
 			image:
-				'https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg',
+				'https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg',
 			link: 'https://www.github.com',
 		},
 	];
@@ -149,29 +152,29 @@ const Work = () => {
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [maxScrollWidth, setMaxScrollWidth] = useState(0);
 
-	// useEffect(() => {
-	// 	const updateMaxScrollWidth = () => {
-	// 		setMaxScrollWidth(
-	// 			scrollContainer.current.scrollWidth -
-	// 				scrollContainer.current.clientWidth,
-	// 		);
-	// 	};
+	useEffect(() => {
+		const updateMaxScrollWidth = () => {
+			setMaxScrollWidth(
+				scrollContainer.current.scrollWidth -
+					scrollContainer.current.clientWidth,
+			);
+		};
 
-	// 	updateMaxScrollWidth();
-	// 	window.addEventListener('resize', updateMaxScrollWidth);
+		updateMaxScrollWidth();
+		window.addEventListener('resize', updateMaxScrollWidth);
 
-	// 	return () => window.removeEventListener('resize', updateMaxScrollWidth);
-	// }, []);
+		return () => window.removeEventListener('resize', updateMaxScrollWidth);
+	}, []);
 
-	// const scroll = (scrollOffset) => {
-	// 	const newScrollPosition = scrollPosition + scrollOffset;
-	// 	setScrollPosition(newScrollPosition);
-	// 	scrollContainer.current.scrollBy({
-	// 		top: 0,
-	// 		left: scrollOffset,
-	// 		behavior: 'smooth',
-	// 	});
-	// };
+	const scroll = (scrollOffset) => {
+		const newScrollPosition = scrollPosition + scrollOffset;
+		setScrollPosition(newScrollPosition);
+		scrollContainer.current.scrollBy({
+			top: 0,
+			left: scrollOffset,
+			behavior: 'smooth',
+		});
+	};
 
 	return (
 		<section className='max-w-8xl mx-auto pb-20 mt-8'>
@@ -222,7 +225,7 @@ const Work = () => {
 					</div>
 				</div>
 
-				{/* <div className='w-full'>
+				<div className='w-full'>
 					<div
 						ref={scrollContainer}
 						className='flex overflow-x-scroll snap-x snap-mandatory scroll-smooth hide-scrollbar px-4 space-x-3 md:px-16 ml-4 md:ml-0'>
@@ -230,12 +233,12 @@ const Work = () => {
 							<Project key={index} project={project} />
 						))}
 					</div>
-				</div> */}
+				</div>
 			</div>
 
-			<h3 className='text-2xl font-semibold w-full md:px-16 px-4'>
+			{/* <h3 className='text-2xl font-semibold w-full md:px-16 px-4'>
 				Under Development ＞﹏＜
-			</h3>
+			</h3> */}
 		</section>
 	);
 };
