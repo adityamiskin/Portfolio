@@ -14,6 +14,13 @@ const config: Config = {
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
+			typography: ({ theme }) => ({
+				DEFAULT: {
+					css: {
+						maxWidth: '1000px',
+					},
+				},
+			}),
 		},
 		fontFamily: {
 			body: ['proxima_nova', 'sans-serif'],

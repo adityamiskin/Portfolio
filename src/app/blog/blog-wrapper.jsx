@@ -63,7 +63,8 @@ const BlogWrapper = ({ blogs }) => {
 				<div className='relative w-full flex gap-3 snap-x snap-mandatory overflow-x-auto mb-4 hide-scrollbar'>
 					<div className='snap-center shrink-0 md:w-8'></div>
 					{blogs.map((blog, index) => (
-						<a
+						<Link
+							href={'/blog/' + blog.slug}
 							ref={(el) => (imageRefs.current[index] = el)}
 							data-index={index}
 							className='relative snap-center shrink-0 md:w-[calc(100vw-5rem)] md:h-[calc(100vh-12rem)] h-[30rem] w-[23rem] overflow-hidden cursor-pointer rounded-md group'
@@ -78,7 +79,7 @@ const BlogWrapper = ({ blogs }) => {
 								className='shrink-0 w-full h-full shadow-xl bg-white object-cover transition duration-[250ms] ease-in-out transform group-hover:scale-[1.02]'
 								src={blog.meta.image}
 							/>
-						</a>
+						</Link>
 					))}
 
 					<div className='snap-center shrink-0 md:w-8'></div>

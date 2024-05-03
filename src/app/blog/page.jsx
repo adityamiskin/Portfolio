@@ -8,14 +8,14 @@ const Blogs = () => {
 	const files = fs.readdirSync(path.join(process.cwd(), blogDir));
 
 	const blogs = files.map((filename) => {
-		const fileContent = fs.readFileSync(
+		let fileContent = fs.readFileSync(
 			path.join(process.cwd(), `${blogDir}/${filename}`),
 			'utf-8',
 		);
 		const { data: frontMatter } = matter(fileContent);
 		return {
 			meta: frontMatter,
-			slug: filename.replace('.mdx', ''),
+			slug: filename.replace('.mdx', '').toLowerCase().replaceAll(' ', '-'),
 		};
 	});
 
