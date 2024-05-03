@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: 'futura_pt';
+	src: url('../assets/fonts/FuturaPT-Book.woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'futura_pt';
+	src: url('../assets/fonts/FuturaPT-Heavy.woff2');
+	font-weight: 600;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'proxima_nova';
+	src: url('../assets/fonts/Proxima-Nova-Sbold.woff2');
+	font-weight: 600;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'proxima_nova';
+	src: url('../assets/fonts/Proxima-Nova-Sbold.woff2');
+	font-weight: 500;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'proxima_nova';
+	src: url('../assets/fonts/ProximaNova-Medium.woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'proxima_nova';
+	src: url('../assets/fonts/ProximaNova-Thin.woff2');
+	font-weight: 100;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'proxima_nova';
+	src: url('../assets/fonts/ProximaNova-Regular.woff2');
+	font-weight: 300;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'proxima_nova';
+	src: url('../assets/fonts/ProximaNova-RegularIt.woff2');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+.fade-in {
+	animation: fadeIn ease 500ms;
+	-webkit-animation: fadeIn ease 500ms;
+	-moz-animation: fadeIn ease 500ms;
+	-o-animation: fadeIn ease 500ms;
+	-ms-animation: fadeIn ease 500ms;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+a {
+	text-decoration: none;
+}
+
+.link-text {
+	color: #323235;
+	border-radius: 0;
+	padding-left: 1px;
+	padding-right: 1px;
+	transition: border-radius 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+		box-shadow 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+	box-shadow: 0 1px #bdbdc5, inset 0 -1px #bdbdc5;
+
+	&:hover {
+		color: #0e0e0f;
+		border-radius: 4px;
+		box-shadow: 0 0 0 1px rgba(189, 189, 197, 0.5),
+			inset 0 -40px rgba(189, 189, 197, 0.5);
+	}
+}
+
+.link {
+	transition: 250ms;
+	border-bottom: 1px solid transparent;
+	width: fit-content;
+
+	&:hover {
+		border-color: #111;
+	}
+}
+
+.sublink {
+	transition: 300ms;
+	border-bottom: 1px solid transparent;
+
+	&:hover {
+		border-color: #777777;
+	}
+}
+
+.active {
+	border-bottom: 1px solid transparent;
+	border-color: #111;
+}
+
+.extra {
+	position: relative;
+
+	&.open::before {
+		content: '';
+		position: absolute;
+		top: 22px; /* Adjust this value to position the triangle */
+		left: 50%;
+		transform: translateX(-50%);
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid black; /* Match this color with the background color of the submenu */
+	}
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: proxima_nova, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	color: #080808;
+	background-color: #fbfbfb;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.error {
+	color: red;
+	font-size: 12px;
+}
+
+.transition-colors {
+	transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark-hover {
+	.link:hover {
+		border-color: white;
+	}
+}
+
+.dark {
+	background-color: #080808;
+	color: white;
+
+	.link-text {
+		color: rgb(177, 177, 177);
+	}
+
+	.link:hover {
+		border-color: white;
+	}
+
+	header .link:hover {
+		border-color: white;
+	}
+
+	.active {
+		border-color: white;
+	}
+
+	.extra.open::before {
+		border-bottom: 10px solid #fbfbfb; /* Match this color with the background color of the submenu */
+	}
+
+	body {
+		background-color: black;
+		color: white;
+	}
+
+	.dark-hover {
+		.link:hover {
+			border-color: white;
+		}
+	}
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.hide-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
