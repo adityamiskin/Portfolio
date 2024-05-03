@@ -24,21 +24,6 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 	const pathname = usePathname();
 	const imageTypes = ['Street', 'Landscape', 'Nature', 'Portraits', 'Urban'];
 
-	const [isScrolled, setIsScrolled] = useState(false);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			const currentScrollY = window.scrollY;
-			setIsScrolled(currentScrollY > 45);
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
-
 	useEffect(() => {
 		setActiveLink(pathname);
 	}, [pathname]);
@@ -48,7 +33,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 			path = path.target.pathname;
 		}
 		setActiveLink(path);
-		setNavbarOpen(false); // Close the menu when a link is clicked
+		setNavbarOpen(false);
 	};
 
 	useEffect(() => {
@@ -58,8 +43,6 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 			document.body.classList.remove('dark');
 		}
 		document.body.classList.add('transition-colors');
-
-		// Store darkMode in local storage
 		window.localStorage.setItem('darkMode', JSON.stringify(darkMode));
 	}, [darkMode]);
 

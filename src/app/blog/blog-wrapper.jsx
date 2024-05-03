@@ -66,11 +66,11 @@ const BlogWrapper = ({ blogs }) => {
 						<a
 							ref={(el) => (imageRefs.current[index] = el)}
 							data-index={index}
-							className='relative snap-center shrink-0 md:w-[calc(100vw-5rem)] md:h-[calc(100vh-12rem)] h-[28rem] w-[22rem] overflow-hidden cursor-pointer rounded-md group'
+							className='relative snap-center shrink-0 md:w-[calc(100vw-5rem)] md:h-[calc(100vh-12rem)] h-[30rem] w-[23rem] overflow-hidden cursor-pointer rounded-md group'
 							key={index}>
-							<div className='absolute flex flex-col h-full justify-center z-50 w-full text-center'>
+							<div className='absolute flex flex-col h-full justify-center z-50 w-full text-center px-4'>
 								<h2 className='md:text-6xl text-3xl mb-4'>{blog.meta.title}</h2>
-								{/* <p className='text-2xl'>{blog.meta.descriptions}</p> */}
+								<p className='md:text-2xl text-lg'>{blog.meta.description}</p>
 							</div>
 							<Image
 								width={1500}
@@ -89,14 +89,14 @@ const BlogWrapper = ({ blogs }) => {
 							key={index}
 							className={`rounded-full w-[0.5rem] h-[0.5rem] flex items-center justify-center group transition duration-[250ms] ${
 								current === index
-									? 'bg-black dark:bg-white'
+									? 'bg-black dark:bg-white scale-[1.02]'
 									: ' dark:bg-gray-100/15 bg-gray-400'
 							}`}></span>
 					))}
 				</div>
 			</div>
 
-			<div className='md:px-12 px-6 text-3xl font-semibold mb-24'>
+			<div className='md:px-12 px-4 text-3xl font-semibold mb-24'>
 				<h2 className='mb-4'>My Blogs</h2>
 				<ToggleGroup
 					type='multiple'

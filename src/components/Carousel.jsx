@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const Carousel = ({ slides }) => {
 	const [current, setCurrent] = useState(0);
@@ -93,7 +94,7 @@ const Carousel = ({ slides }) => {
 							<div className='relative'>
 								<picture>
 									<source media='(max-width: 600px)' srcSet={slide.img_phone} />
-									<img
+									<Image
 										src={slide.img}
 										alt={slide.description}
 										className='w-full md:h-[500px] 3xl:h-[800px] mb-3 z-40 transition-all object-contain'
