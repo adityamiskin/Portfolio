@@ -1,5 +1,6 @@
 import './globals.css';
 import Wrapper from '@/app/wrapper';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
 	title: 'Aditya Miskin',
