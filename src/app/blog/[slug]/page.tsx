@@ -7,7 +7,7 @@ export async function generateStaticParams() {
 	const blogDir = '/src/content';
 	let files = fs.readdirSync(path.join(process.cwd(), blogDir));
 
-	files = files.map((file) => file.replaceAll(' ', '-').toLowerCase());
+	files = files.map((file) => file.replaceAll(' ', '-'));
 
 	const paths = files.map((filename) => ({
 		slug: filename.replace('.mdx', ''),

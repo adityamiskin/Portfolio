@@ -15,7 +15,7 @@ const Blogs = () => {
 		const { data: frontMatter } = matter(fileContent);
 		return {
 			meta: frontMatter,
-			slug: filename.replace('.mdx', '').toLowerCase().replaceAll(' ', '-'),
+			slug: filename.replace('.mdx', '').replaceAll(' ', '-'),
 		};
 	});
 
