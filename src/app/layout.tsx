@@ -108,7 +108,7 @@ const proximaNova = localFont({
 			style: 'normal',
 		},
 		{
-			path: '@/assets/fonts/ProximaNova-RegularIt.woff2',
+			path: '../assets/fonts/ProximaNova-RegularIt.woff2',
 			weight: '400',
 			style: 'italic',
 		},
