@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import Img from '@/components/Img';
 
 export async function generateStaticParams() {
 	const blogDir = '/src/blogs';
@@ -33,6 +34,8 @@ function getPost({ slug }: { slug: string }) {
 	};
 }
 
+const components = { Img };
+
 export default function Post({ params }: any) {
 	const props = getPost(params);
 
@@ -42,7 +45,7 @@ export default function Post({ params }: any) {
 				{props.frontMatter.date}
 			</p>
 
-			<MDXRemote source={props.content} />
+			<MDXRemote source={props.content} components={components} />
 		</article>
 	);
 }
