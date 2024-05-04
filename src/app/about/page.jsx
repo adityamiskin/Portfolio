@@ -52,6 +52,7 @@ const About = () => {
 					className=' md:max-w-[21rem] md:max-h-[21rem] order-1 md:order-2 w-full h-full'
 					width={600}
 					height={600}
+					priority={true}
 				/>
 			</div>
 		</section>

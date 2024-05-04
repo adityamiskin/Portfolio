@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 @font-face {
 	font-family: 'futura_pt';
 	src: url('../assets/fonts/FuturaPT-Book.woff2');
@@ -57,7 +57,7 @@
 	font-weight: 400;
 	font-style: italic;
 	font-display: swap;
-}
+} */
 
 .fade-in {
 	animation: fadeIn ease 500ms;
