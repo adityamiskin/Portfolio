@@ -21,6 +21,11 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 		}
 		return false;
 	});
+	const [hasMounted, setHasMounted] = useState(false);
+
+	useEffect(() => {
+		setHasMounted(true);
+	}, []);
 	const pathname = usePathname();
 	const imageTypes = ['Street', 'Landscape', 'Nature', 'Portraits', 'Urban'];
 
@@ -157,7 +162,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 							<button
 								onClick={() => setDarkMode(!darkMode)}
 								aria-label='Dark Mode toggle'>
-								{darkMode ? (
+								{darkMode && hasMounted ? (
 									<FiSun className='text-2xl transition ease-in-out duration-500 stroke-2 fill-orange-400 stroke-orange-400' />
 								) : (
 									<FiMoon className='text-2xl transition ease-in-out duration-500 stroke-1 stroke-violet-500 fill-violet-500' />
@@ -214,7 +219,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 							onClick={() => setDarkMode(!darkMode)}
 							aria-label='Dark mode toggle'
 							className='z-30'>
-							{darkMode ? (
+							{darkMode && hasMounted ? (
 								<FiSun className='text-2xl transition ease-in-out duration-500 stroke-2 fill-orange-400 stroke-orange-400' />
 							) : (
 								<FiMoon className='text-2xl transition ease-in-out duration-500 stroke-1 stroke-violet-500 fill-violet-500' />

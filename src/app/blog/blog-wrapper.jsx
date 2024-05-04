@@ -11,24 +11,6 @@ const BlogWrapper = ({ blogs }) => {
 	const [current, setCurrent] = useState(0);
 	const imageRefs = useRef([]);
 
-	const images2 = [
-		'https://images.ctfassets.net/kftzwdyauwt9/44csSCT2TZUSqqI2UCLDF9/153e0192aeb75b2322007085c1009bc0/AGI2.png?w=1200&q=90&fm=jpg',
-		'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1000/v1697995113/IMG_20230626_215242_984_fhpfnc.webp',
-		'https://images.ctfassets.net/kftzwdyauwt9/3AqhaLAr15EI64BCwbVSsb/835f85036a29a91f9b92f2ff7e0ef569/Business.png?w=1920&q=90&fm=jpg',
-		'https://images.ctfassets.net/kftzwdyauwt9/44csSCT2TZUSqqI2UCLDF9/153e0192aeb75b2322007085c1009bc0/AGI2.png?w=1200&q=90&fm=jpg',
-		'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1000/v1697995113/IMG_20230626_215242_984_fhpfnc.webp',
-		'https://images.ctfassets.net/kftzwdyauwt9/3AqhaLAr15EI64BCwbVSsb/835f85036a29a91f9b92f2ff7e0ef569/Business.png?w=1920&q=90&fm=jpg',
-	];
-
-	const images3 = [
-		'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1000/v1697995113/IMG_20230626_215242_984_fhpfnc.webp',
-		'https://images.ctfassets.net/kftzwdyauwt9/3AqhaLAr15EI64BCwbVSsb/835f85036a29a91f9b92f2ff7e0ef569/Business.png?w=1920&q=90&fm=jpg',
-		'https://images.ctfassets.net/kftzwdyauwt9/44csSCT2TZUSqqI2UCLDF9/153e0192aeb75b2322007085c1009bc0/AGI2.png?w=1200&q=90&fm=jpg',
-		'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1000/v1697995113/IMG_20230626_215242_984_fhpfnc.webp',
-		'https://images.ctfassets.net/kftzwdyauwt9/44csSCT2TZUSqqI2UCLDF9/153e0192aeb75b2322007085c1009bc0/AGI2.png?w=1200&q=90&fm=jpg',
-		'https://images.ctfassets.net/kftzwdyauwt9/3AqhaLAr15EI64BCwbVSsb/835f85036a29a91f9b92f2ff7e0ef569/Business.png?w=1920&q=90&fm=jpg',
-	];
-
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -60,23 +42,31 @@ const BlogWrapper = ({ blogs }) => {
 	return (
 		<section>
 			<div className='mb-24'>
-				<div className='relative w-full flex gap-3 snap-x snap-mandatory overflow-x-auto mb-4 hide-scrollbar'>
+				<div className='relative w-full flex gap-3 snap-x snap-mandatory overflow-x-auto pb-36 hide-scrollbar'>
 					<div className='snap-center shrink-0 md:w-8'></div>
 					{blogs.map((blog, index) => (
 						<Link
 							href={'/blog/' + blog.slug}
 							ref={(el) => (imageRefs.current[index] = el)}
 							data-index={index}
-							className='relative snap-center shrink-0 md:w-[calc(100vw-5rem)] md:h-[calc(100vh-12rem)] h-[30rem] w-[23rem] overflow-hidden cursor-pointer rounded-md group'
+							className='relative snap-center shrink-0 md:w-[calc(100vw-5rem)] md:h-[calc(100vh-12rem)] h-[30rem] w-[23rem] cursor-pointer rounded-md group'
 							key={index}>
 							<div className='absolute flex flex-col h-full justify-center w-full text-center px-4 z-10'>
 								<h2 className='md:text-6xl text-3xl mb-4'>{blog.meta.title}</h2>
 								<p className='md:text-2xl text-lg'>{blog.meta.description}</p>
 							</div>
 							<Image
+								width={900}
+								height={400}
+								alt={blog.meta.title}
+								className='absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-40%] shrink-0 w-[1000px] md:h-[400px] h-[300px] object-cover transition duration-[250ms] ease-in-out transform-gpu rounded-md blur-[70px] opacity-0 group-hover:opacity-100'
+								src={blog.meta.image}
+							/>
+							<Image
 								width={1500}
 								height={1000}
-								className='shrink-0 w-full h-full shadow-xl bg-white object-cover transition duration-[250ms] ease-in-out transform group-hover:scale-[1.02]'
+								alt={blog.meta.title}
+								className='shrink-0 w-full h-full object-cover bg-white transition duration-[250ms] ease-in-out transform group-hover:scale-[1.008] rounded-md '
 								src={blog.meta.image}
 							/>
 						</Link>
@@ -84,11 +74,18 @@ const BlogWrapper = ({ blogs }) => {
 
 					<div className='snap-center shrink-0 md:w-8'></div>
 				</div>
-				<div className='flex justify-center space-x-2'>
+				<div className='flex justify-center space-x-2 mt-[-7rem]'>
 					{blogs.map((blog, index) => (
 						<span
 							key={index}
-							className={`rounded-full w-[0.5rem] h-[0.5rem] flex items-center justify-center group transition duration-[250ms] ${
+							onClick={() => {
+								imageRefs.current[index].scrollIntoView({
+									behavior: 'smooth',
+									inline: 'center',
+									block: 'nearest',
+								});
+							}}
+							className={`rounded-full w-[0.5rem] h-[0.5rem] flex items-center justify-center group transition duration-[250ms] cursor-pointer ${
 								current === index
 									? 'bg-black dark:bg-white scale-[1.02]'
 									: ' dark:bg-gray-100/15 bg-gray-400'
@@ -170,6 +167,7 @@ const BlogWrapper = ({ blogs }) => {
 							<Image
 								width={300}
 								height={300}
+								alt={blog.meta.title}
 								className='w-full h-full object-cover transition duration-[250ms] ease-in-out group-hover:scale-[1.02]'
 								src={blog.meta.image}
 							/>

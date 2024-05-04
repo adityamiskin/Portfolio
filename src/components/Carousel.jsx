@@ -92,7 +92,7 @@ const Carousel = ({ slides }) => {
 							} flex flex-col items-start`}
 							ref={(el) => (imageRefs.current[index] = el)}>
 							<div className='relative'>
-								<picture>
+								<picture className='relative group'>
 									<source media='(max-width: 600px)' srcSet={slide.img_phone} />
 									<Image
 										src={slide.img}
@@ -101,6 +101,13 @@ const Carousel = ({ slides }) => {
 										width={1000}
 										height={1500}
 									/>
+									{/* <Image
+										src={slide.img}
+										alt={slide.description}
+										className='absolute top-0 translate-y-[5%] w-full md:h-[500px] 3xl:h-[800px] transition-all object-contain blur-2xl opacity-0 group-hover:opacity-40 -z-10'
+										width={1000}
+										height={1500}
+									/> */}
 								</picture>
 
 								<div className='md:absolute bottom-100 mx-auto px-4 md:px-0'>
