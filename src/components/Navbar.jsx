@@ -65,112 +65,113 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 						? 'fixed top-0'
 						: 'relative'
 				}`}>
-				<div>
-					<Link href='/' className='' onClick={() => handleClick('/')}>
-						<h1 className='tracking-widest font-head font-semibold text-[38px]'>
-							ADITYA MISKIN
-						</h1>
-					</Link>
-				</div>
+				<div className='flex justify-between lg:items-center items-baseline w-full'>
+					<div>
+						<Link href='/' className='' onClick={() => handleClick('/')}>
+							<h1 className='tracking-widest font-head font-semibold text-[38px] w-min lg:w-full'>
+								ADITYA MISKIN
+							</h1>
+						</Link>
+					</div>
 
-				<div>
-					<ul className='flex gap-8 items-center tracking-widest text-[15px] font-head'>
-						<li>
-							<Link
-								href='/'
-								className={`link ${
-									activeLink === '/' ? 'active' : ''
-								} underline-offset-2`}
-								onClick={() => handleClick('/')}>
-								About
-							</Link>
-						</li>
-
-						<li>
-							<Link
-								href='/work'
-								className={`link ${
-									activeLink === '/work' ? 'active' : ''
-								} underline-offset-2`}
-								onClick={() => handleClick('/work')}>
-								Work
-							</Link>
-						</li>
-
-						<li>
-							<Link
-								href='/blog'
-								className={`link ${
-									activeLink.startsWith('/blog') ? 'active' : ''
-								} underline-offset-2`}
-								onClick={() => handleClick('/blog')}>
-								Blog
-							</Link>
-						</li>
-
-						<li>
-							<div
-								className={`relative extra ${isSubmenuOpen ? 'open' : ''}`}
-								onMouseEnter={() => setSubmenuOpen(true)}
-								onMouseLeave={() => setSubmenuOpen(false)}>
+					<div className='flex lg:gap-6 md:gap-4 flex-col lg:flex-row transition'>
+						<ul className='flex gap-8 items-center tracking-widest text-[15px] font-head'>
+							<li>
 								<Link
-									href='/photo'
-									className={`link flex ${
-										activeLink.startsWith('/photo') ? 'active' : ''
+									href='/'
+									className={`link ${
+										activeLink === '/' ? 'active' : ''
 									} underline-offset-2`}
-									onClick={() => {
-										handleClick('/photo');
-									}}>
-									+&nbsp;Photo
+									onClick={() => handleClick('/')}>
+									About
 								</Link>
+							</li>
 
-								{isSubmenuOpen && (
-									<ul className='absolute flex flex-col p-4 px-5 text-[13px] w-36 gap-4 left-[-35px] mt-2 bg-black text-white border-t-2 border-transparent dark:bg-[#fbfbfb] dark:text-black'>
-										{imageTypes.map((type) => (
-											<li key={type}>
-												<Link
-													href={`/photo/${type.toLowerCase()}`}
-													className={`sublink ${
-														activeLink === `/photo/${type.toLowerCase()}`
-															? 'active'
-															: ''
-													} underline-offset-2 decoration-white`}
-													onClick={() =>
-														handleClick(`/photo/${type.toLowerCase()}`)
-													}>
-													{type}
-												</Link>
-											</li>
-										))}
-									</ul>
-								)}
-							</div>
-						</li>
+							<li>
+								<Link
+									href='/work'
+									className={`link ${
+										activeLink === '/work' ? 'active' : ''
+									} underline-offset-2`}
+									onClick={() => handleClick('/work')}>
+									Work
+								</Link>
+							</li>
 
-						<li>
-							<Link
-								href='/contact'
-								className={`link ${
-									activeLink === '/contact' ? 'active' : ''
-								} underline-offset-2`}
-								onClick={() => handleClick('/contact')}>
-								Contact
-							</Link>
-						</li>
+							<li>
+								<Link
+									href='/blog'
+									className={`link ${
+										activeLink.startsWith('/blog') ? 'active' : ''
+									} underline-offset-2`}
+									onClick={() => handleClick('/blog')}>
+									Blog
+								</Link>
+							</li>
 
-						<li className='flex'>
-							<button
-								onClick={() => setDarkMode(!darkMode)}
-								aria-label='Dark Mode toggle'>
-								{darkMode && hasMounted ? (
-									<FiSun className='text-2xl transition ease-in-out duration-500 stroke-2 fill-orange-400 stroke-orange-400' />
-								) : (
-									<FiMoon className='text-2xl transition ease-in-out duration-500 stroke-1 stroke-violet-500 fill-violet-500' />
-								)}
-							</button>
-						</li>
+							<li>
+								<div
+									className={`relative extra ${isSubmenuOpen ? 'open' : ''}`}
+									onMouseEnter={() => setSubmenuOpen(true)}
+									onMouseLeave={() => setSubmenuOpen(false)}>
+									<Link
+										href='/photo'
+										className={`link flex ${
+											activeLink.startsWith('/photo') ? 'active' : ''
+										} underline-offset-2`}
+										onClick={() => {
+											handleClick('/photo');
+										}}>
+										+&nbsp;Photo
+									</Link>
 
-						<li className='text-xl flex gap-4'>
+									{isSubmenuOpen && (
+										<ul className='absolute flex flex-col p-4 px-5 text-[13px] w-36 gap-4 left-[-35px] mt-2 bg-black text-white border-t-2 border-transparent dark:bg-[#fbfbfb] dark:text-black'>
+											{imageTypes.map((type) => (
+												<li key={type}>
+													<Link
+														href={`/photo/${type.toLowerCase()}`}
+														className={`sublink ${
+															activeLink === `/photo/${type.toLowerCase()}`
+																? 'active'
+																: ''
+														} underline-offset-2 decoration-white`}
+														onClick={() =>
+															handleClick(`/photo/${type.toLowerCase()}`)
+														}>
+														{type}
+													</Link>
+												</li>
+											))}
+										</ul>
+									)}
+								</div>
+							</li>
+
+							<li>
+								<Link
+									href='/contact'
+									className={`link ${
+										activeLink === '/contact' ? 'active' : ''
+									} underline-offset-2`}
+									onClick={() => handleClick('/contact')}>
+									Contact
+								</Link>
+							</li>
+
+							<li className='flex'>
+								<button
+									onClick={() => setDarkMode(!darkMode)}
+									aria-label='Dark Mode toggle'>
+									{darkMode && hasMounted ? (
+										<FiSun className='text-2xl transition ease-in-out duration-500 stroke-2 fill-orange-400 stroke-orange-400' />
+									) : (
+										<FiMoon className='text-2xl transition ease-in-out duration-500 stroke-1 stroke-violet-500 fill-violet-500' />
+									)}
+								</button>
+							</li>
+						</ul>
+						<div className='text-xl flex gap-4 justify-end'>
 							<a
 								href='https://github.com/adityamiskin'
 								aria-label='Github'
@@ -195,8 +196,8 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 								target='_blank'>
 								<FaLinkedinIn />
 							</a>
-						</li>
-					</ul>
+						</div>
+					</div>
 				</div>
 			</nav>
 

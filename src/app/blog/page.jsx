@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import BlogWrapper from './blog-wrapper';
 
 const Blogs = () => {
-	const blogDir = '/src/content';
+	const blogDir = '/src/blogs';
 	const files = fs.readdirSync(path.join(process.cwd(), blogDir));
 
 	const blogs = files.map((filename) => {

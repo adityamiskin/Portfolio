@@ -15,14 +15,14 @@ const Project = ({ project }) => (
 		href={project.link}
 		target='_blank'
 		rrel='noopener noreferrer'
-		className='relative w-[22rem] z-10 overflow-visible group md:snap-center snap-start snap-always'>
-		<div className='flex md:w-[22rem] md:h-[30rem] w-[16rem] h-[22rem] group overflow-hidden rounded-md '>
+		className='relative w-[22rem] z-10 overflow-visible group snap-center snap-always'>
+		<div className='flex md:w-[22rem] md:h-[30rem] w-[20rem] h-[22rem] group overflow-hidden rounded-md '>
 			<Image
 				src={project.image}
 				alt={project.name}
 				width={640}
 				height={426}
-				className='w-full transition-transform duration-300 ease-in-out transform group-hover:scale-110 object-cover'
+				className='w-full transition-transform duration-300 ease-in-out transform group-hover:scale-[1.02] object-cover'
 			/>
 		</div>
 		<div className='flex flex-col p-4 dark:border-white absolute top-0 justify-between h-full z-20'>
@@ -152,29 +152,29 @@ const Work = () => {
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [maxScrollWidth, setMaxScrollWidth] = useState(0);
 
-	useEffect(() => {
-		const updateMaxScrollWidth = () => {
-			setMaxScrollWidth(
-				scrollContainer.current.scrollWidth -
-					scrollContainer.current.clientWidth,
-			);
-		};
+	// useEffect(() => {
+	// 	const updateMaxScrollWidth = () => {
+	// 		setMaxScrollWidth(
+	// 			scrollContainer.current.scrollWidth -
+	// 				scrollContainer.current.clientWidth,
+	// 		);
+	// 	};
 
-		updateMaxScrollWidth();
-		window.addEventListener('resize', updateMaxScrollWidth);
+	// 	updateMaxScrollWidth();
+	// 	window.addEventListener('resize', updateMaxScrollWidth);
 
-		return () => window.removeEventListener('resize', updateMaxScrollWidth);
-	}, []);
+	// 	return () => window.removeEventListener('resize', updateMaxScrollWidth);
+	// }, []);
 
-	const scroll = (scrollOffset) => {
-		const newScrollPosition = scrollPosition + scrollOffset;
-		setScrollPosition(newScrollPosition);
-		scrollContainer.current.scrollBy({
-			top: 0,
-			left: scrollOffset,
-			behavior: 'smooth',
-		});
-	};
+	// const scroll = (scrollOffset) => {
+	// 	const newScrollPosition = scrollPosition + scrollOffset;
+	// 	setScrollPosition(newScrollPosition);
+	// 	scrollContainer.current.scrollBy({
+	// 		top: 0,
+	// 		left: scrollOffset,
+	// 		behavior: 'smooth',
+	// 	});
+	// };
 
 	return (
 		<section className='max-w-8xl mx-auto pb-20 mt-8'>
@@ -203,7 +203,7 @@ const Work = () => {
 			<div>
 				<div className='flex items-center justify-between md:px-16 px-4'>
 					<h2 className='text-4xl font-head font-semibold mb-4'>Projects</h2>
-					<div className='flex gap-6'>
+					{/* <div className='flex gap-6'>
 						<button
 							onClick={() => scroll(-300)}
 							className={`transform transition duration-300 ${
@@ -222,23 +222,23 @@ const Work = () => {
 							style={{ opacity: scrollPosition >= maxScrollWidth ? 0.5 : 1 }}>
 							<FaChevronRight />
 						</button>
-					</div>
+					</div> */}
 				</div>
 
-				<div className='w-full'>
+				{/* <div className='w-full'>
 					<div
 						ref={scrollContainer}
-						className='flex overflow-x-scroll snap-x snap-mandatory scroll-smooth hide-scrollbar px-4 space-x-3 md:px-16 ml-4 md:ml-0'>
+						className='flex overflow-x-scroll snap-x snap-mandatory scroll-smooth hide-scrollbar px-4 space-x-3 md:px-16 md:pl-18'>
 						{projects.map((project, index) => (
 							<Project key={index} project={project} />
 						))}
 					</div>
-				</div>
+				</div> */}
 			</div>
 
-			{/* <h3 className='text-2xl font-semibold w-full md:px-16 px-4'>
+			<h3 className='text-2xl font-semibold w-full md:px-16 px-4'>
 				Under Development ＞﹏＜
-			</h3> */}
+			</h3>
 		</section>
 	);
 };

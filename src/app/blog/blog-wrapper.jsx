@@ -39,6 +39,13 @@ const BlogWrapper = ({ blogs }) => {
 		return blog.meta.tags.some((tag) => value.includes(tag));
 	});
 
+	const toggleItems = [
+		{ value: 'latest', label: 'Latest' },
+		{ value: 'technology', label: 'Technology' },
+		{ value: 'life', label: 'Life' },
+		{ value: 'photography', label: 'Photography' },
+	];
+
 	return (
 		<section>
 			<div className='mb-24'>
@@ -103,46 +110,21 @@ const BlogWrapper = ({ blogs }) => {
 					onValueChange={(value) => {
 						setValue(value);
 					}}>
-					<ToggleGroupItem value='latest' aria-label='Toggle latest'>
-						<p
-							className={`text-xs px-2 py-0.5 rounded-full transition ${
-								value.includes('latest')
-									? 'dark:bg-white bg-black text-white dark:text-black'
-									: 'dark:bg-black outline dark:outline-white dark:text-white text-black'
-							}`}>
-							Latest
-						</p>
-					</ToggleGroupItem>
-					<ToggleGroupItem value='coding' aria-label='Toggle coding'>
-						<p
-							className={`text-xs px-2 py-0.5 rounded-full transition ${
-								value.includes('coding')
-									? 'dark:bg-white bg-black text-white dark:text-black'
-									: 'dark:bg-black outline dark:outline-white dark:text-white text-black'
-							}`}>
-							Coding
-						</p>
-					</ToggleGroupItem>
-					<ToggleGroupItem value='life' aria-label='Toggle life'>
-						<p
-							className={`text-xs px-2 py-0.5 rounded-full transition ${
-								value.includes('life')
-									? 'dark:bg-white bg-black text-white dark:text-black'
-									: 'dark:bg-black outline dark:outline-white dark:text-white text-black'
-							}`}>
-							Life
-						</p>
-					</ToggleGroupItem>
-					<ToggleGroupItem value='photography' aria-label='Toggle photography'>
-						<p
-							className={`text-xs px-2 py-0.5 rounded-full transition ${
-								value.includes('photography')
-									? 'dark:bg-white bg-black text-white dark:text-black'
-									: 'dark:bg-black outline dark:outline-white dark:text-white text-black'
-							}`}>
-							Photography
-						</p>
-					</ToggleGroupItem>
+					{toggleItems.map((item) => (
+						<ToggleGroupItem
+							key={item.value}
+							value={item.value}
+							aria-label={`Toggle ${item.label}`}>
+							<p
+								className={`text-xs px-2 py-0.5 rounded-full transition ${
+									value.includes(item.value)
+										? 'dark:bg-white bg-black text-white dark:text-black'
+										: 'dark:bg-black outline dark:outline-white dark:text-white text-black'
+								}`}>
+								{item.label}
+							</p>
+						</ToggleGroupItem>
+					))}
 				</ToggleGroup>
 
 				<div className='relative w-full grid md:grid-cols-3 sm:grid-cols-2 md:gap-8 gap-8 transition duration-300'>
@@ -154,7 +136,7 @@ const BlogWrapper = ({ blogs }) => {
 							className=' relative cursor-pointer group overflow-hidden h-[400px] rounded-sm'>
 							<div className='absolute flex flex-col h-full justify-between w-full text-left p-4 z-10'>
 								<div>
-									<h2 className='text-base mb-2'>{blog.meta.title}</h2>
+									<h2 className='text-base mb-2 '>{blog.meta.title}</h2>
 									<div className='flex gap-2'>
 										{blog.meta.tags.map((tag, index) => (
 											<Badge key={index}>{tag}</Badge>
@@ -180,25 +162,6 @@ const BlogWrapper = ({ blogs }) => {
 					<div className='snap-center shrink-0'></div>
 				</div>
 			</div>
-			{/* <div className='px-12 text-3xl font-semibold mb-24'>
-				<h2 className='mb-8'>Stories</h2>
-				<div className='relative w-full flex gap-3 snap-x snap-mandatory overflow-x-auto hide-scrollbar'>
-					{images3.map((image, index) => (
-						<a
-							className='snap-center shrink-0 md:w-[22rem] md:h-[calc(100vh-18rem)] h-[28rem] w-[22rem] overflow-hidden cursor-pointer'
-							key={index}>
-							<Image
-								width={300}
-								height={300}
-								className='shrink-0 w-full h-full rounded-sm shadow-xl bg-white object-cover transition duration-300 ease-in-out transform hover:scale-[1.02]'
-								src={image}
-							/>
-						</a>
-					))}
-
-					<div className='snap-center shrink-0'></div>
-				</div>
-			</div> */}
 		</section>
 	);
 };

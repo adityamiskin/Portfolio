@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 export async function generateStaticParams() {
-	const blogDir = '/src/content';
+	const blogDir = '/src/blogs';
 	let files = fs.readdirSync(path.join(process.cwd(), blogDir));
 
 	files = files.map((file) => file.replaceAll(' ', '-'));
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 }
 
 function getPost({ slug }: { slug: string }) {
-	const blogDir = '/src/content';
+	const blogDir = '/src/blogs';
 	const fileName = slug.replaceAll('-', ' ');
 	const markdownFile = fs.readFileSync(
 		path.join(process.cwd(), `${blogDir}/${fileName}.mdx`),

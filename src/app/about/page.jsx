@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 // import Anya from '../assets/images/anya.png';
 // import NewProfile from '../assets/images/new_profile.webp';
 // import Profile from '../assets/images/profile.webp';
@@ -13,16 +14,29 @@ const About = () => {
 					<p className='mb-4 mt-2'>Hi, I&apos;m Aditya.</p>
 					<p className='mb-8 tracking-wide leading-relaxed'>
 						I&apos;m a software engineer living in Bengaluru, IN. I’m also a
-						hobbyist photographer travelling the world, documenting this
-						beautiful planet of ours. In my free time, I play a lot of games and
-						learn guitar. Check out my resume over{' '}
+						hobbyist{' '}
+						<Link
+							href={'/photo'}
+							className='link-text'
+							rel='noopener noreferrer'>
+							photographer
+						</Link>{' '}
+						travelling the world, documenting this beautiful planet of ours. In
+						my free time, I play a lot of games and learn guitar. Check out my{' '}
+						<Link
+							href={'/blog'}
+							className='link-text'
+							rel='noopener noreferrer'>
+							blogs
+						</Link>{' '}
+						and resume over{' '}
 						<a
 							href='https://drive.google.com/file/d/1FNhPrthCFp8oFNeC0Ve9pj9fte2GKg1X/view?usp=sharing'
 							className='link-text'
 							target='_blank'
 							rel='noopener noreferrer'>
 							here.
-						</a>
+						</a>{' '}
 					</p>
 
 					<h3 className='mb-3 font-head text-lg font-semibold'>
