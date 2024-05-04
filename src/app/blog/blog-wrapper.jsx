@@ -50,7 +50,7 @@ const BlogWrapper = ({ blogs }) => {
 		<section>
 			<div className='mb-24'>
 				<div className='relative w-full flex gap-3 snap-x snap-mandatory overflow-x-auto pb-36 hide-scrollbar'>
-					<div className='snap-center shrink-0 md:w-8'></div>
+					<div className='snap-center shrink-0 md:w-8 w-2'></div>
 					{blogs.map((blog, index) => (
 						<Link
 							href={'/blog/' + blog.slug}
@@ -66,7 +66,7 @@ const BlogWrapper = ({ blogs }) => {
 								width={900}
 								height={400}
 								alt={blog.meta.title}
-								className='absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-40%] shrink-0 w-[1000px] md:h-[400px] h-[300px] object-cover transition duration-[250ms] ease-in-out transform-gpu rounded-md blur-[70px] opacity-0 group-hover:opacity-100'
+								className='absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-30%] md:translate-y-[-40%] shrink-0 lg:w-[1200px] md:w-[700px] w-[250px] md:h-[400px] h-[300px] object-cover transition duration-[250ms] ease-in-out transform-gpu rounded-md md:blur-[70px] blur-[40px] opacity-0 group-hover:opacity-100'
 								src={blog.meta.image}
 							/>
 							<Image
@@ -78,8 +78,7 @@ const BlogWrapper = ({ blogs }) => {
 							/>
 						</Link>
 					))}
-
-					<div className='snap-center shrink-0 md:w-8'></div>
+					<div className='snap-center shrink-0 md:w-8 w-2'></div>
 				</div>
 				<div className='flex justify-center space-x-2 mt-[-7rem]'>
 					{blogs.map((blog, index) => (
