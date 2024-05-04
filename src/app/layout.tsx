@@ -83,7 +83,7 @@ const futuraPt = localFont({
 const proximaNova = localFont({
 	src: [
 		{
-			path: '@/assets/fonts/Proxima-Nova-Sbold.woff2',
+			path: '../assets/fonts/Proxima-Nova-Sbold.woff2',
 			weight: '600',
 			style: 'normal',
 		},
