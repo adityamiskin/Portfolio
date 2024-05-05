@@ -2,6 +2,7 @@ import './globals.css';
 import Wrapper from '@/app/wrapper';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
 	title: 'Aditya Miskin',
@@ -124,6 +125,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={`${futuraPt.variable} ${proximaNova.variable}`}>
+				<Analytics />
 				<Wrapper>{children}</Wrapper>
 				<SpeedInsights />
 			</body>
