@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import Image from 'next/image';
 import Link from 'next/link';
+import CavnvasImage from '@/components/CanvasImage';
 
 const BlogWrapper = ({ blogs }) => {
 	const [value, setValue] = useState([]);
@@ -64,13 +65,7 @@ const BlogWrapper = ({ blogs }) => {
 								</h2>
 								<p className='md:text-2xl text-lg'>{blog.meta.description}</p>
 							</div>
-							<Image
-								width={900}
-								height={400}
-								alt={blog.meta.title}
-								className='absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-30%] md:translate-y-[-40%] shrink-0 lg:w-[1200px] md:w-[700px] w-[250px] md:h-[400px] h-[300px] object-cover transition duration-[250ms] ease-in-out transform-gpu rounded-md md:blur-[70px] blur-[40px] opacity-0 group-hover:opacity-100'
-								src={blog.meta.image}
-							/>
+							<CavnvasImage width={900} height={400} src={blog.meta.image} />
 							<Image
 								width={1500}
 								height={1000}
