@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Img from '@/components/Img';
+import TwitterEmbed from '@/components/TwitterEmbed';
 
 export async function generateStaticParams() {
 	const blogDir = '/src/blogs';
@@ -34,7 +35,7 @@ function getPost({ slug }: { slug: string }) {
 	};
 }
 
-const components = { Img };
+const components = { Img, TwitterEmbed };
 
 export default function Post({ params }: any) {
 	const props = getPost(params);

@@ -124,12 +124,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<script
-				async
-				defer
-				src='https://platform.twitter.com/widgets.js'
-				charset='utf-8'
-			/>
+			<script async defer src='https://platform.twitter.com/widgets.js' />
 			<body className={`${futuraPt.variable} ${proximaNova.variable}`}>
 				<Analytics />
 				<Wrapper>{children}</Wrapper>

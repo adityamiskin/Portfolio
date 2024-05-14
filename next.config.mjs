@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 import createMDX from '@next/mdx';
 const nextConfig = {
-	output: 'export',
+	// output: 'export',
 	pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 	typescript: {
 		ignoreBuildErrors: true,
@@ -11,21 +11,20 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'res.cloudinary.com',
-				port: '',
 				pathname: '/vite-img/image/upload/**',
 			},
 			{
 				protocol: 'https',
 				hostname: 'images.ctfassets.net',
-				port: '',
 				pathname: '/**',
 			},
 			{
 				protocol: 'https',
 				hostname: 'techcrunch.com',
-				port: '',
 				pathname: '/wp-content/uploads/**',
 			},
+			{ protocol: 'https', hostname: 'pbs.twimg.com' },
+			{ protocol: 'https', hostname: 'abs.twimg.com' },
 		],
 	},
 };
