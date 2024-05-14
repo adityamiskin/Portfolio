@@ -20,6 +20,12 @@ const nextConfig = {
 				port: '',
 				pathname: '/**',
 			},
+			{
+				protocol: 'https',
+				hostname: 'techcrunch.com',
+				port: '',
+				pathname: '/wp-content/uploads/**',
+			},
 		],
 	},
 };
