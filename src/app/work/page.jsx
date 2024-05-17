@@ -55,7 +55,7 @@ const ListItem = ({ item, type }) => (
 		<time className='block mb-2 text-sm font-semibold leading-none text-gray-400 dark:text-gray-500'>
 			{item.duration}
 		</time>
-		<p className='mb-2 text-base text-gray-500 dark:text-gray-400'>
+		<p className='mb-2 text-sm text-gray-500 dark:text-gray-400 tracking-wider'>
 			{item.description || item.course}
 		</p>
 		{item.cgpa && <span className='font-bold'>{item.cgpa}</span>}

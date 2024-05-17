@@ -10,9 +10,9 @@ const About = () => {
 		<section className='md:w-10/12 lg:w-9/12 w-full max-w-3xl mx-auto flex flex-col p-4 md:p-8 mb-12 relative my-auto mt-8'>
 			<h2 className='font-head font-semibold text-3xl mb-6'>About</h2>
 			<div className='flex mx-auto gap-6 flex-col md:flex-row'>
-				<div className='tracking-wide text-sm order-2 md:order-1'>
+				<div className='tracking-wider text-sm order-2 md:order-1'>
 					<p className='mb-4 mt-2'>Hi, I&apos;m Aditya.</p>
-					<p className='mb-8 tracking-wide leading-relaxed'>
+					<p className='mb-8 leading-relaxed'>
 						I&apos;m a software engineer living in Bengaluru, IN. I’m also a
 						hobbyist{' '}
 						<Link

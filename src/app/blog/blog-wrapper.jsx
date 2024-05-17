@@ -60,7 +60,7 @@ const BlogWrapper = ({ blogs }) => {
 							className='relative snap-center shrink-0 md:w-[calc(100vw-5rem)] md:h-[calc(100vh-12rem)] h-[30rem] w-[23rem] cursor-pointer rounded-md group'
 							key={index}>
 							<div className='absolute flex flex-col h-full justify-center w-full text-center px-4 z-10'>
-								<h2 className='md:text-6xl text-3xl mb-4 font-semibold'>
+								<h2 className='md:text-6xl text-3xl mb-4 font-semibold dark:drop-shadow-2xl '>
 									{blog.meta.title}
 								</h2>
 								<p className='md:text-2xl text-lg'>{blog.meta.description}</p>
