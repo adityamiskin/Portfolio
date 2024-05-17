@@ -75,7 +75,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 					</div>
 
 					<div className='flex lg:gap-6 md:gap-4 flex-col lg:flex-row transition'>
-						<ul className='flex gap-8 items-center tracking-widest text-[15px] font-head'>
+						<ul className='flex gap-8 items-center tracking-widest text-[14px] font-head'>
 							<li>
 								<Link
 									href='/'

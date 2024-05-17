@@ -41,7 +41,7 @@ export default function Post({ params }: any) {
 	const props = getPost(params);
 
 	return (
-		<article className='mx-auto my-20 prose md:prose-xl prose-p:text-lg prose-h2:text-7xl prose-headings:mt-4 prose-h2:text-center prose-h3:text-3xl prose-h3:mt-16 dark:prose-invert px-5 prose-img:rounded-md prose-p:mx-auto md:prose-img:w-[1000px] md:prose-img:h-[600px] prose-img:w-full prose-img:h-[200px] font-normal md:font-semibold prose-h2:mb-2 prose-h2:font-normal'>
+		<article className='mx-auto my-20 prose md:prose-xl prose-p:text-lg prose-h2:text-7xl prose-headings:mt-4 prose-h2:text-center prose-h3:text-3xl prose-h3:mt-16 dark:prose-invert px-5 prose-img:rounded-md prose-p:mx-auto md:prose-img:w-[1000px] md:prose-img:h-[600px] prose-img:w-full prose-img:h-[200px] font-light md:font-semibold prose-h2:mb-2 prose-h2:font-normal'>
 			<p className='text-sm font-semibold text-center'>
 				{props.frontMatter.date}
 			</p>

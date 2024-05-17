@@ -65,56 +65,56 @@ export const renderSchemaTags = () => {
 	);
 };
 
-const futuraPt = localFont({
+const jost = localFont({
 	src: [
 		{
-			path: '../assets/fonts/FuturaPT-Book.woff2',
+			path: '../assets/fonts/Jost-400-Book.ttf',
 			weight: '400',
 			style: 'normal',
 		},
 		{
-			path: '../assets/fonts/FuturaPT-Heavy.woff2',
+			path: '../assets/fonts/Jost-600-Semi.ttf',
 			weight: '600',
 			style: 'normal',
 		},
 	],
-	variable: '--font-futura-pt',
+	variable: '--font-jost',
 });
 
-const proximaNova = localFont({
+const metropolis = localFont({
 	src: [
 		{
-			path: '../assets/fonts/Proxima-Nova-Sbold.woff2',
-			weight: '600',
-			style: 'normal',
-		},
-		{
-			path: '../assets/fonts/Proxima-Nova-Sbold.woff2',
-			weight: '500',
-			style: 'normal',
-		},
-		{
-			path: '../assets/fonts/ProximaNova-Medium.woff2',
-			weight: '400',
-			style: 'normal',
-		},
-		{
-			path: '../assets/fonts/ProximaNova-Thin.woff2',
+			path: '../assets/fonts/Metropolis-Thin.ttf',
 			weight: '100',
 			style: 'normal',
 		},
 		{
-			path: '../assets/fonts/ProximaNova-Regular.woff2',
+			path: '../assets/fonts/Metropolis-Regular.ttf',
 			weight: '300',
 			style: 'normal',
 		},
 		{
-			path: '../assets/fonts/ProximaNova-RegularIt.woff2',
+			path: '../assets/fonts/Metropolis-Regular.ttf',
+			weight: '400',
+			style: 'normal',
+		},
+		{
+			path: '../assets/fonts/Metropolis-RegularItalic.ttf',
 			weight: '400',
 			style: 'italic',
 		},
+		{
+			path: '../assets/fonts/Metropolis-SemiBold.ttf',
+			weight: '500',
+			style: 'normal',
+		},
+		{
+			path: '../assets/fonts/Metropolis-SemiBold.ttf',
+			weight: '600',
+			style: 'normal',
+		},
 	],
-	variable: '--font-proxima-nova',
+	variable: '--font-metropolis',
 });
 
 export default function RootLayout({
@@ -125,7 +125,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<script async defer src='https://platform.twitter.com/widgets.js' />
-			<body className={`${futuraPt.variable} ${proximaNova.variable}`}>
+			<body className={`${jost.variable} ${metropolis.variable} font-body `}>
 				<Analytics />
 				<Wrapper>{children}</Wrapper>
 				<SpeedInsights />

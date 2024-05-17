@@ -24,8 +24,8 @@ const config: Config = {
 			}),
 		},
 		fontFamily: {
-			body: ['var(--font-proxima-nova)', 'sans-serif'],
-			head: ['var(--font-futura-pt)', 'sans-serif'],
+			body: ['var(--font-metropolis)', 'sans-serif'],
+			head: ['var(--font-jost)', 'sans-serif'],
 		},
 	},
 	plugins: [require('@tailwindcss/typography')],
