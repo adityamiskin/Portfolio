@@ -161,13 +161,13 @@ const Contact = () => {
 				setActiveIndex={setActiveIndex}
 			/>
 			<ToastContainer />
-			<p className='text-2xl font-head font-semibold mb-8 text-center mx-auto md:max-w-screen-md w-full px-6'>
+			<p className='text-2xl font-head font-semibold mb-8 text-center mx-auto md:max-w-screen-md w-full md:px-6'>
 				Available for various services including frontend design, software
 				freelancing and MVP building. Contact for rates. Or, if you just wanna
 				chat, toss me a line!
 			</p>
 			<form
-				className='flex flex-col gap-3 mx-auto md:max-w-screen-sm w-full justify-center px-6'
+				className='flex flex-col gap-3 mx-auto md:max-w-screen-sm w-full justify-center md:px-6'
 				onSubmit={handleOnSubmit}>
 				<p className='text-sm text-left tracking-wider'>
 					Name <span className='text-xs opacity-70'>(required)</span>
