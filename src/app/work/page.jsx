@@ -61,9 +61,9 @@ const CareerListItem = ({ item, type }) => (
 			{item.duration}
 		</time>
 
-		<h3 class='text-lg font-semibold text-gray-900 dark:text-white flex gap-3 mb-2'>
+		<h3 class='text-lg font-semibold text-gray-900 dark:text-white flex gap-3 mb-2 '>
 			{item.company || item.institution}
-			<Badge variant='secondary' className='shadow-md flex gap-1'>
+			<Badge variant='secondary' className='shadow-md flex gap-1 h-fit p-1'>
 				{item.position}
 			</Badge>
 		</h3>
@@ -394,7 +394,7 @@ const Work = () => {
 						))}
 					</ol>
 				</div>
-				<div className='w-full'>
+				<div className='w-full hidden md:block'>
 					<Image
 						src={WorkImage}
 						alt='work'
