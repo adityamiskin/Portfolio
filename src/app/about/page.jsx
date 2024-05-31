@@ -31,7 +31,7 @@ const About = () => {
 						</Link>{' '}
 						and resume over{' '}
 						<a
-							href='https://drive.google.com/file/d/1FNhPrthCFp8oFNeC0Ve9pj9fte2GKg1X/view?usp=sharing'
+							href='https://drive.google.com/file/d/12uiedKhDRLFK5DbC2ZRyuSqTMYwC5M7F/view?usp=sharing'
 							className='link-text'
 							target='_blank'
 							rel='noopener noreferrer'>
