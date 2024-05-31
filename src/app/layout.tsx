@@ -3,6 +3,8 @@ import Wrapper from '@/app/wrapper';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/react';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 
 export const metadata = {
 	title: 'Aditya Miskin',
@@ -125,7 +127,8 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<script async defer src='https://platform.twitter.com/widgets.js' />
-			<body className={`${jost.variable} ${metropolis.variable} font-body `}>
+			<body
+				className={`${jost.variable} ${metropolis.variable} ${GeistSans.variable} ${GeistMono.variable} font-body `}>
 				<Analytics />
 				<Wrapper>{children}</Wrapper>
 				<SpeedInsights />

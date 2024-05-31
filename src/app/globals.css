@@ -1,63 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-@font-face {
-	font-family: 'futura_pt';
-	src: url('../assets/fonts/FuturaPT-Book.woff2');
-	font-weight: 400;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'futura_pt';
-	src: url('../assets/fonts/FuturaPT-Heavy.woff2');
-	font-weight: 600;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'proxima_nova';
-	src: url('../assets/fonts/Proxima-Nova-Sbold.woff2');
-	font-weight: 600;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'proxima_nova';
-	src: url('../assets/fonts/Proxima-Nova-Sbold.woff2');
-	font-weight: 500;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'proxima_nova';
-	src: url('../assets/fonts/ProximaNova-Medium.woff2');
-	font-weight: 400;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'proxima_nova';
-	src: url('../assets/fonts/ProximaNova-Thin.woff2');
-	font-weight: 100;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'proxima_nova';
-	src: url('../assets/fonts/ProximaNova-Regular.woff2');
-	font-weight: 300;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'proxima_nova';
-	src: url('../assets/fonts/ProximaNova-RegularIt.woff2');
-	font-weight: 400;
-	font-style: italic;
-	font-display: swap;
-} */
 
 .fade-in {
 	animation: fadeIn ease 500ms;
@@ -65,6 +8,18 @@
 	-moz-animation: fadeIn ease 500ms;
 	-o-animation: fadeIn ease 500ms;
 	-ms-animation: fadeIn ease 500ms;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.3;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 @keyframes fadeIn {
