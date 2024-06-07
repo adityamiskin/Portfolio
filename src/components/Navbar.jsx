@@ -313,7 +313,7 @@ const Navbar = ({ navbarOpen, setNavbarOpen }) => {
 							<FaInstagram />
 						</Link>
 						<Link
-							href='https://www.linkedin.com/in/aditya-miskin/'
+							href='https://www.linkedin.com/in/adityamiskin/'
 							aria-label='LinkedIn'>
 							<FaLinkedinIn />
 						</Link>
