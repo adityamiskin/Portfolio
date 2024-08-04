@@ -1,12 +1,12 @@
 export default function manifest() {
 	return {
-		name: 'Next.js App',
-		short_name: 'Next.js App',
-		description: 'Next.js App',
+		name: 'Aditya Miskin',
+		short_name: 'Aditya Miskin',
+		description: "I'm a software engineer living in Bengaluru, IN. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
 		start_url: '/',
 		display: 'standalone',
-		background_color: '#fff',
-		theme_color: '#fff',
+		background_color: '#fbfbfb',
+		theme_color: '#fbfbfb',
 		icons: [
 			{
 				src: '/favicon.ico',
