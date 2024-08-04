@@ -177,7 +177,6 @@ const Work = () => {
 					icon: <Image src={Shadcn} alt='shadcn' width={14} height={14} />,
 				},
 			],
-			link: 'https://www.github.com',
 		},
 		{
 			title: 'Saastify',
@@ -257,7 +256,7 @@ const Work = () => {
 					icon: <SiSupabase size={14} color='#3ed18f' />,
 				},
 			],
-			link: 'https://ai-next-seven.vercel.app/',
+			link: 'https://auditoor.xyz/',
 		},
 		{
 			title: 'ML Preprocessor CLI',
