@@ -9,7 +9,7 @@ import { GeistMono } from 'geist/font/mono';
 export const metadata = {
 	title: 'Aditya Miskin',
 	description:
-		"Hi, I'm Aditya. I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
+		"I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
 	keywords:
 		'freelancing, machine learning, ai, web development, aditya miskin, photography, travel photography, street photography, urban photography, nature photography, portfolio, india, frontend developer, software engineer, aditya, miskin',
 	applicationName: 'Aditya Miskin',
@@ -18,7 +18,7 @@ export const metadata = {
 	openGraph: {
 		title: 'Aditya Miskin',
 		description:
-			"Hi, I'm Aditya. I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
+			"I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
 		url: 'https://adityamiskin.com',
 		siteName: 'Aditya Miskin',
 		// If you add an opengraph-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
@@ -36,7 +36,7 @@ export const metadata = {
 	twitter: {
 		title: 'Aditya Miskin',
 		description:
-			"Hi, I'm Aditya. I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
+			"I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
 		// If you add an twitter-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
 		// images: [openGraph?.image || defaults.og.image],
 		card: 'summary_large_image',
