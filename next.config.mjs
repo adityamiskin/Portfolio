@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 import createMDX from '@next/mdx';
 const nextConfig = {
-	output: 'export',
 	pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 	typescript: {
 		ignoreBuildErrors: true,
@@ -28,9 +27,8 @@ const nextConfig = {
 		],
 	},
 };
-const withMDX = createMDX({
-	// Add markdown plugins here, as desired
-});
+
+const withMDX = createMDX({});
 
 // Merge MDX config with Next.js config
 export default withMDX(nextConfig);
