@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/react';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
+import Head from 'next/head';
 
 export const metadata = {
 	title: 'Aditya Miskin',
@@ -127,6 +128,12 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<script async defer src='https://platform.twitter.com/widgets.js' />
+			<Head>
+				<link rel='icon' href='/favicon.ico' sizes='48x48' />
+				<link rel='icon' href='/favicon.svg' sizes='any' type='image/svg+xml' />
+				<meta property='og:type' content='website' />
+			</Head>
+			<link rel='icon' href='/favicon.svg' sizes='any' type='image/svg+xml' />
 			<body
 				className={`${jost.variable} ${metropolis.variable} ${GeistSans.variable} ${GeistMono.variable} font-body `}>
 				<Analytics />
