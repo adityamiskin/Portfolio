@@ -37,7 +37,7 @@ const BlogWrapper = ({ blogs }) => {
 
 	const filteredBlogs = blogs.filter((blog) => {
 		if (value.length === 0) return true;
-		return blog.meta.tags.some((tag) => value.includes(tag));
+		return blog.metadata.tags.some((tag) => value.includes(tag));
 	});
 
 	const toggleItems = [
@@ -61,17 +61,23 @@ const BlogWrapper = ({ blogs }) => {
 							key={index}>
 							<div className='absolute flex flex-col h-full justify-center w-full text-center px-4 z-10'>
 								<h2 className='md:text-6xl text-3xl mb-4 font-semibold dark:drop-shadow-2xl '>
-									{blog.meta.title}
+									{blog.metadata.title}
 								</h2>
-								<p className='md:text-2xl text-lg'>{blog.meta.description}</p>
+								<p className='md:text-2xl text-lg'>
+									{blog.metadata.description}
+								</p>
 							</div>
-							<CavnvasImage width={900} height={400} src={blog.meta.image} />
+							<CavnvasImage
+								width={900}
+								height={400}
+								src={blog.metadata.image}
+							/>
 							<Image
 								width={1500}
 								height={1000}
-								alt={blog.meta.title}
+								alt={blog.metadata.title}
 								className='shrink-0 w-full h-full object-cover bg-white transition duration-[250ms] ease-in-out transform group-hover:scale-[1.008] rounded-md '
-								src={blog.meta.image}
+								src={blog.metadata.image}
 							/>
 						</Link>
 					))}
@@ -101,7 +107,9 @@ const BlogWrapper = ({ blogs }) => {
 				<h2 className='mb-4'>My Blogs</h2>
 				<ToggleGroup
 					type='multiple'
-					className='mb-6 flex gap-4'
+					variant='outline'
+					size='sm'
+					className='mb-6 float-left'
 					value={value}
 					onValueChange={(value) => {
 						setValue(value);
@@ -110,15 +118,9 @@ const BlogWrapper = ({ blogs }) => {
 						<ToggleGroupItem
 							key={item.value}
 							value={item.value}
-							aria-label={`Toggle ${item.label}`}>
-							<p
-								className={`text-xs px-2 py-0.5 rounded-full transition ${
-									value.includes(item.value)
-										? 'dark:bg-white bg-black text-white dark:text-black'
-										: 'dark:bg-black outline dark:outline-white dark:text-white text-black'
-								}`}>
-								{item.label}
-							</p>
+							aria-label={`Toggle ${item.label}`}
+							className='font-normal tracking-wider'>
+							{item.label}
 						</ToggleGroupItem>
 					))}
 				</ToggleGroup>
@@ -132,22 +134,22 @@ const BlogWrapper = ({ blogs }) => {
 							className=' relative cursor-pointer group overflow-hidden h-[400px] rounded-sm'>
 							<div className='absolute flex flex-col h-full justify-between w-full text-left p-4 z-10'>
 								<div>
-									<h2 className='text-base mb-2 '>{blog.meta.title}</h2>
+									<h2 className='text-base mb-2 '>{blog.metadata.title}</h2>
 									<div className='flex gap-2'>
-										{blog.meta.tags.map((tag, index) => (
+										{blog.metadata.tags.map((tag, index) => (
 											<Badge key={index}>{tag}</Badge>
 										))}
 									</div>
 								</div>
 
-								<p className='text-2xl'>{blog.meta.description}</p>
+								<p className='text-2xl'>{blog.metadata.description}</p>
 							</div>
 							<Image
 								width={300}
 								height={300}
-								alt={blog.meta.title}
+								alt={blog.metadata.title}
 								className='w-full h-full object-cover transition duration-[250ms] ease-in-out group-hover:scale-[1.02]'
-								src={blog.meta.image}
+								src={blog.metadata.image}
 							/>
 							<div className='absolute top-0 left-0 w-full h-full transition duration-200 dark:bg-black/30 bg-white/10 group-hover:dark:bg-black/50 group-hover:bg-white/50'></div>
 						</Link>
