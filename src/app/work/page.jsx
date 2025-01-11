@@ -140,6 +140,46 @@ const ProjectListItem = ({ project }) => (
 const Work = () => {
 	const projects = [
 		{
+			title: 'Auditoor',
+			description:
+				'An AI tool for quickly understanding large Web3 codebases and identifying issues for rapid bug fixes.',
+			technologies: [
+				{
+					name: 'Tailwind CSS',
+					icon: (
+						<Image src={TailwindCss} alt='tailwind' width={14} height={14} />
+					),
+				},
+				{
+					name: 'Vercel',
+					icon: <Image src={Vercel} alt='vercel' width={14} height={14} />,
+				},
+				{
+					name: 'Next.js',
+					icon: <Image src={Nextjs} alt='nextjs' width={14} height={14} />,
+				},
+				{
+					name: 'Javascript',
+					icon: (
+						<Image src={Javascript} alt='javascript' width={14} height={14} />
+					),
+				},
+				{
+					name: 'Shadcn/ui',
+					icon: <Image src={Shadcn} alt='shadcn' width={14} height={14} />,
+				},
+				{
+					name: 'OpenAI',
+					icon: <Image src={OpenAI} alt='openai' width={14} height={14} />,
+				},
+				{
+					name: 'Supabase',
+					icon: <SiSupabase size={14} color='#3ed18f' />,
+				},
+			],
+			link: 'https://auditoor.xyz/',
+		},
+		{
 			title: 'Data Visualization AI',
 			description:
 				'A powerful AI tool for visualizing and analyzing complex data sets.',
@@ -217,46 +257,6 @@ const Work = () => {
 				},
 			],
 			link: 'https://saastify.vercel.app/',
-		},
-		{
-			title: 'Solodit AI',
-			description:
-				'An AI tool for quickly understanding large Web3 codebases and identifying issues for rapid bug fixes.',
-			technologies: [
-				{
-					name: 'Tailwind CSS',
-					icon: (
-						<Image src={TailwindCss} alt='tailwind' width={14} height={14} />
-					),
-				},
-				{
-					name: 'Vercel',
-					icon: <Image src={Vercel} alt='vercel' width={14} height={14} />,
-				},
-				{
-					name: 'Next.js',
-					icon: <Image src={Nextjs} alt='nextjs' width={14} height={14} />,
-				},
-				{
-					name: 'Javascript',
-					icon: (
-						<Image src={Javascript} alt='javascript' width={14} height={14} />
-					),
-				},
-				{
-					name: 'Shadcn/ui',
-					icon: <Image src={Shadcn} alt='shadcn' width={14} height={14} />,
-				},
-				{
-					name: 'OpenAI',
-					icon: <Image src={OpenAI} alt='openai' width={14} height={14} />,
-				},
-				{
-					name: 'Supabase',
-					icon: <SiSupabase size={14} color='#3ed18f' />,
-				},
-			],
-			link: 'https://auditoor.xyz/',
 		},
 		{
 			title: 'ML Preprocessor CLI',
