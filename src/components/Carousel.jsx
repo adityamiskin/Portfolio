@@ -93,7 +93,6 @@ const Carousel = ({ slides }) => {
 							ref={(el) => (imageRefs.current[index] = el)}>
 							<div className='relative'>
 								<picture className='relative group'>
-									<source media='(max-width: 600px)' srcSet={slide.img_phone} />
 									<Image
 										src={slide.img}
 										alt={slide.description}

@@ -5,16 +5,16 @@ import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/react';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import Head from 'next/head';
+import type { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
 	title: 'Aditya Miskin',
 	description:
 		"I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
 	keywords:
 		'freelancing, machine learning, ai, web development, aditya miskin, photography, travel photography, street photography, urban photography, nature photography, portfolio, india, frontend developer, software engineer, aditya, miskin',
 	applicationName: 'Aditya Miskin',
-	metadataBase: 'https://adityamiskin.com',
+	metadataBase: new URL('https://adityamiskin.com'),
 
 	openGraph: {
 		title: 'Aditya Miskin',
@@ -128,14 +128,9 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<script async defer src='https://platform.twitter.com/widgets.js' />
-			<Head>
-				<link rel='icon' href='/favicon.ico' sizes='48x48' />
-				<link rel='icon' href='/favicon.svg' sizes='any' type='image/svg+xml' />
-				<meta property='og:type' content='website' />
-			</Head>
 			<link rel='icon' href='/favicon.svg' sizes='any' type='image/svg+xml' />
 			<body
-				className={`${jost.variable} ${metropolis.variable} ${GeistSans.variable} ${GeistMono.variable} font-body `}>
+				className={`${jost.variable} ${metropolis.variable} ${GeistSans.variable} ${GeistMono.variable} font-body`}>
 				<Analytics />
 				<Wrapper>{children}</Wrapper>
 				<SpeedInsights />
