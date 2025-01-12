@@ -5,13 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: '*',
 			allow: '/',
-			disallow: [
-				'photo/portraits/',
-				'photo/landscapes/',
-				'photo/urban/',
-				'photo/street/',
-				'photo/nature/',
-			],
+			disallow: ['/photo/'],
 		},
 		sitemap: 'https://adityamiskin.com/sitemap.xml',
 	};
