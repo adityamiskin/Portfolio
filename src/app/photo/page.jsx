@@ -9,20 +9,20 @@ const Photo = () => {
 	const [currentImage, setCurrentImage] = useState(0);
 	const images = [
 		{
-			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_2000/v1704632731/test_hjtzaw.webp',
+			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_2000/v1704632731/street/test_hjtzaw.webp',
 		},
 		{
-			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_2000/v1704632729/test7_fasrqt.webp',
+			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_2000/v1704632729/landscape/nsef38tlas3myh0ildzv',
 		},
 
 		{
-			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1500/v1704632729/test8_wethqp.webp',
+			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1500/v1704632729/nature/test8_wethqp.webp',
 		},
 		{
-			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1500/v1704632731/test3_yqykrt.webp',
+			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1500/v1704632731/portraits/test3_yqykrt.webp',
 		},
 		{
-			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1500/v1704633882/test4_xtagby.webp',
+			img: 'https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_1500/v1704633882/urban/test4_xtagby.webp',
 		},
 	];
 	const imageTypes = ['Street', 'Landscape', 'Nature', 'Portraits', 'Urban'];
