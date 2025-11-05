@@ -1,15 +1,10 @@
-'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
 	FaTerminal,
 	FaGithub,
-	FaChevronLeft,
-	FaChevronRight,
 } from 'react-icons/fa6';
 import {
 	LuArrowUpRight,
@@ -21,7 +16,6 @@ import { SiStreamlit, SiSupabase } from 'react-icons/si';
 import Vite from '@/assets/icons/vite.svg';
 import Shadcn from '@/assets/icons/shadcn.svg';
 import OpenAI from '@/assets/icons/openai.svg';
-import Typescript from '@/assets/icons/typescript.svg';
 import Nextjs from '@/assets/icons/nextjs.svg';
 import Javascript from '@/assets/icons/javascript.svg';
 import TailwindCss from '@/assets/icons/tailwind.svg';
@@ -349,9 +343,6 @@ const Work = () => {
 		},
 	];
 
-	const scrollContainer = useRef(null);
-	const [scrollPosition, setScrollPosition] = useState(0);
-	const [maxScrollWidth, setMaxScrollWidth] = useState(0);
 
 	// useEffect(() => {
 	// 	const updateMaxScrollWidth = () => {

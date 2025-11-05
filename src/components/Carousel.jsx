@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const Carousel = ({ slides }) => {
 	const [current, setCurrent] = useState(0);
-	const length = slides.length;
+	const length = slides?.length || 0;
 	const [offset, setOffset] = useState(0);
 	const imageRefs = useRef([]);
 	const [isMouseLeft, setIsMouseLeft] = useState(false);
@@ -50,7 +50,7 @@ const Carousel = ({ slides }) => {
 	}, []);
 
 	useEffect(() => {
-		imageRefs.current = imageRefs.current.slice(0, slides.length);
+		imageRefs.current = imageRefs.current.slice(0, slides?.length || 0);
 	}, [slides]);
 
 	useEffect(() => {
@@ -83,7 +83,7 @@ const Carousel = ({ slides }) => {
 					transform: `translateX(-${offset}px)`,
 					transition: 'transform 0.35s ease',
 				}}>
-				{slides.map((slide, index) => {
+				{slides && slides.length > 0 && slides.map((slide, index) => {
 					return (
 						<div
 							key={index}
@@ -121,6 +121,11 @@ const Carousel = ({ slides }) => {
 						</div>
 					);
 				})}
+				{(!slides || slides.length === 0) && (
+					<div className="text-center text-gray-500 dark:text-gray-400">
+						No images found
+					</div>
+				)}
 			</div>
 		</section>
 	);
