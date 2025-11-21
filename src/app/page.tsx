@@ -33,12 +33,16 @@ const getCachedContributions = unstable_cache(
       contributions: Activity[];
     };
     const total = data.total[new Date().getFullYear()];
-    return { contributions: data.contributions, total };
+    const TOTAL_SQUARES = 417;
+
+    const sortedData = data.contributions.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    return { contributions: sortedData.slice(0, TOTAL_SQUARES), total };
   },
   ["github-contributions"],
   { revalidate: 60 * 60 * 24 }
 );
-
 export default async function Home() {
   const { contributions, total } = await getCachedContributions();
   return (
