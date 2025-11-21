@@ -58,16 +58,20 @@ export default async function Home() {
           <div className="space-y-8">
             {portfolioData.experience.map((exp, index) => (
               <div key={index}>
-                <div className="mb-3">
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
-                    href={exp.url}
-                  >
-                    {exp.company}
-                  </a>
-                  <span className="text-muted-foreground ml-2">{exp.role}</span>
+                <div className="mb-3 md:flex md:justify-between flex-col gap-3">
+                  <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                      href={exp.url}
+                    >
+                      {exp.company}
+                    </a>
+                    <span className="text-muted-foreground md:ml-2">
+                      {exp.role}
+                    </span>
+                  </div>
                 </div>
                 <div className="text-muted-foreground leading-relaxed mb-3">
                   {exp.description}
@@ -81,19 +85,17 @@ export default async function Home() {
         </Section>
 
         <Section title="Education">
-          <div className="flex justify-between">
-            <div>
-              <div className="mb-2">
-                <span className="text-foreground font-medium">
-                  {portfolioData.education.school}
-                </span>
-              </div>
-              <div className="text-muted-foreground">
-                {portfolioData.education.degree}
-              </div>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-foreground font-medium">
+                {portfolioData.education.school}
+              </span>
+              <span className="text-muted-foreground">
+                {portfolioData.education.period}
+              </span>
             </div>
             <div className="text-muted-foreground">
-              {portfolioData.education.period}
+              {portfolioData.education.degree}
             </div>
           </div>
         </Section>
