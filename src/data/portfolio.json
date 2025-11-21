@@ -1,6 +1,6 @@
 {
   "name": "aditya miskin",
-  "about": "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better.",
+  "about": "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better.\n\nWhen I'm not coding, you'll usually find me out with my camera, capturing [moments](/photo) and places that inspire me.",
   "githubUsername": "adityamiskin",
   "location": "Bengaluru, India",
   "email": "adityamiskin@gmail.com",
@@ -36,28 +36,21 @@
   "uses": {
     "Laptop": {
       "title": "ASUS Zephyrus G14 2023",
-      "specs": [
-        "AMD Ryzen 9 8945HS",
-        "16GB RAM",
-        "NVIDIA GeForce RTX 4060 Max-Q"
-      ]
+      "specs": "AMD Ryzen 9 8945HS, 16GB RAM, NVIDIA GeForce RTX 4060 Max-Q"
     },
     "OS": {
       "title": "Arch Linux",
-      "specs": [
-        "CachyOS",
-        "GNOME",
-        {
-          "text": "My wallpaper",
-          "url": "https://imgur.com/jMtyD4e"
-        }
-      ]
+      "specs": "CachyOS, GNOME, [My wallpaper](https://imgur.com/jMtyD4e)"
     },
     "Desktop": {
       "title": "coming soon...",
-      "specs": []
+      "specs": ""
     },
     "Peripherals": [
+      {
+        "title": "Fujifilm X-T30 II",
+        "description": "26.1MP APS-C sensor, 15-45mm f/3.5-5.6 OIS lens"
+      },
       {
         "title": "Logitech G304 Lightspeed",
         "description": "Wireless, 1ms latency, 12000 DPI"

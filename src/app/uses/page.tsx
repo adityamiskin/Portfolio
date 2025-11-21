@@ -1,4 +1,5 @@
 import portfolio from "@/data/portfolio.json";
+import { Markdown } from "@/components/markdown";
 
 export default function UsesPage() {
   const { uses } = portfolio;
@@ -47,35 +48,9 @@ export default function UsesPage() {
               <div className="text-foreground font-medium mb-2">
                 {value.title}
               </div>
-              <div className="text-muted-foreground">
-                {Array.isArray(value.specs) && value.specs.length > 0
-                  ? value.specs.map((spec, index) => {
-                      const isLast = index === value.specs.length - 1;
-                      if (typeof spec === "string") {
-                        return (
-                          <span key={index}>
-                            {spec}
-                            {!isLast && ", "}
-                          </span>
-                        );
-                      }
-                      // Handle object with text and url
-                      return (
-                        <span key={index}>
-                          <a
-                            href={spec.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="underline hover:text-foreground transition-colors"
-                          >
-                            {spec.text}
-                          </a>
-                          {!isLast && ", "}
-                        </span>
-                      );
-                    })
-                  : null}
-              </div>
+              <Markdown className="text-muted-foreground">
+                {value.specs || ""}
+              </Markdown>
             </div>
           </div>
         );

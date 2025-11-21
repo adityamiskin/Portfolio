@@ -1,6 +1,7 @@
 import portfolioData from "@/data/portfolio.json";
 import { Contributions } from "@/components/contributions";
 import { Activity } from "@/components/kibo-ui/contribution-graph";
+import { Markdown } from "@/components/markdown";
 
 interface SectionProps {
   title: string;
@@ -44,7 +45,9 @@ export default async function Home() {
     <main>
       <div className="space-y-12">
         <Section title="About">
-          <p className="text-muted-foreground">{portfolioData.about}</p>
+          <Markdown className="text-muted-foreground">
+            {portfolioData.about}
+          </Markdown>
         </Section>
 
         <Section title="Recent GitHub Activity">
