@@ -80,7 +80,7 @@ export default function ImageLightbox({
       </button>
 
       <div
-        className="relative w-full h-full max-w-[95vw] max-h-[95vh] p-2 flex items-center justify-center"
+        className="relative w-full h-full max-w-[95vw] max-h-[95vh] p-2 flex flex-col items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
         <Carousel
@@ -89,15 +89,15 @@ export default function ImageLightbox({
             startIndex: initialIndex,
             loop: true,
           }}
-          className="w-full h-full flex items-center justify-center"
+          className="w-full flex-1 flex items-center justify-center min-h-0 overflow-hidden"
         >
           <CarouselContent className="h-full -ml-0 flex items-center">
             {images.map((image, index) => (
               <CarouselItem
                 key={index}
-                className="pl-0 basis-full flex items-center justify-center"
+                className="pl-0 basis-full flex items-center justify-center h-full"
               >
-                <div className="relative w-full flex items-center justify-center">
+                <div className="relative w-full h-full flex items-center justify-center">
                   <Image
                     src={getOptimizedCloudinaryUrl(image.img, {
                       width: 1920,
@@ -108,7 +108,7 @@ export default function ImageLightbox({
                     alt={image.description || image.title || "Photo"}
                     width={1920}
                     height={1080}
-                    className="object-contain max-w-full max-h-full"
+                    className="object-contain max-w-[calc(95vw-16px)] max-h-[calc(95vh-120px-16px)]"
                     sizes="95vw"
                     priority={index === initialIndex}
                   />
@@ -125,7 +125,7 @@ export default function ImageLightbox({
           )}
         </Carousel>
 
-        <div className="absolute bottom-0 left-0 right-0 pb-4 flex flex-col items-center justify-center">
+        <div className="h-[120px] w-full flex flex-col items-center justify-center">
           {currentImage && (
             <>
               {(currentImage.title || currentImage.description) && (
