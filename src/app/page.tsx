@@ -2,6 +2,7 @@ import portfolioData from "@/data/portfolio.json";
 import { Contributions } from "@/components/contributions";
 import { Activity } from "@/components/kibo-ui/contribution-graph";
 import { Markdown } from "@/components/markdown";
+import { unstable_cache } from "next/cache";
 
 interface SectionProps {
   title: string;
@@ -20,24 +21,23 @@ function Section({ title, children }: SectionProps) {
 }
 
 const username = "adityamiskin";
-const getCachedContributions = async () => {
-  const url = new URL(
-    `/v4/${username}`,
-    "https://github-contributions-api.jogruber.de"
-  );
-  const response = await fetch(url);
-  const data = (await response.json()) as {
-    total: { [year: string]: number };
-    contributions: Activity[];
-  };
-  const total = data.total[new Date().getFullYear()];
-  const TOTAL_SQUARES = 417;
-
-  const sortedData = data.contributions.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-  return { contributions: sortedData.slice(0, TOTAL_SQUARES), total };
-};
+const getCachedContributions = unstable_cache(
+  async () => {
+    const url = new URL(
+      `/v4/${username}`,
+      "https://github-contributions-api.jogruber.de"
+    );
+    const response = await fetch(url);
+    const data = (await response.json()) as {
+      total: { [year: string]: number };
+      contributions: Activity[];
+    };
+    const total = data.total[new Date().getFullYear()];
+    return { contributions: data.contributions, total };
+  },
+  ["github-contributions"],
+  { revalidate: 60 * 60 * 24 }
+);
 
 export default async function Home() {
   const { contributions, total } = await getCachedContributions();
