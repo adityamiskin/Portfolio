@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "adityamiskin.com",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -43,11 +43,9 @@
     "react-markdown": "^9.0.1",
     "react-tweet": "^3.2.2",
     "sharp": "^0.33.3",
-    "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@types/cheerio": "^1.0.0",
     "@types/node": "^20",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
