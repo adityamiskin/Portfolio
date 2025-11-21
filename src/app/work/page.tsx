@@ -7,7 +7,7 @@ const ProjectListItem = ({ project }) => {
   const placeholderImage = `https://picsum.photos/seed/${project.title}/1200/800`;
 
   const content = (
-    <div className="relative w-full aspect-video overflow-hidden rounded-md">
+    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-md">
       <Image
         src={placeholderImage}
         alt={`${project.title} preview`}
@@ -17,7 +17,7 @@ const ProjectListItem = ({ project }) => {
       />
       <ProgressiveBlur position="bottom" height="30%" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
-      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-20">
+      <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 z-20">
         <h2 className="text-white font-medium mb-2 text-xl md:text-2xl drop-shadow-lg inline-flex items-center gap-2">
           {project.title}
           {projectLink && (

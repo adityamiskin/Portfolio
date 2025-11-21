@@ -25,9 +25,9 @@ export const Navbar = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-2 md:gap-0">
-          <div className="flex flex-col md:flex-row md:flex-wrap gap-2 md:gap-4">
-            <nav className="flex flex-wrap gap-2 md:gap-4 text-muted-foreground text-sm">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-0">
+          <div className="flex flex-col md:flex-row md:flex-wrap gap-4 md:gap-4">
+            <nav className="flex flex-wrap gap-3 md:gap-4 text-muted-foreground text-sm">
               <Link
                 className="hover:text-foreground transition-colors"
                 href="/"
