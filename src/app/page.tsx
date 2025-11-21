@@ -1,59 +1,112 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import portfolioData from "@/data/portfolio.json";
+import { Contributions } from "@/components/contributions";
+import { Activity } from "@/components/kibo-ui/contribution-graph";
 
-export default function Home() {
-	return (
-		<main>
-			<section className='md:w-10/12 lg:w-9/12 w-full max-w-3xl mx-auto flex flex-col p-4 md:p-8 mb-12 relative my-auto mt-8'>
-				<h2 className='font-head font-semibold text-3xl mb-6'>About</h2>
-				<div className='flex mx-auto gap-6 flex-col md:flex-row'>
-					<div className='tracking-wider text-sm order-2 md:order-1'>
-						<p className='mb-4 mt-2'>Hi, I&apos;m Aditya.</p>
-						<p className='mb-8 leading-relaxed'>
-							I&apos;m a software engineer living in Bengaluru, IN. I’m also a
-							hobbyist{' '}
-							<Link
-								href={'/photo'}
-								className='link-text'
-								rel='noopener noreferrer'>
-								photographer
-							</Link>{' '}
-							travelling the world, documenting this beautiful planet of ours.
-							In my free time, I play a lot of games and learn guitar. Check out
-							my{' '}
-							<Link
-								href={'/blog'}
-								className='link-text'
-								rel='noopener noreferrer'>
-								blogs
-							</Link>{' '}
-							and resume over{' '}
-							<a
-								href='https://drive.google.com/file/d/12uiedKhDRLFK5DbC2ZRyuSqTMYwC5M7F/view?usp=sharing'
-								className='link-text'
-								target='_blank'
-								rel='noopener noreferrer'>
-								here.
-							</a>{' '}
-						</p>
+interface SectionProps {
+  title: string;
+  children?: React.ReactNode;
+}
 
-						<h3 className='mb-3 font-head text-lg font-semibold'>
-							Toss me a line
-						</h3>
+function Section({ title, children }: SectionProps) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16">
+      <div className="col-span-1 md:col-span-3 text-muted-foreground text-sm font-medium mb-2 md:mb-0">
+        {title}
+      </div>
+      <div className="col-span-1 md:col-span-9">{children}</div>
+    </div>
+  );
+}
 
-						<p className='italic'>adityamiskin98@gmail.com</p>
-					</div>
+const username = "adityamiskin";
+const getCachedContributions = async () => {
+  const url = new URL(
+    `/v4/${username}`,
+    "https://github-contributions-api.jogruber.de"
+  );
+  const response = await fetch(url);
+  const data = (await response.json()) as {
+    total: { [year: string]: number };
+    contributions: Activity[];
+  };
+  const total = data.total[new Date().getFullYear()];
+  const TOTAL_SQUARES = 417;
 
-					<Image
-						src='https://res.cloudinary.com/vite-img/image/upload/c_scale,q_80,w_600/v1704632730/profile_bhu0aw.webp'
-						alt='profile picture'
-						className=' md:max-w-[21rem] md:max-h-[21rem] order-1 md:order-2 w-full h-full'
-						width={600}
-						height={600}
-						priority={true}
-					/>
-				</div>
-			</section>
-		</main>
-	);
+  const sortedData = data.contributions.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  return { contributions: sortedData.slice(0, TOTAL_SQUARES), total };
+};
+
+export default async function Home() {
+  const { contributions, total } = await getCachedContributions();
+  return (
+    <main>
+      <div className="space-y-12">
+        <Section title="About">
+          <p className="text-muted-foreground">{portfolioData.about}</p>
+        </Section>
+
+        <Section title="Recent GitHub Activity">
+          <Contributions data={contributions} />
+        </Section>
+
+        <Section title="Experience">
+          <div className="space-y-8">
+            {portfolioData.experience.map((exp, index) => (
+              <div key={index}>
+                <div className="mb-3">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                    href={exp.url}
+                  >
+                    {exp.company}
+                  </a>
+                  <span className="text-muted-foreground ml-2">{exp.role}</span>
+                </div>
+                <div className="text-muted-foreground leading-relaxed mb-3">
+                  {exp.description}
+                </div>
+                <div className="text-muted-foreground text-xs">
+                  {exp.period} — {exp.location}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section title="Education">
+          <div className="flex justify-between">
+            <div>
+              <div className="mb-2">
+                <span className="text-foreground font-medium">
+                  {portfolioData.education.school}
+                </span>
+              </div>
+              <div className="text-muted-foreground">
+                {portfolioData.education.degree}
+              </div>
+            </div>
+            <div className="text-muted-foreground">
+              {portfolioData.education.period}
+            </div>
+          </div>
+        </Section>
+
+        <Section title="Skills">
+          <div className="text-muted-foreground leading-relaxed">
+            {portfolioData.skills.join("; ")}
+          </div>
+        </Section>
+
+        <Section title="Interests">
+          <div className="text-muted-foreground leading-relaxed">
+            {portfolioData.interests.join("; ")}
+          </div>
+        </Section>
+      </div>
+    </main>
+  );
 }

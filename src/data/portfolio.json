@@ -1,0 +1,71 @@
+{
+  "name": "aditya miskin",
+  "about": "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better.",
+  "githubUsername": "adityamiskin",
+  "location": "Bengaluru, India",
+  "email": "adityamiskin@gmail.com",
+  "githubUrl": "https://github.com/adityamiskin",
+  "linkedinUrl": "https://linkedin.com/in/adityamiskin",
+  "twitterUrl": "https://twitter.com/ad1tyamiskin",
+  "resumeUrl": "https://drive.google.com/file/d/12uiedKhDRLFK5DbC2ZRyuSqTMYwC5M7F/view?usp=drive_link",
+  "experience": [
+    {
+      "company": "Carelon Global Solutions",
+      "url": "https://carelonglobal.in/",
+      "role": "Associate Data Scientist",
+      "description": "Working as an Associate Data Scientist specializing in Artificial Intelligence in Healthcare domain.",
+      "period": "Aug 2023 to Present",
+      "location": "Bengaluru, India"
+    },
+    {
+      "company": "Magnimus",
+      "url": "https://magnimus.com",
+      "role": "Lead Frontend Developer",
+      "description": "Developed a fully responsive website for a 3D startup using React.",
+      "period": "Oct 2022 to Jun 2023",
+      "location": "Bengaluru, India"
+    }
+  ],
+  "education": {
+    "school": "NITK Surathkal",
+    "degree": "B.Tech in Electronics and Communication Engineering",
+    "period": "2019-2023"
+  },
+  "skills": ["TypeScript", "Python"],
+  "interests": ["Open source", "Gaming", "Anime", "Movies", "Photography"],
+  "uses": {
+    "Laptop": {
+      "title": "ASUS Zephyrus G14 2023",
+      "specs": [
+        "AMD Ryzen 9 8945HS",
+        "16GB RAM",
+        "NVIDIA GeForce RTX 4060 Max-Q"
+      ]
+    },
+    "OS": {
+      "title": "Arch Linux",
+      "specs": [
+        "CachyOS",
+        "GNOME",
+        {
+          "text": "My wallpaper",
+          "url": "https://imgur.com/jMtyD4e"
+        }
+      ]
+    },
+    "Desktop": {
+      "title": "coming soon...",
+      "specs": []
+    },
+    "Peripherals": [
+      {
+        "title": "Logitech G304 Lightspeed",
+        "description": "Wireless, 1ms latency, 12000 DPI"
+      },
+      {
+        "title": "Google Pixel Buds A-Series",
+        "description": "Reliable and comfortable wireless earbuds"
+      }
+    ]
+  }
+}

@@ -21,10 +21,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			url: 'https://adityamiskin.com/blog',
 			lastModified: new Date(),
 		},
-		{
-			url: 'https://adityamiskin.com/contact',
-			lastModified: new Date(),
-			priority: 0.3,
-		},
 	];
 }

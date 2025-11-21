@@ -46,10 +46,7 @@ const config = {
 			},
 
 			fontFamily: {
-				body: ['var(--font-metropolis)', 'sans-serif'],
-				head: ['var(--font-jost)', 'sans-serif'],
-				giestSans: ['var(--font-geist-sans)'],
-				giestMono: ['var(--font-geist-mono)'],
+				body: ['var(--font-geist-mono)', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

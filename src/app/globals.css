@@ -3,174 +3,175 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--background: 0 0% 100%;
-		--foreground: 240 10% 3.9%;
-		--card: 0 0% 100%;
-		--card-foreground: 240 10% 3.9%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 240 10% 3.9%;
-		--primary: 240 5.9% 10%;
-		--primary-foreground: 0 0% 98%;
-		--secondary: 240 4.8% 95.9%;
-		--secondary-foreground: 240 5.9% 10%;
-		--muted: 240 4.8% 95.9%;
-		--muted-foreground: 240 3.8% 46.1%;
-		--accent: 240 4.8% 95.9%;
-		--accent-foreground: 240 5.9% 10%;
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 0 0% 98%;
-		--border: 240 5.9% 90%;
-		--input: 240 5.9% 90%;
-		--ring: 240 10% 3.9%;
-		--chart-1: 12 76% 61%;
-		--chart-2: 173 58% 39%;
-		--chart-3: 197 37% 24%;
-		--chart-4: 43 74% 66%;
-		--chart-5: 27 87% 67%;
-		--radius: 0.5rem;
-	}
-	.dark {
-		--background: 240 10% 3.9%;
-		--foreground: 0 0% 98%;
-		--card: 240 10% 3.9%;
-		--card-foreground: 0 0% 98%;
-		--popover: 240 10% 3.9%;
-		--popover-foreground: 0 0% 98%;
-		--primary: 0 0% 98%;
-		--primary-foreground: 240 5.9% 10%;
-		--secondary: 240 3.7% 15.9%;
-		--secondary-foreground: 0 0% 98%;
-		--muted: 240 3.7% 15.9%;
-		--muted-foreground: 240 5% 64.9%;
-		--accent: 240 3.7% 15.9%;
-		--accent-foreground: 0 0% 98%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 0 0% 98%;
-		--border: 240 3.7% 15.9%;
-		--input: 240 3.7% 15.9%;
-		--ring: 240 4.9% 83.9%;
-		--chart-1: 220 70% 50%;
-		--chart-2: 160 60% 45%;
-		--chart-3: 30 80% 55%;
-		--chart-4: 280 65% 60%;
-		--chart-5: 340 75% 55%;
-	}
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
 }
 
 @layer base {
-	* {
-		@apply border-border;
-	}
-	body {
-		@apply bg-background text-foreground;
-	}
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	font-family: proxima_nova, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	color: #080808;
-	background-color: #fbfbfb;
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  font-family: geist-mono, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #080808;
+  font-size: 14px;
+  background-color: #fbfbfb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .fade-in {
-	animation: fadeIn ease 500ms;
-	-webkit-animation: fadeIn ease 500ms;
-	-moz-animation: fadeIn ease 500ms;
-	-o-animation: fadeIn ease 500ms;
-	-ms-animation: fadeIn ease 500ms;
+  animation: fadeIn ease 500ms;
+  -webkit-animation: fadeIn ease 500ms;
+  -moz-animation: fadeIn ease 500ms;
+  -o-animation: fadeIn ease 500ms;
+  -ms-animation: fadeIn ease 500ms;
 }
 
 @keyframes blink {
-	0% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0.3;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .link-text {
-	color: #323235;
-	border-radius: 0;
-	padding-left: 1px;
-	padding-right: 1px;
-	transition: border-radius 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
-		box-shadow 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
-	box-shadow: 0 1px #bdbdc5, inset 0 -1px #bdbdc5;
+  color: #323235;
+  border-radius: 0;
+  padding-left: 1px;
+  padding-right: 1px;
+  transition: border-radius 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+    box-shadow 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+  box-shadow: 0 1px #bdbdc5, inset 0 -1px #bdbdc5;
 
-	&:hover {
-		color: #0e0e0f;
-		border-radius: 4px;
-		box-shadow: 0 0 0 1px rgba(189, 189, 197, 0.5),
-			inset 0 -40px rgba(189, 189, 197, 0.5);
-	}
+  &:hover {
+    color: #0e0e0f;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(189, 189, 197, 0.5),
+      inset 0 -40px rgba(189, 189, 197, 0.5);
+  }
 }
 
 .link {
-	transition: 250ms;
-	border-bottom: 1px solid transparent;
-	width: fit-content;
+  transition: 250ms;
+  border-bottom: 1px solid transparent;
+  width: fit-content;
 
-	&:hover {
-		border-color: #111;
-	}
+  &:hover {
+    border-color: #111;
+  }
 }
 
 .sublink {
-	transition: 300ms;
-	border-bottom: 1px solid transparent;
+  transition: 300ms;
+  border-bottom: 1px solid transparent;
 
-	&:hover {
-		border-color: #777777;
-	}
+  &:hover {
+    border-color: #777777;
+  }
 }
 
 .active {
-	border-bottom: 1px solid transparent;
-	border-color: #111;
+  border-bottom: 1px solid transparent;
+  border-color: #111;
 }
 
 .extra {
-	position: relative;
+  position: relative;
 
-	&.open::before {
-		content: '';
-		position: absolute;
-		top: 22px; /* Adjust this value to position the triangle */
-		left: 50%;
-		transform: translateX(-50%);
-		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-bottom: 10px solid black; /* Match this color with the background color of the submenu */
-	}
+  &.open::before {
+    content: "";
+    position: absolute;
+    top: 22px; /* Adjust this value to position the triangle */
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid black; /* Match this color with the background color of the submenu */
+  }
 }
 
 .error {
-	color: red;
-	font-size: 12px;
+  color: red;
+  font-size: 12px;
 }
 
 /* .transition-colors {
@@ -178,52 +179,52 @@ a {
 } */
 
 .dark-hover {
-	.link:hover {
-		border-color: white;
-	}
+  .link:hover {
+    border-color: white;
+  }
 }
 
 .dark {
-	background-color: #080808;
-	color: white;
+  background-color: #080808;
+  color: white;
 
-	.link-text {
-		color: rgb(177, 177, 177);
-	}
+  .link-text {
+    color: rgb(177, 177, 177);
+  }
 
-	.link:hover {
-		border-color: white;
-	}
+  .link:hover {
+    border-color: white;
+  }
 
-	header .link:hover {
-		border-color: white;
-	}
+  header .link:hover {
+    border-color: white;
+  }
 
-	.active {
-		border-color: white;
-	}
+  .active {
+    border-color: white;
+  }
 
-	.extra.open::before {
-		border-bottom: 10px solid #fbfbfb; /* Match this color with the background color of the submenu */
-	}
+  .extra.open::before {
+    border-bottom: 10px solid #fbfbfb; /* Match this color with the background color of the submenu */
+  }
 
-	body {
-		background-color: black;
-		color: white;
-	}
+  body {
+    background-color: black;
+    color: white;
+  }
 
-	.dark-hover {
-		.link:hover {
-			border-color: white;
-		}
-	}
+  .dark-hover {
+    .link:hover {
+      border-color: white;
+    }
+  }
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .hide-scrollbar {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

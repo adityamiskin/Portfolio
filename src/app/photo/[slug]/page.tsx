@@ -1,6 +1,7 @@
-import Carousel from "@/components/Carousel";
+import Link from "next/link";
 import { Suspense } from "react";
-import Spinner from "@/components/Spinner";
+import { Spinner } from "@/components/ui/spinner";
+import PhotoGrid from "@/components/photo-grid";
 
 async function getImagesFromFolder(folderPath: string) {
   const cloudinary = require("cloudinary").v2;
@@ -27,32 +28,69 @@ async function getImagesFromFolder(folderPath: string) {
   }));
 }
 
+const categoryInfo: Record<string, { name: string; description: string }> = {
+  street: {
+    name: "Street",
+    description: "Capturing the essence of urban life and street scenes.",
+  },
+  landscape: {
+    name: "Landscape",
+    description: "Scenic views of natural and urban landscapes.",
+  },
+  nature: {
+    name: "Nature",
+    description: "The beauty of the natural world around us.",
+  },
+  portraits: {
+    name: "Portraits",
+    description: "Capturing moments and expressions of people.",
+  },
+  urban: {
+    name: "Urban",
+    description: "Cityscapes and urban architecture.",
+  },
+};
+
+// Generate static params at build time for instant navigation
+export async function generateStaticParams() {
+  return Object.keys(categoryInfo).map((slug) => ({
+    slug,
+  }));
+}
+
 export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const carouselImages = [
-    await getImagesFromFolder("street"),
-    await getImagesFromFolder("landscape"),
-    await getImagesFromFolder("nature"),
-    await getImagesFromFolder("portraits"),
-    await getImagesFromFolder("urban"),
-  ];
-
   const { slug } = await params;
+  const category = categoryInfo[slug] || { name: slug, description: "" };
 
-  const imageTypes = ["Street", "Landscape", "Nature", "Portraits", "Urban"];
-  let lowerCaseArr = imageTypes.map(function (item) {
-    return item.toLowerCase();
-  });
-  const index = lowerCaseArr.indexOf(slug);
-
-  const slides = carouselImages[index] || [];
+  const images = await getImagesFromFolder(slug);
 
   return (
-    <Suspense fallback={<Spinner />}>
-      <Carousel slides={slides} />
-    </Suspense>
+    <>
+      <div className="mb-8 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between -mx-4 md:-mx-16 px-4 md:px-16">
+        <div>
+          <h1 className="text-foreground font-medium text-xl mb-1">
+            {category.name} Photography
+          </h1>
+          {category.description && (
+            <div className="text-muted-foreground text-sm">
+              {category.description}
+            </div>
+          )}
+        </div>
+        <Link
+          href="/photo"
+          className="text-muted-foreground text-sm font-medium hover:text-foreground transition-colors"
+        >
+          ← back
+        </Link>
+      </div>
+      <Suspense fallback={<Spinner />}>
+        <PhotoGrid images={images} categoryName={category.name} />
+      </Suspense>
+    </>
   );
 }
