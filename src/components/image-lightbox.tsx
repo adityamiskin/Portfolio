@@ -2,8 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X } from "lucide-react";
 import { getOptimizedCloudinaryUrl } from "@/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 interface ImageLightboxProps {
   images: Array<{
@@ -20,16 +28,30 @@ export default function ImageLightbox({
   initialIndex = 0,
   onClose,
 }: ImageLightboxProps) {
+  const [api, setApi] = useState<CarouselApi>();
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const updateIndex = () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    };
+
+    updateIndex();
+    api.on("select", updateIndex);
+
+    return () => {
+      api.off("select", updateIndex);
+    };
+  }, [api]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
-      } else if (e.key === "ArrowLeft") {
-        setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-      } else if (e.key === "ArrowRight") {
-        setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
       }
     };
 
@@ -40,11 +62,9 @@ export default function ImageLightbox({
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
     };
-  }, [images.length, onClose]);
+  }, [onClose]);
 
   const currentImage = images[currentIndex];
-
-  if (!currentImage) return null;
 
   return (
     <div
@@ -59,75 +79,78 @@ export default function ImageLightbox({
         <X size={24} />
       </button>
 
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setCurrentIndex((prev) =>
-                prev > 0 ? prev - 1 : images.length - 1
-              );
-            }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
-            aria-label="Previous image"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setCurrentIndex((prev) =>
-                prev < images.length - 1 ? prev + 1 : 0
-              );
-            }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
-            aria-label="Next image"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </>
-      )}
-
       <div
-        className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex flex-col items-center justify-center md:p-8 p-4"
+        className="relative w-full h-full max-w-[95vw] max-h-[95vh] p-2 flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative w-full h-full flex items-center justify-center min-h-0">
-          <Image
-            src={getOptimizedCloudinaryUrl(currentImage.img, {
-              width: 2560,
-              quality: "auto",
-              format: "auto",
-              crop: "limit",
-            })}
-            alt={currentImage.description || currentImage.title || "Photo"}
-            fill
-            className="object-contain"
-            sizes="90vw"
-            priority
-          />
+        <Carousel
+          setApi={setApi}
+          opts={{
+            startIndex: initialIndex,
+            loop: true,
+          }}
+          className="w-full h-full flex items-center justify-center"
+        >
+          <CarouselContent className="h-full -ml-0 flex items-center">
+            {images.map((image, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-0 basis-full flex items-center justify-center"
+              >
+                <div className="relative w-full flex items-center justify-center">
+                  <Image
+                    src={getOptimizedCloudinaryUrl(image.img, {
+                      width: 1920,
+                      quality: "auto",
+                      format: "auto",
+                      crop: "limit",
+                    })}
+                    alt={image.description || image.title || "Photo"}
+                    width={1920}
+                    height={1080}
+                    className="object-contain max-w-full max-h-full"
+                    sizes="95vw"
+                    priority={index === initialIndex}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          {images.length > 1 && (
+            <>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </>
+          )}
+        </Carousel>
+
+        <div className="absolute bottom-0 left-0 right-0 pb-4 flex flex-col items-center justify-center">
+          {currentImage && (
+            <>
+              {(currentImage.title || currentImage.description) && (
+                <div className="text-center max-w-2xl mx-auto">
+                  {currentImage.title && (
+                    <h3 className="text-white font-medium text-lg mb-2">
+                      {currentImage.title}
+                    </h3>
+                  )}
+                  {currentImage.description && (
+                    <p className="text-white/80 text-sm">
+                      {currentImage.description}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {images.length > 1 && (
+                <div className="mt-4 text-white/60 text-sm text-center">
+                  {currentIndex + 1} / {images.length}
+                </div>
+              )}
+            </>
+          )}
         </div>
-
-        {(currentImage.title || currentImage.description) && (
-          <div className="mt-4 text-center max-w-2xl">
-            {currentImage.title && (
-              <h3 className="text-white font-medium text-lg mb-2">
-                {currentImage.title}
-              </h3>
-            )}
-            {currentImage.description && (
-              <p className="text-white/80 text-sm">
-                {currentImage.description}
-              </p>
-            )}
-          </div>
-        )}
-
-        {images.length > 1 && (
-          <div className="mt-4 text-white/60 text-sm">
-            {currentIndex + 1} / {images.length}
-          </div>
-        )}
       </div>
     </div>
   );
