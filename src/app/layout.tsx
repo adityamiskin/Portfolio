@@ -10,16 +10,16 @@ import { ThemeProvider } from "@/components/theme-provider";
 export const metadata: Metadata = {
   title: "Aditya Miskin",
   description:
-    "Hi, I'm Aditya. I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
+    "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
   keywords:
-    "freelancing, machine learning, ai, web development, aditya miskin, photography, travel photography, street photography, urban photography, nature photography, portfolio, india, frontend developer, software engineer, aditya, miskin",
+    "data science, machine learning, ai, artificial intelligence, healthcare ai, web development, aditya miskin, photography, travel photography, street photography, urban photography, nature photography, portfolio, india, frontend developer, software engineer, associate data scientist, aditya, miskin, typescript, python",
   applicationName: "Aditya Miskin",
   metadataBase: new URL("https://adityamiskin.com"),
 
   openGraph: {
     title: "Aditya Miskin",
     description:
-      "I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
+      "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
     url: "https://adityamiskin.com",
     siteName: "Aditya Miskin",
     // If you add an opengraph-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Aditya Miskin",
     description:
-      "I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
+      "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
     // If you add an twitter-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
     // images: [openGraph?.image || defaults.og.image],
     card: "summary_large_image",
@@ -52,17 +52,17 @@ export const renderSchemaTags = () => {
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "http://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": "Person",
           name: "Aditya Miskin",
           description:
-            "Hi, I'm Aditya. I'm a software engineer living in Bengaluru, India. I’m also a hobbyist photographer travelling the world, documenting this beautiful planet of ours.",
+            "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
           image: `https://adityamiskin.com/icon.png`,
           url: `https://adityamiskin.com`,
-          author: {
-            "@type": "Person",
-            name: "Aditya Miskin",
-          },
-          datePublished: "2024-08-01",
+          sameAs: [
+            "https://github.com/adityamiskin",
+            "https://linkedin.com/in/adityamiskin",
+            "https://twitter.com/ad1tyamiskin",
+          ],
         }),
       }}
     ></script>
