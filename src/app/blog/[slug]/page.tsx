@@ -5,6 +5,13 @@ import TwitterEmbed from "@/components/TwitterEmbed";
 import { formatDate, getBlogPosts } from "@/lib/utils";
 import { Metadata } from "next";
 
+// Generate static params at build time for instant navigation
+export async function generateStaticParams() {
+  return getBlogPosts().map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: {
