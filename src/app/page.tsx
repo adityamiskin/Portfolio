@@ -3,6 +3,8 @@ import { Contributions } from "@/components/contributions";
 import { Activity } from "@/components/kibo-ui/contribution-graph";
 import { Markdown } from "@/components/markdown";
 import { unstable_cache } from "next/cache";
+import Image from "next/image";
+import newProfilePhoto from "@/assets/images/new_profile.webp";
 
 interface SectionProps {
   title: string;
@@ -48,6 +50,16 @@ export default async function Home() {
   return (
     <main>
       <div className="space-y-12">
+        <div className="w-full mb-12 overflow-hidden rounded-md border shadow-sm">
+          <Image
+            src={newProfilePhoto}
+            alt="Profile photo"
+            width={1200}
+            height={350}
+            className="w-full h-[350px] object-cover object-[50%_25%]"
+            priority
+          />
+        </div>
         <Section title="About">
           <Markdown className="text-muted-foreground">
             {portfolioData.about}
