@@ -6,6 +6,13 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { Oneko } from "@/components/oneko";
 import { ThemeProvider } from "@/components/theme-provider";
+import localFont from "next/font/local";
+
+const departureMono = localFont({
+  src: "./DepartureMono-Regular.woff2",
+  display: "swap",
+  variable: "--font-departure",
+});
 
 export const metadata: Metadata = {
   title: "Aditya Miskin",
@@ -78,7 +85,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <script async defer src="https://platform.twitter.com/widgets.js" />
       <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
-      <body className={`${GeistMono.variable} font-body`}>
+      <body
+        className={`${GeistMono.variable} ${departureMono.variable} font-body`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

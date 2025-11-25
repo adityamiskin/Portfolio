@@ -62,7 +62,7 @@ export default function PhotoGrid({ images, categoryName }: PhotoGridProps) {
                       </p>
                     )}
                     {image.description && (
-                      <p className="text-white/90 text-xs font-body tracking-wider font-light drop-shadow-lg">
+                      <p className="text-white/90 text-xs tracking-wider font-light drop-shadow-lg">
                         {image.description}
                       </p>
                     )}
