@@ -25,22 +25,42 @@ function Section({ title, children }: SectionProps) {
 const username = "adityamiskin";
 const getCachedContributions = unstable_cache(
   async () => {
-    const url = new URL(
-      `/v4/${username}`,
-      "https://github-contributions-api.jogruber.de"
-    );
-    const response = await fetch(url);
-    const data = (await response.json()) as {
-      total: { [year: string]: number };
-      contributions: Activity[];
-    };
-    const total = data.total[new Date().getFullYear()];
-    const TOTAL_SQUARES = 417;
+    try {
+      const url = new URL(
+        `/v4/${username}`,
+        "https://github-contributions-api.jogruber.de"
+      );
 
-    const sortedData = data.contributions.sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
-    return { contributions: sortedData.slice(0, TOTAL_SQUARES), total };
+      // Add timeout to prevent hanging during build
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+      const response = await fetch(url, {
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch: ${response.status}`);
+      }
+
+      const data = (await response.json()) as {
+        total: { [year: string]: number };
+        contributions: Activity[];
+      };
+      const total = data.total[new Date().getFullYear()];
+      const TOTAL_SQUARES = 417;
+
+      const sortedData = data.contributions.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+      return { contributions: sortedData.slice(0, TOTAL_SQUARES), total };
+    } catch (error) {
+      // Return empty data if fetch fails (e.g., during build, network issues)
+      console.warn("Failed to fetch GitHub contributions:", error);
+      return { contributions: [] as Activity[], total: 0 };
+    }
   },
   ["github-contributions"],
   { revalidate: 60 * 60 * 24 }
