@@ -42,9 +42,9 @@ export const Navbar = () => {
               </Link>
               <Link
                 className="hover:text-foreground transition-colors"
-                href="/work"
+                href="/projects"
               >
-                work
+                projects
               </Link>
               <Link
                 className="hover:text-foreground transition-colors"

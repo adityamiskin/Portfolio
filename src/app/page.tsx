@@ -124,7 +124,21 @@ export default async function Home() {
 
         <Section title="Interests">
           <div className="text-muted-foreground leading-relaxed">
-            {portfolioData.interests.join("; ")}
+            {portfolioData.interests.map((interest, index) => (
+              <span key={index}>
+                {interest === "Photography" ? (
+                  <a
+                    href="/photo"
+                    className="text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                  >
+                    {interest}
+                  </a>
+                ) : (
+                  interest
+                )}
+                {index < portfolioData.interests.length - 1 && "; "}
+              </span>
+            ))}
           </div>
         </Section>
       </div>

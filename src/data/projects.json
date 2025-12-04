@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Zapsight",
+    "description": "A platform for real-time analytics and insights for your business.",
+    "link": "https://zapsight.com/",
+    "date": "2025-12-04",
+    "image": "/images/projects/zapsight.webp",
+    "tags": ["saas", "ai", "data-analysis", "dashboard", "analytics"]
+  },
+  {
+    "title": "ctf-solver",
+    "description": "A tool for solving CTF challenges using AI.",
+    "link": "https://github.com/adityamiskin/ctf-solver",
+    "date": "2025-05-04",
+    "tags": ["ctf", "security", "ai", "cli", "security"]
+  },
+  {
+    "title": "Auditoor",
+    "description": "An AI tool for quickly understanding large Web3 codebases and identifying issues for rapid bug fixes.",
+    "link": "https://ai-next-seven.vercel.app/",
+    "date": "2024-01-15",
+    "image": "/images/projects/auditoor.webp",
+    "tags": [
+      "ai",
+      "web3",
+      "security",
+      "code-analysis",
+      "smart-contracts",
+      "audit"
+    ]
+  },
+  {
+    "title": "ML Preprocessor CLI",
+    "description": "A CLI for preprocessing machine learning datasets.",
+    "github": "https://github.com/adityamiskin/ML-preprocessor-CLI",
+    "date": "2023-08-10",
+    "image": "https://picsum.photos/seed/ML Preprocessor CLI/1200/800",
+    "tags": [
+      "ML",
+      "python",
+      "data-processing",
+      "cli",
+      "machine-learning",
+      "datasets"
+    ]
+  },
+  {
+    "title": "Image Compressor",
+    "description": "An in-browser image compressor and resizer.",
+    "link": "https://image-compressor-mauve.vercel.app/",
+    "github": "https://github.com/adityamiskin/image-compressor",
+    "date": "2024-08-25",
+    "image": "/images/projects/image-compressor.webp",
+    "tags": [
+      "image-processing",
+      "javascript",
+      "web",
+      "compression",
+      "optimization"
+    ]
+  }
+]
