@@ -8,11 +8,11 @@
     "tags": ["saas", "ai", "data-analysis", "dashboard", "analytics"]
   },
   {
-    "title": "ctf-solver",
-    "description": "A tool for solving CTF challenges using AI.",
-    "link": "https://github.com/adityamiskin/ctf-solver",
+    "title": "Loki",
+    "description": "An AI-powered CTF solver and security analysis assistant.",
+    "link": "https://github.com/adityamiskin/loki",
     "date": "2025-05-04",
-    "tags": ["ctf", "security", "ai", "cli", "security"]
+    "tags": ["ctf", "security", "ai", "cli", "pentesting", "tui"]
   },
   {
     "title": "Auditoor",
