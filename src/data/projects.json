@@ -15,6 +15,14 @@
     "tags": ["ctf", "security", "ai", "cli", "pentesting", "tui"]
   },
   {
+    "title": "Acc-excl",
+    "description": "Know everything about your leads with AI-powered research.",
+    "link": "https://acc-excl.netlify.app/",
+    "date": "2025-11-24",
+    "image": "/images/projects/acc-excl.webp",
+    "tags": ["ai", "research", "lead-generation", "sales", "saas", "hackathon"]
+  },
+  {
     "title": "Auditoor",
     "description": "An AI tool for quickly understanding large Web3 codebases and identifying issues for rapid bug fixes.",
     "link": "https://ai-next-seven.vercel.app/",
