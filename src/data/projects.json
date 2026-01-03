@@ -1,5 +1,21 @@
 [
   {
+    "title": "EnvMan",
+    "description": "Zero-hassle CLI for managing project environment files with encryption and cross-project access.",
+    "github": "https://github.com/adityamiskin/envman",
+    "date": "2026-01-03",
+    "tags": [
+      "cli",
+      "environment",
+      "dev-tools",
+      "encryption",
+      "security",
+      "environment",
+      "keychain",
+      "sqlite"
+    ]
+  },
+  {
     "title": "Zapsight",
     "description": "A platform for real-time analytics and insights for your business.",
     "link": "https://zapsight.com/",
