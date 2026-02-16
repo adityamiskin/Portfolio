@@ -45,7 +45,7 @@ const config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        body: ["var(--font-geist-mono)", "sans-serif"],
+        body: ["var(--font-jetbrains)", "sans-serif"],
         departure: ["var(--font-departure)", "sans-serif"],
       },
       borderRadius: {

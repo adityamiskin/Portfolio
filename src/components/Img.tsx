@@ -2,8 +2,8 @@ import Image from "next/image";
 
 interface ImgProps {
   src: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   alt: string;
   className?: string;
   caption?: string;
@@ -11,8 +11,8 @@ interface ImgProps {
 
 export default function Img({
   src,
-  width,
-  height,
+  width = 800,
+  height = 600,
   alt,
   className,
   caption,

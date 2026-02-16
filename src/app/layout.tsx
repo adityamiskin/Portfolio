@@ -1,12 +1,18 @@
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
-import { GeistMono } from "geist/font/mono";
+import { JetBrains_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { Oneko } from "@/components/oneko";
 import { ThemeProvider } from "@/components/theme-provider";
 import localFont from "next/font/local";
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains",
+});
 
 const departureMono = localFont({
   src: "./DepartureMono-Regular.woff2",
@@ -86,7 +92,7 @@ export default function RootLayout({
       <script async defer src="https://platform.twitter.com/widgets.js" />
       <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
       <body
-        className={`${GeistMono.variable} ${departureMono.variable} font-body`}
+        className={`${jetbrainsMono.variable} ${departureMono.variable} font-body`}
       >
         <ThemeProvider
           attribute="class"
