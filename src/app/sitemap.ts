@@ -8,6 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			priority: 1,
 		},
 		{
+			url: 'https://adityamiskin.com/work',
+			lastModified: new Date(),
+			priority: 1,
+		},
+		{
 			url: 'https://adityamiskin.com/projects',
 			lastModified: new Date(),
 			priority: 1,

@@ -11,18 +11,26 @@ import localFont from "next/font/local";
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-jetbrains",
+  variable: "--font-stack-jetbrains",
 });
 
 const departureMono = localFont({
   src: "./DepartureMono-Regular.woff2",
   display: "swap",
-  variable: "--font-departure",
+  variable: "--font-stack-departure",
+  fallback: ["ui-monospace", "Courier New", "monospace"],
 });
 
 const siteTitle = "Aditya Miskin";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   title: {
     default: siteTitle,
     template: `%s | ${siteTitle}`,
@@ -93,12 +101,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${jetbrainsMono.variable} ${departureMono.variable}`}
+    >
       <script async defer src="https://platform.twitter.com/widgets.js" />
-      <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
-      <body
-        className={`${jetbrainsMono.variable} ${departureMono.variable} font-body`}
-      >
+      <body className="font-body">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -1,6 +1,6 @@
 {
   "name": "aditya miskin",
-  "tagline": "software engineer at zapsight · blr, india.",
+  "tagline": "cofounder at zapsight · blr, india.",
   "about": "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better.\n\nWhen I'm not coding, you'll usually find me out with my camera, capturing [moments](/photo) and places that inspire me.",
   "email": "adityamiskin@gmail.com",
   "githubUrl": "https://github.com/adityamiskin",
@@ -8,13 +8,13 @@
   "twitterUrl": "https://twitter.com/ad1tyamiskin",
   "bookingUrl": "https://cal.com/adityamiskin",
   "resumeUrl": "https://drive.google.com/file/d/12uiedKhDRLFK5DbC2ZRyuSqTMYwC5M7F/view?usp=drive_link",
-  "experience": [
+  "work": [
     {
       "company": "Carelon Global Solutions",
       "url": "https://carelonglobal.in/",
       "role": "Associate Data Scientist",
       "description": "Working as an Associate Data Scientist specializing in Artificial Intelligence in Healthcare domain.",
-      "period": "Aug 2023 to Present",
+      "period": "aug 2023 - present",
       "location": "Bengaluru, India"
     },
     {
@@ -22,15 +22,10 @@
       "url": "https://magnimus.com",
       "role": "Lead Frontend Developer",
       "description": "Developed a fully responsive website for a 3D startup using React.",
-      "period": "Oct 2022 to Jun 2023",
+      "period": "oct 2022 - jun 2023",
       "location": "Bengaluru, India"
     }
   ],
-  "education": {
-    "school": "NITK Surathkal",
-    "degree": "B.Tech in Electronics and Communication Engineering",
-    "period": "2019-2023"
-  },
   "interests": ["Open source", "Gaming", "Anime", "Movies", "Photography"],
   "uses": {
     "Laptop": {
@@ -45,19 +40,17 @@
       "title": "coming soon...",
       "specs": ""
     },
-    "Peripherals": [
-      {
-        "title": "Fujifilm X-T30 II",
-        "description": "26.1MP APS-C sensor, 15-45mm f/3.5-5.6 OIS lens"
-      },
-      {
-        "title": "Logitech G304 Lightspeed",
-        "description": "Wireless, 1ms latency, 12000 DPI"
-      },
-      {
-        "title": "Google Pixel Buds A-Series",
-        "description": "Reliable and comfortable wireless earbuds"
-      }
-    ]
+    "Camera": {
+      "title": "Fujifilm X-T30 II",
+      "specs": "26.1MP APS-C sensor, 15-45mm f/3.5-5.6 OIS lens"
+    },
+    "Mouse": {
+      "title": "Logitech G304 Lightspeed",
+      "specs": "Wireless, 1ms latency, 12000 DPI"
+    },
+    "Earbuds": {
+      "title": "Google Pixel Buds A-Series",
+      "specs": "Reliable and comfortable wireless earbuds"
+    }
   }
 }

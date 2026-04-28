@@ -2,8 +2,33 @@
 import createMDX from '@next/mdx';
 const nextConfig = {
 	pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+	async redirects() {
+		return [{ source: '/uses', destination: '/#interests-setup', permanent: true }];
+	},
 	typescript: {
 		ignoreBuildErrors: true,
+	},
+	async headers() {
+		return [
+			{
+				source: '/favicon.ico',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
+				],
+			},
+			{
+				source: '/icon.png',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
+				],
+			},
+			{
+				source: '/apple-icon.png',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
+				],
+			},
+		];
 	},
 	images: {
 		remotePatterns: [
@@ -25,6 +50,11 @@ const nextConfig = {
 			{ protocol: 'https', hostname: 'pbs.twimg.com' },
 			{ protocol: 'https', hostname: 'abs.twimg.com' },
 			{ protocol: 'https', hostname: 'picsum.photos' },
+			{
+				protocol: 'https',
+				hostname: 'g4uc5cphcl.ufs.sh',
+				pathname: '/**',
+			},
 		],
 	},
 };

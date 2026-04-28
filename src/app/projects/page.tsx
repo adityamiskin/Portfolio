@@ -27,7 +27,7 @@ export default function ProjectsPage() {
         <span className="accent-glow text-primary mr-2">*</span>
         <TextScramble as="span">projects</TextScramble>
       </h1>
-      <p className="mb-6 leading-relaxed lowercase text-foreground">
+      <p className="mb-6 leading-relaxed lowercase text-foreground/60">
         here are some of the projects i&apos;ve worked on. i love building tools
         that make developers&apos; lives easier and exploring new technologies
         along the way.

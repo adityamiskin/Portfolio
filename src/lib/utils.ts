@@ -63,6 +63,11 @@ export function formatBlogDateShort(raw: string): string {
 	return format(d, 'MMM d, yyyy').toLowerCase();
 }
 
+/** Blog listing rows (abbreviated lowercase date). */
+export function formatDate(raw: string): string {
+	return formatBlogDateShort(raw);
+}
+
 export function getBlogReadingMinutes(content: string): number {
 	const words = content.trim().split(/\s+/).filter(Boolean).length;
 	return Math.max(1, Math.round(words / 200));
@@ -109,10 +114,11 @@ function getMDXData(dir: string) {
 	});
 }
 
+/** MDX files live in `/posts` at the repo root (outside `src`). */
+const BLOG_POSTS_DIR = path.join(process.cwd(), 'posts');
+
 export function getBlogPosts() {
-	const posts = getMDXData(
-		path.join(process.cwd(), 'src', 'app', 'blog', 'posts'),
-	);
+	const posts = getMDXData(BLOG_POSTS_DIR);
 	return [...posts].sort((a, b) => {
 		const ta = parseBlogPublishedDate(a.metadata.publishedAt)?.getTime() ?? 0;
 		const tb = parseBlogPublishedDate(b.metadata.publishedAt)?.getTime() ?? 0;

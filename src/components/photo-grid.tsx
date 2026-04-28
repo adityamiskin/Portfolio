@@ -27,7 +27,7 @@ export default function PhotoGrid({ images, categoryName }: PhotoGridProps) {
 
   return (
     <>
-      <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+      <div className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw]">
         <div className="max-w-[1500px] mx-auto w-full p-4 pb-10 mb-10 gap-4 columns-1 md:columns-2 space-y-4 md:px-12 px-4">
           {images.map((image, index) => (
             <div
@@ -50,12 +50,12 @@ export default function PhotoGrid({ images, categoryName }: PhotoGridProps) {
                   }
                   width={1200}
                   height={900}
-                  className="w-full h-auto object-cover shadow transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-auto object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {(image.title || image.description) && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                  <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
                     {image.title && (
                       <p className="text-white font-medium text-base mb-1 drop-shadow-lg">
                         {image.title}

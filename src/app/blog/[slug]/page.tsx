@@ -1,6 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
-import Img from "@/components/Img";
 import {
   formatBlogDate,
   getBlogPosts,
@@ -60,8 +59,6 @@ export async function generateMetadata({
   };
 }
 
-const components = { Img };
-
 export default async function Post({
   params,
 }: {
@@ -102,9 +99,9 @@ export default async function Post({
       </header>
 
       <div
-        className="blog-post-mdx prose prose-base max-w-none text-foreground prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-foreground prose-p:leading-relaxed prose-a:text-brand prose-a:no-underline prose-a:underline-offset-4 prose-a:hover:text-brand/85 dark:prose-invert"
+        className="blog-post-mdx prose prose-base max-w-none text-foreground prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-foreground prose-p:leading-relaxed prose-a:text-brand prose-a:no-underline prose-a:underline-offset-4 prose-a:hover:text-brand/85 dark:prose-invert prose-figure:my-8 prose-img:mx-auto prose-img:max-w-full prose-img:rounded-md [&_figure_img]:w-full [&_figcaption]:mt-2 [&_figcaption]:block [&_figcaption]:text-center [&_figcaption]:text-sm [&_figcaption]:leading-relaxed [&_figcaption]:text-muted-foreground"
       >
-        <MDXRemote source={post.content} components={components} />
+        <MDXRemote source={post.content} />
       </div>
     </article>
   );

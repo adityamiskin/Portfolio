@@ -188,7 +188,7 @@ export const ThemeSwitcher = ({
                     ))}
                     {/* Glow effect */}
                     <motion.div
-                      className="absolute inset-0 rounded-full bg-yellow-400/20 blur-sm"
+                      className="absolute inset-0 rounded-full bg-yellow-400/20 blur-xs"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1.2 }}
                       exit={{ opacity: 0, scale: 0.8 }}

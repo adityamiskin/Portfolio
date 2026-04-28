@@ -21,6 +21,9 @@ export const Navbar = () => {
               <Link className="hover:text-brand transition-colors" href="/blog">
                 blog
               </Link>
+              <Link className="hover:text-brand transition-colors" href="/work">
+                work
+              </Link>
               <Link
                 className="hover:text-brand transition-colors"
                 href="/projects"
@@ -29,9 +32,6 @@ export const Navbar = () => {
               </Link>
               <Link className="hover:text-brand transition-colors" href="/photo">
                 photo
-              </Link>
-              <Link className="hover:text-brand transition-colors" href="/uses">
-                uses
               </Link>
             </div>
           </div>

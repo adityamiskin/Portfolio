@@ -1,6 +1,6 @@
 [
   {
-    "title": "EnvMan",
+    "title": "envman",
     "description": "Zero-hassle CLI for managing project environment files with encryption and cross-project access.",
     "role": "creator",
     "period": "jan 2026 - present",
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "title": "Zapsight",
+    "title": "zapsight",
     "description": "A platform for real-time analytics and insights for your business.",
     "role": "creator",
     "period": "dec 2025 - present",
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "title": "Loki",
+    "title": "loki",
     "description": "An AI-powered CTF solver and security analysis assistant.",
     "role": "creator",
     "period": "may 2025 - present",
@@ -42,7 +42,7 @@
     ]
   },
   {
-    "title": "Acc-excl",
+    "title": "acc-excl",
     "description": "Know everything about your leads with AI-powered research.",
     "role": "creator",
     "period": "nov 2025",
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "title": "Auditoor",
+    "title": "auditoor",
     "description": "An AI tool for quickly understanding large Web3 codebases and identifying issues for rapid bug fixes.",
     "role": "creator",
     "period": "jan 2024 - present",
@@ -72,19 +72,7 @@
     ]
   },
   {
-    "title": "ML Preprocessor CLI",
-    "description": "A CLI for preprocessing machine learning datasets.",
-    "role": "creator",
-    "period": "aug 2023",
-    "href": "https://github.com/adityamiskin/ML-preprocessor-CLI",
-    "technologies": ["python", "machine-learning", "cli", "data-processing"],
-    "achievements": [
-      "repeatable preprocessing pipelines from the terminal",
-      "dataset-focused commands for common ml hygiene tasks"
-    ]
-  },
-  {
-    "title": "Image Compressor",
+    "title": "image compressor",
     "description": "An in-browser image compressor and resizer.",
     "role": "creator",
     "period": "aug 2024",

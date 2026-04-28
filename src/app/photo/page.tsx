@@ -56,7 +56,7 @@ const Photo = () => {
           className="block group"
           prefetch={true}
         >
-          <article className="relative w-full aspect-[4/3] overflow-hidden rounded-md border border-transparent shadow-sm transition-all duration-300 group-hover:border-border group-hover:shadow-md">
+          <article className="relative w-full aspect-4/3 overflow-hidden rounded-md border border-transparent shadow-xs transition-all duration-300 group-hover:border-border group-hover:shadow-md">
             <Image
               src={getOptimizedCloudinaryUrl(category.previewImage, {
                 width: 2000,
@@ -70,7 +70,7 @@ const Photo = () => {
               sizes="(max-width: 768px) 100vw, 100vw"
             />
             <ProgressiveBlur position="bottom" height="30%" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent z-10" />
             <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 z-20">
               <h2 className="text-white font-medium mb-2 text-xl md:text-2xl drop-shadow-lg">
                 {category.name} Photography

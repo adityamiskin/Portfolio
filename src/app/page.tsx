@@ -1,32 +1,29 @@
-import type { Metadata } from "next";
 import portfolioData from "@/data/portfolio.json";
+import projectsData from "@/data/projects.json";
 import { TextScramble } from "@/components/text-scramble";
-import { Elsewhere } from "@/components/elsewhere";
 import { Markdown } from "@/components/markdown";
+import { BlogSection } from "@/components/blog-section";
+import { SectionList } from "@/components/section-list";
+import { UsesSection } from "@/components/uses-section";
+import { Footer } from "@/components/footer";
 import Image from "next/image";
 import newProfilePhoto from "@/assets/images/new_profile.webp";
+import { mapWorkToSectionItems, type WorkEntry } from "@/lib/work-section";
 
-export const metadata: Metadata = {
-  title: "Home",
+type ProjectEntry = {
+  title: string;
+  description: string;
+  role: string;
+  period?: string;
+  href: string;
+  technologies: string[];
+  achievements: string[];
 };
 
-interface SectionProps {
-  title: string;
-  children?: React.ReactNode;
-}
-
-function Section({ title, children }: SectionProps) {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16">
-      <div className="col-span-1 md:col-span-3 text-muted-foreground text-base font-medium mb-2 md:mb-0">
-        {title}
-      </div>
-      <div className="col-span-1 md:col-span-9">{children}</div>
-    </div>
-  );
-}
-
 export default function Home() {
+  const projects = (projectsData as ProjectEntry[]).slice(0, 2);
+  const workPreview = (portfolioData.work as WorkEntry[]).slice(0, 2);
+
   return (
     <main>
       <div className="space-y-12">
@@ -54,7 +51,7 @@ export default function Home() {
               </p>
             ) : null}
           </div>
-          <div className="relative w-full shrink-0 overflow-hidden rounded-md border border-border shadow-sm aspect-[4/3] lg:aspect-auto lg:h-[min(380px,52vh)] lg:w-[min(380px,42%)] lg:max-w-md">
+          <div className="relative w-full shrink-0 overflow-hidden rounded-md border border-border shadow-xs aspect-4/3 lg:aspect-auto lg:h-[min(380px,52vh)] lg:w-[min(380px,42%)] lg:max-w-md">
             <Image
               src={newProfilePhoto}
               alt="Profile photo"
@@ -66,73 +63,64 @@ export default function Home() {
           </div>
         </div>
 
-        <Section title="Experience">
-          <div className="space-y-8">
-            {portfolioData.experience.map((exp, index) => (
-              <div key={index}>
-                <div className="mb-3 md:flex md:justify-between flex-col gap-3">
-                  <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground font-medium hover:text-brand transition-colors"
-                      href={exp.url}
-                    >
-                      {exp.company}
-                    </a>
-                    <span className="text-muted-foreground md:ml-2">
-                      {exp.role}
-                    </span>
-                  </div>
-                </div>
-                <div className="leading-relaxed text-foreground mb-3">
-                  {exp.description}
-                </div>
-                <div className="text-muted-foreground text-xs">
-                  {exp.period} — {exp.location}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Section>
+        <BlogSection />
 
-        <Section title="Education">
+        <SectionList
+          title="work"
+          items={mapWorkToSectionItems(workPreview)}
+          viewAllHref="/work"
+          viewAllText="all work"
+        />
+
+        <SectionList
+          title="projects"
+          items={projects.map((p) => ({
+            title: p.title,
+            href: p.href,
+            role: p.role,
+            period: p.period,
+            description: p.description,
+          }))}
+          viewAllHref="/projects"
+          viewAllText="all projects"
+        />
+
+        <section
+          id="interests-setup"
+          className="mb-12 scroll-mt-24 border-t border-border pt-10"
+        >
+          <h2 className="mb-6 flex items-center text-2xl font-semibold text-foreground">
+            <span className="text-brand accent-glow mr-2">*</span>
+            misc
+          </h2>
           <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="text-foreground font-medium">
-                {portfolioData.education.school}
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+              <span className="text-sm text-muted-foreground sm:w-28 shrink-0">
+                interests
               </span>
-              <span className="text-muted-foreground">
-                {portfolioData.education.period}
+              <span className="text-foreground">
+                {portfolioData.interests.map((interest, index) => (
+                  <span key={index}>
+                    {interest === "Photography" ? (
+                      <a
+                        href="/photo"
+                        className="underline underline-offset-4 decoration-muted-foreground/50 hover:text-brand hover:decoration-brand transition-colors"
+                      >
+                        {interest}
+                      </a>
+                    ) : (
+                      interest
+                    )}
+                    {index < portfolioData.interests.length - 1 && "; "}
+                  </span>
+                ))}
               </span>
             </div>
-            <div className="text-foreground">
-              {portfolioData.education.degree}
-            </div>
+            <UsesSection uses={portfolioData.uses} />
           </div>
-        </Section>
+        </section>
 
-        <Section title="Interests">
-          <div className="leading-relaxed text-foreground">
-            {portfolioData.interests.map((interest, index) => (
-              <span key={index}>
-                {interest === "Photography" ? (
-                  <a
-                    href="/photo"
-                    className="text-foreground hover:text-brand transition-colors"
-                  >
-                    {interest}
-                  </a>
-                ) : (
-                  interest
-                )}
-                {index < portfolioData.interests.length - 1 && "; "}
-              </span>
-            ))}
-          </div>
-        </Section>
-
-        <Elsewhere />
+        <Footer />
       </div>
     </main>
   );

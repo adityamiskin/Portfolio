@@ -68,7 +68,7 @@ export default function ImageLightbox({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xs"
       onClick={onClose}
     >
       <button
@@ -91,7 +91,7 @@ export default function ImageLightbox({
           }}
           className="w-full flex-1 flex items-center justify-center min-h-0 overflow-hidden"
         >
-          <CarouselContent className="h-full -ml-0 flex items-center">
+          <CarouselContent className="h-full ml-0 flex items-center">
             {images.map((image, index) => (
               <CarouselItem
                 key={index}
