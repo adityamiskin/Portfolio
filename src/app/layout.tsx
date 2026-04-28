@@ -20,8 +20,13 @@ const departureMono = localFont({
   variable: "--font-departure",
 });
 
+const siteTitle = "Aditya Miskin";
+
 export const metadata: Metadata = {
-  title: "Aditya Miskin",
+  title: {
+    default: siteTitle,
+    template: `%s | ${siteTitle}`,
+  },
   description:
     "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
   keywords:
@@ -30,7 +35,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://adityamiskin.com"),
 
   openGraph: {
-    title: "Aditya Miskin",
+    title: siteTitle,
     description:
       "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
     url: "https://adityamiskin.com",
@@ -48,7 +53,7 @@ export const metadata: Metadata = {
   },
 
   twitter: {
-    title: "Aditya Miskin",
+    title: siteTitle,
     description:
       "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
     // If you add an twitter-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
@@ -102,7 +107,7 @@ export default function RootLayout({
         >
           <Oneko />
           <main className="min-h-screen flex items-start justify-center pt-16 md:pt-20 relative overflow-x-hidden">
-            <div className="w-full max-w-4xl px-4 md:px-16 py-8 md:py-12">
+            <div className="w-full max-w-5xl px-4 md:px-16 py-8 md:py-12">
               <Navbar />
               <Analytics />
               {children}

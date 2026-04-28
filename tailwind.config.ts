@@ -94,6 +94,11 @@ const config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        brand: {
+          DEFAULT: "hsl(var(--brand) / <alpha-value>)",
+          foreground: "hsl(var(--brand-foreground) / <alpha-value>)",
+          muted: "hsl(var(--brand-muted) / <alpha-value>)",
+        },
       },
     },
   },

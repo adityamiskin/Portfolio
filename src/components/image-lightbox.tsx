@@ -136,7 +136,7 @@ export default function ImageLightbox({
                     </h3>
                   )}
                   {currentImage.description && (
-                    <p className="text-white/80 text-sm">
+                    <p className="text-white/80 text-base">
                       {currentImage.description}
                     </p>
                   )}
@@ -144,7 +144,7 @@ export default function ImageLightbox({
               )}
 
               {images.length > 1 && (
-                <div className="mt-4 text-white/60 text-sm text-center">
+                <div className="mt-4 text-white/60 text-base text-center">
                   {currentIndex + 1} / {images.length}
                 </div>
               )}

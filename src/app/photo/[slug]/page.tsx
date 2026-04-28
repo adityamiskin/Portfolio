@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
@@ -58,6 +59,19 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const category = categoryInfo[slug] ?? { name: slug, description: "" };
+  return {
+    title: "Photo",
+    description: category.description || undefined,
+  };
+}
+
 export default async function Page({
   params,
 }: {
@@ -72,18 +86,18 @@ export default async function Page({
     <>
       <div className="mb-8 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between -mx-4 md:-mx-16 px-4 md:px-16">
         <div>
-          <h1 className="text-foreground font-medium text-xl mb-1">
+          <h1 className="text-foreground font-medium text-xl mb-1 border-l-2 border-border pl-3">
             {category.name} Photography
           </h1>
           {category.description && (
-            <div className="text-muted-foreground text-sm">
+            <div className="text-base text-foreground">
               {category.description}
             </div>
           )}
         </div>
         <Link
           href="/photo"
-          className="text-muted-foreground text-sm font-medium hover:text-foreground transition-colors"
+          className="text-brand text-base font-medium hover:text-brand/80 transition-colors"
         >
           ← back
         </Link>

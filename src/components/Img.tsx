@@ -27,7 +27,7 @@ export default function Img({
         className={className}
       />
       {caption && (
-        <figcaption className="text-sm text-muted-foreground mt-2 text-center">
+        <figcaption className="text-base text-muted-foreground mt-2 text-center">
           {caption}
         </figcaption>
       )}

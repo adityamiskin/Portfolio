@@ -1,12 +1,12 @@
 {
   "name": "aditya miskin",
+  "tagline": "software engineer at zapsight · blr, india.",
   "about": "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better.\n\nWhen I'm not coding, you'll usually find me out with my camera, capturing [moments](/photo) and places that inspire me.",
-  "githubUsername": "adityamiskin",
-  "location": "Bengaluru, India",
   "email": "adityamiskin@gmail.com",
   "githubUrl": "https://github.com/adityamiskin",
   "linkedinUrl": "https://linkedin.com/in/adityamiskin",
   "twitterUrl": "https://twitter.com/ad1tyamiskin",
+  "bookingUrl": "https://cal.com/adityamiskin",
   "resumeUrl": "https://drive.google.com/file/d/12uiedKhDRLFK5DbC2ZRyuSqTMYwC5M7F/view?usp=drive_link",
   "experience": [
     {
@@ -31,7 +31,6 @@
     "degree": "B.Tech in Electronics and Communication Engineering",
     "period": "2019-2023"
   },
-  "skills": ["TypeScript", "Python"],
   "interests": ["Open source", "Gaming", "Anime", "Movies", "Photography"],
   "uses": {
     "Laptop": {

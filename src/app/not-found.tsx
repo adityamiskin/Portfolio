@@ -1,5 +1,10 @@
-import Anya from '@/assets/images/anya-new.png';
-import Image from 'next/image';
+import type { Metadata } from "next";
+import Anya from "@/assets/images/anya-new.png";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Not found",
+};
 
 const NotFound = () => {
 	return (

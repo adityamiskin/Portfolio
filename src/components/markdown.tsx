@@ -17,7 +17,7 @@ export function Markdown({ children, className = "" }: MarkdownProps) {
           a: ({ href, children }) => (
             <Link
               href={href || "#"}
-              className="text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+              className="text-foreground hover:text-brand transition-colors"
             >
               {children}
             </Link>

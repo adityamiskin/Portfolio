@@ -1,10 +1,14 @@
+import type { Metadata } from "next";
 import portfolioData from "@/data/portfolio.json";
-import { Contributions } from "@/components/contributions";
-import { Activity } from "@/components/kibo-ui/contribution-graph";
+import { TextScramble } from "@/components/text-scramble";
+import { Elsewhere } from "@/components/elsewhere";
 import { Markdown } from "@/components/markdown";
-import { unstable_cache } from "next/cache";
 import Image from "next/image";
 import newProfilePhoto from "@/assets/images/new_profile.webp";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 interface SectionProps {
   title: string;
@@ -14,7 +18,7 @@ interface SectionProps {
 function Section({ title, children }: SectionProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16">
-      <div className="col-span-1 md:col-span-3 text-muted-foreground text-sm font-medium mb-2 md:mb-0">
+      <div className="col-span-1 md:col-span-3 text-muted-foreground text-base font-medium mb-2 md:mb-0">
         {title}
       </div>
       <div className="col-span-1 md:col-span-9">{children}</div>
@@ -22,73 +26,45 @@ function Section({ title, children }: SectionProps) {
   );
 }
 
-const username = "adityamiskin";
-const getCachedContributions = unstable_cache(
-  async () => {
-    try {
-      const url = new URL(
-        `/v4/${username}`,
-        "https://github-contributions-api.jogruber.de"
-      );
-
-      // Add timeout to prevent hanging during build
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-
-      const response = await fetch(url, {
-        signal: controller.signal,
-      });
-
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch: ${response.status}`);
-      }
-
-      const data = (await response.json()) as {
-        total: { [year: string]: number };
-        contributions: Activity[];
-      };
-      const total = data.total[new Date().getFullYear()];
-      const TOTAL_SQUARES = 417;
-
-      const sortedData = data.contributions.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-      );
-      return { contributions: sortedData.slice(0, TOTAL_SQUARES), total };
-    } catch (error) {
-      // Return empty data if fetch fails (e.g., during build, network issues)
-      console.warn("Failed to fetch GitHub contributions:", error);
-      return { contributions: [] as Activity[], total: 0 };
-    }
-  },
-  ["github-contributions"],
-  { revalidate: 60 * 60 * 24 }
-);
-export default async function Home() {
-  const { contributions, total } = await getCachedContributions();
+export default function Home() {
   return (
     <main>
       <div className="space-y-12">
-        <div className="w-full mb-12 overflow-hidden rounded-md border shadow-sm">
-          <Image
-            src={newProfilePhoto}
-            alt="Profile photo"
-            width={1200}
-            height={350}
-            className="w-full h-[350px] object-cover object-[50%_25%]"
-            priority
-          />
+        <div className="mb-12 flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10">
+          <div className="flex flex-col gap-4 flex-1 min-w-0">
+            <h1 className="text-4xl font-medium text-foreground">
+              <TextScramble as="span">{portfolioData.name}</TextScramble>
+            </h1>
+            <p className="text-muted-foreground leading-relaxed">
+              {portfolioData.tagline}
+            </p>
+            <Markdown className="leading-relaxed text-foreground">
+              {portfolioData.about}
+            </Markdown>
+            {portfolioData.resumeUrl ? (
+              <p className="leading-relaxed text-foreground">
+                <a
+                  href={portfolioData.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground underline underline-offset-4 decoration-muted-foreground/60 hover:text-brand hover:decoration-brand transition-colors"
+                >
+                  For when someone asks for a file…
+                </a>
+              </p>
+            ) : null}
+          </div>
+          <div className="relative w-full shrink-0 overflow-hidden rounded-md border border-border shadow-sm aspect-[4/3] lg:aspect-auto lg:h-[min(380px,52vh)] lg:w-[min(380px,42%)] lg:max-w-md">
+            <Image
+              src={newProfilePhoto}
+              alt="Profile photo"
+              fill
+              sizes="(min-width: 1024px) 380px, 100vw"
+              className="object-cover object-[50%_25%]"
+              priority
+            />
+          </div>
         </div>
-        <Section title="About">
-          <Markdown className="text-muted-foreground">
-            {portfolioData.about}
-          </Markdown>
-        </Section>
-
-        <Section title="Recent GitHub Activity">
-          <Contributions data={contributions} />
-        </Section>
 
         <Section title="Experience">
           <div className="space-y-8">
@@ -99,7 +75,7 @@ export default async function Home() {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-foreground font-medium underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                      className="text-foreground font-medium hover:text-brand transition-colors"
                       href={exp.url}
                     >
                       {exp.company}
@@ -109,7 +85,7 @@ export default async function Home() {
                     </span>
                   </div>
                 </div>
-                <div className="text-muted-foreground leading-relaxed mb-3">
+                <div className="leading-relaxed text-foreground mb-3">
                   {exp.description}
                 </div>
                 <div className="text-muted-foreground text-xs">
@@ -130,26 +106,20 @@ export default async function Home() {
                 {portfolioData.education.period}
               </span>
             </div>
-            <div className="text-muted-foreground">
+            <div className="text-foreground">
               {portfolioData.education.degree}
             </div>
           </div>
         </Section>
 
-        <Section title="Skills">
-          <div className="text-muted-foreground leading-relaxed">
-            {portfolioData.skills.join("; ")}
-          </div>
-        </Section>
-
         <Section title="Interests">
-          <div className="text-muted-foreground leading-relaxed">
+          <div className="leading-relaxed text-foreground">
             {portfolioData.interests.map((interest, index) => (
               <span key={index}>
                 {interest === "Photography" ? (
                   <a
                     href="/photo"
-                    className="text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                    className="text-foreground hover:text-brand transition-colors"
                   >
                     {interest}
                   </a>
@@ -161,6 +131,8 @@ export default async function Home() {
             ))}
           </div>
         </Section>
+
+        <Elsewhere />
       </div>
     </main>
   );

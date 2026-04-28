@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
+import { format, isValid, parse, parseISO } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
 import fs from 'fs';
 import path from 'path';
@@ -8,11 +9,63 @@ type Metadata = {
 	publishedAt: string;
 	image?: string;
 	description?: string;
-	tags: Array<string>;
 };
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
+}
+
+const BLOG_PARSE_REFERENCE = new Date(2000, 0, 1);
+const BLOG_PARSE_FORMATS = ['MMMM d, yyyy', 'MMM d, yyyy', 'yyyy-MM-dd'] as const;
+
+function blogDateCandidates(raw: string): string[] {
+	const s = raw.trim();
+	const capFirstWord = s.replace(
+		/^([a-zA-Z]+)/,
+		(w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(),
+	);
+	const capWords = s.replace(/\b[a-z]+\b/gi, (w) =>
+		w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(),
+	);
+	return [...new Set([s, capFirstWord, capWords])];
+}
+
+/** Parses publishedAt strings from MDX (ISO, “December 25, 2025”, “dec 27, 2025”, etc.). */
+export function parseBlogPublishedDate(raw: string): Date | null {
+	const s = raw.trim();
+
+	if (/^\d{4}-\d{2}-\d{2}/.test(s)) {
+		const iso = parseISO(s);
+		if (isValid(iso)) return iso;
+	}
+
+	for (const candidate of blogDateCandidates(raw)) {
+		for (const fmt of BLOG_PARSE_FORMATS) {
+			const d = parse(candidate, fmt, BLOG_PARSE_REFERENCE);
+			if (isValid(d)) return d;
+		}
+	}
+
+	return null;
+}
+
+/** Display date as month day, year (e.g. December 27, 2025). Post pages. */
+export function formatBlogDate(raw: string): string {
+	const d = parseBlogPublishedDate(raw);
+	if (!d || !isValid(d)) return raw.trim();
+	return format(d, 'MMMM d, yyyy');
+}
+
+/** Listing: abbreviated lowercase month (e.g. dec 27, 2025). */
+export function formatBlogDateShort(raw: string): string {
+	const d = parseBlogPublishedDate(raw);
+	if (!d || !isValid(d)) return raw.trim().toLowerCase();
+	return format(d, 'MMM d, yyyy').toLowerCase();
+}
+
+export function getBlogReadingMinutes(content: string): number {
+	const words = content.trim().split(/\s+/).filter(Boolean).length;
+	return Math.max(1, Math.round(words / 200));
 }
 
 function parseFrontmatter(fileContent: string) {
@@ -27,13 +80,7 @@ function parseFrontmatter(fileContent: string) {
 		let [key, ...valueArr] = line.split(': ');
 		let value = valueArr.join(': ').trim();
 		value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
-		if (key.trim() === 'tags') {
-			metadata.tags = value
-				.split(',')
-				.map((tag) => tag.trim());
-		} else {
-			metadata[key.trim() as keyof Metadata] = value as any;
-		}
+		metadata[key.trim() as keyof Metadata] = value as any;
 	});
 
 	return { metadata: metadata as Metadata, content };
@@ -63,44 +110,14 @@ function getMDXData(dir: string) {
 }
 
 export function getBlogPosts() {
-	return getMDXData(path.join(process.cwd(), 'src', 'app', 'blog', 'posts'));
-}
-
-export function formatDate(date: string, includeRelative = false) {
-	if (!date.includes('T')) {
-		date = `${date}T00:00:00`;
-	}
-	let targetDate = new Date(date);
-
-	let fullDate = targetDate.toLocaleString('en-us', {
-		month: 'long',
-		day: 'numeric',
-		year: 'numeric',
+	const posts = getMDXData(
+		path.join(process.cwd(), 'src', 'app', 'blog', 'posts'),
+	);
+	return [...posts].sort((a, b) => {
+		const ta = parseBlogPublishedDate(a.metadata.publishedAt)?.getTime() ?? 0;
+		const tb = parseBlogPublishedDate(b.metadata.publishedAt)?.getTime() ?? 0;
+		return tb - ta;
 	});
-
-	if (!includeRelative) {
-		return fullDate;
-	}
-
-	// Only calculate relative time when includeRelative is true
-	let currentDate = new Date();
-	let yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
-	let monthsAgo = currentDate.getMonth() - targetDate.getMonth();
-	let daysAgo = currentDate.getDate() - targetDate.getDate();
-
-	let formattedDate = '';
-
-	if (yearsAgo > 0) {
-		formattedDate = `${yearsAgo}y ago`;
-	} else if (monthsAgo > 0) {
-		formattedDate = `${monthsAgo}mo ago`;
-	} else if (daysAgo > 0) {
-		formattedDate = `${daysAgo}d ago`;
-	} else {
-		formattedDate = 'Today';
-	}
-
-	return `${fullDate} (${formattedDate})`;
 }
 
 /**

@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import portfolio from "@/data/portfolio.json";
+
+export const metadata: Metadata = {
+  title: "Uses",
+};
 import { Markdown } from "@/components/markdown";
 
 export default function UsesPage() {
@@ -14,7 +19,7 @@ export default function UsesPage() {
               key={key}
               className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16"
             >
-              <div className="col-span-1 md:col-span-3 text-muted-foreground text-sm font-medium mb-2 md:mb-0">
+              <div className="col-span-1 md:col-span-3 text-muted-foreground text-base font-medium mb-2 md:mb-0">
                 {key}
               </div>
               <div className="col-span-1 md:col-span-9">
@@ -24,7 +29,7 @@ export default function UsesPage() {
                       <div className="text-foreground font-medium mb-2">
                         {peripheral.title}
                       </div>
-                      <div className="text-muted-foreground">
+                      <div className="text-foreground">
                         {peripheral.description}
                       </div>
                     </div>
@@ -41,14 +46,14 @@ export default function UsesPage() {
             key={key}
             className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-16"
           >
-            <div className="col-span-1 md:col-span-3 text-muted-foreground text-sm font-medium mb-2 md:mb-0">
+            <div className="col-span-1 md:col-span-3 text-muted-foreground text-base font-medium mb-2 md:mb-0">
               {key}
             </div>
             <div className="col-span-1 md:col-span-9">
               <div className="text-foreground font-medium mb-2">
                 {value.title}
               </div>
-              <Markdown className="text-muted-foreground">
+              <Markdown className="text-foreground">
                 {value.specs || ""}
               </Markdown>
             </div>

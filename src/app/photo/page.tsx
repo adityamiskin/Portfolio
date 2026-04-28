@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import { getOptimizedCloudinaryUrl } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Photo",
+};
 
 const Photo = () => {
   const photoCategories = [
@@ -51,7 +56,7 @@ const Photo = () => {
           className="block group"
           prefetch={true}
         >
-          <article className="relative w-full aspect-[4/3] overflow-hidden rounded-md">
+          <article className="relative w-full aspect-[4/3] overflow-hidden rounded-md border border-transparent shadow-sm transition-all duration-300 group-hover:border-border group-hover:shadow-md">
             <Image
               src={getOptimizedCloudinaryUrl(category.previewImage, {
                 width: 2000,

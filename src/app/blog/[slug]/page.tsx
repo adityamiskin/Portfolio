@@ -1,12 +1,13 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import Img from "@/components/Img";
-import TwitterEmbed from "@/components/TwitterEmbed";
-import { formatDate, getBlogPosts } from "@/lib/utils";
+import {
+  formatBlogDate,
+  getBlogPosts,
+  getBlogReadingMinutes,
+  parseBlogPublishedDate,
+} from "@/lib/utils";
 import { Metadata } from "next";
-import { Badge } from "@/components/ui/badge";
-import { Tag } from "lucide-react";
-import { ViewTransition } from "react";
 
 // Generate static params at build time for instant navigation
 export async function generateStaticParams() {
@@ -25,10 +26,13 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: "Post not found",
       description: "The blog post you're looking for doesn't exist.",
     };
   }
+
+  const published = parseBlogPublishedDate(post.metadata.publishedAt);
+  const publishedTime = published ? published.toISOString() : post.metadata.publishedAt;
 
   return {
     title: post.metadata.title,
@@ -37,7 +41,7 @@ export async function generateMetadata({
       title: post.metadata.title,
       description: post.metadata.description || "Aditya Miskin's blog",
       type: "article",
-      publishedTime: post.metadata.publishedAt,
+      publishedTime,
       images: post.metadata.image
         ? [
             {
@@ -46,7 +50,6 @@ export async function generateMetadata({
             },
           ]
         : [],
-      tags: post.metadata.tags,
     },
     twitter: {
       card: "summary_large_image",
@@ -57,7 +60,7 @@ export async function generateMetadata({
   };
 }
 
-const components = { Img, TwitterEmbed };
+const components = { Img };
 
 export default async function Post({
   params,
@@ -71,39 +74,38 @@ export default async function Post({
     return <div>Post not found</div>;
   }
 
-  return (
-    <div className="space-y-8">
-      <div className="text-muted-foreground text-sm font-medium">
-        <Link href="/blog" className="hover:text-foreground transition-colors">
-          ← back
-        </Link>
-      </div>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <ViewTransition name={`blog-${post.metadata.title}`}>
-            <h1 className="text-foreground font-medium text-lg">
-              {post.metadata.title}
-            </h1>
-          </ViewTransition>
-          <div className="text-muted-foreground text-sm">
-            {formatDate(post.metadata.publishedAt)}
-          </div>
+  const readingMinutes = getBlogReadingMinutes(post.content);
 
-          {post.metadata.tags && (
-            <div className="flex flex-wrap gap-2 items-center">
-              <Tag className="w-4 h-4" />
-              {post.metadata.tags.map((tag) => (
-                <Badge key={tag} variant="secondary">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="prose prose-base max-w-none text-muted-foreground space-y-6 dark:prose-invert">
-          <MDXRemote source={post.content} components={components} />
-        </div>
+  return (
+    <article className="font-body space-y-10">
+      <Link
+        href="/blog"
+        className="inline-block text-base font-medium text-brand hover:text-brand/85 transition-colors"
+      >
+        ← back
+      </Link>
+
+      <header className="space-y-3">
+        <h1 className="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
+          <span
+            className="accent-glow shrink-0 text-primary select-none"
+            aria-hidden
+          >
+            *
+          </span>
+          <span>{post.metadata.title}</span>
+        </h1>
+        <p className="text-sm font-medium tabular-nums text-muted-foreground">
+          {formatBlogDate(post.metadata.publishedAt)} · {readingMinutes}{" "}
+          min read
+        </p>
+      </header>
+
+      <div
+        className="blog-post-mdx prose prose-base max-w-none text-foreground prose-headings:scroll-mt-24 prose-headings:font-semibold prose-headings:text-foreground prose-p:leading-relaxed prose-a:text-brand prose-a:no-underline prose-a:underline-offset-4 prose-a:hover:text-brand/85 dark:prose-invert"
+      >
+        <MDXRemote source={post.content} components={components} />
       </div>
-    </div>
+    </article>
   );
 }
