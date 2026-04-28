@@ -114,7 +114,7 @@ function getMDXData(dir: string) {
 	});
 }
 
-/** MDX files live in `/posts` at the repo root (outside `src`). */
+/** MDX posts at repo root `posts/`; dynamic imports use `@posts/<slug>.mdx` → same files. */
 const BLOG_POSTS_DIR = path.join(process.cwd(), 'posts');
 
 export function getBlogPosts() {

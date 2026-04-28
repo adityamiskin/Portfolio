@@ -59,7 +59,12 @@ const nextConfig = {
 	},
 };
 
-const withMDX = createMDX({});
+// Use plugin names (strings) so options are serializable for Turbopack.
+const withMDX = createMDX({
+	options: {
+		remarkPlugins: ['remark-frontmatter'],
+		rehypePlugins: [],
+	},
+});
 
-// Merge MDX config with Next.js config
 export default withMDX(nextConfig);
