@@ -10,20 +10,25 @@
   "resumeUrl": "https://drive.google.com/file/d/12uiedKhDRLFK5DbC2ZRyuSqTMYwC5M7F/view?usp=drive_link",
   "work": [
     {
+      "company": "Zapsight",
+      "url": "https://zapsight.com/",
+      "role": "Cofounder",
+      "description": "building the future of enterprise AI systems.",
+      "period": "dec 2025 - present"
+    },
+    {
       "company": "Carelon Global Solutions",
       "url": "https://carelonglobal.in/",
-      "role": "Associate Data Scientist",
-      "description": "Working as an Associate Data Scientist specializing in Artificial Intelligence in Healthcare domain.",
-      "period": "aug 2023 - present",
-      "location": "Bengaluru, India"
+      "role": "SDE II",
+      "description": "built agentic systems in healthcare domain",
+      "period": "aug 2023 - jun 2026"
     },
     {
       "company": "Magnimus",
       "url": "https://magnimus.com",
-      "role": "Lead Frontend Developer",
-      "description": "Developed a fully responsive website for a 3D startup using React.",
-      "period": "oct 2022 - jun 2023",
-      "location": "Bengaluru, India"
+      "role": "Founding Engineer",
+      "description": "developed website for 3D startup.",
+      "period": "oct 2022 - jun 2023"
     }
   ],
   "interests": ["Open source", "Gaming", "Anime", "Movies", "Photography"],
@@ -49,7 +54,7 @@
       "specs": "Wireless, 1ms latency, 12000 DPI"
     },
     "Earbuds": {
-      "title": "Google Pixel Buds A-Series",
+      "title": "Nothing Ear 2",
       "specs": "Reliable and comfortable wireless earbuds"
     }
   }

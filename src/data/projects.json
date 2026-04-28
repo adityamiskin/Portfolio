@@ -18,18 +18,6 @@
     ]
   },
   {
-    "title": "zapsight",
-    "description": "A platform for real-time analytics and insights for your business.",
-    "role": "creator",
-    "period": "dec 2025 - present",
-    "href": "https://zapsight.com/",
-    "technologies": ["saas", "ai", "data-analysis", "dashboard", "analytics"],
-    "achievements": [
-      "live analytics views for operational and product metrics",
-      "ai-assisted insight workflows on top of streaming-style data"
-    ]
-  },
-  {
     "title": "loki",
     "description": "An AI-powered CTF solver and security analysis assistant.",
     "role": "creator",

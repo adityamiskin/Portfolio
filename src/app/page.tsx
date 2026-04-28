@@ -93,9 +93,9 @@ export default function Home() {
             <span className="text-brand accent-glow mr-2">*</span>
             misc
           </h2>
-          <div className="space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-              <span className="text-sm text-muted-foreground sm:w-28 shrink-0">
+          <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-4">
+              <span className="text-sm text-muted-foreground sm:w-28 shrink-0 pt-px">
                 interests
               </span>
               <span className="text-foreground">

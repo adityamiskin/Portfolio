@@ -6,7 +6,6 @@ export type WorkEntry = {
   role: string;
   description: string;
   period: string;
-  location: string;
 };
 
 export function mapWorkToSectionItems(entries: WorkEntry[]): Item[] {
@@ -14,7 +13,7 @@ export function mapWorkToSectionItems(entries: WorkEntry[]): Item[] {
     title: exp.company,
     href: exp.url,
     role: exp.role,
-    period: `${exp.period} · ${exp.location}`,
+    period: exp.period,
     description: exp.description,
   }));
 }
