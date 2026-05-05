@@ -1,9 +1,27 @@
 [
   {
+    "title": "vlense",
+    "description": "Vision-language OCR and multimodal document QA for images and PDFs.",
+    "role": "creator",
+    "period": "nov 2024 - present",
+    "href": "https://github.com/adityamiskin/vlense",
+    "technologies": [
+      "python",
+      "ocr",
+      "multimodal-ai",
+      "document-qa",
+      "retrieval"
+    ],
+    "achievements": [
+      "structured OCR for images and PDFs with markdown, html, and json outputs",
+      "page-level retrieval and grounded document QA with cited answers"
+    ]
+  },
+  {
     "title": "envman",
     "description": "Zero-hassle CLI for managing project environment files with encryption and cross-project access.",
     "role": "creator",
-    "period": "jan 2026 - present",
+    "period": "jan 2026",
     "href": "https://github.com/adityamiskin/envman",
     "technologies": [
       "cli",
@@ -21,9 +39,15 @@
     "title": "loki",
     "description": "An AI-powered CTF solver and security analysis assistant.",
     "role": "creator",
-    "period": "may 2025 - present",
+    "period": "may 2025",
     "href": "https://github.com/adityamiskin/loki",
-    "technologies": ["ctf", "security", "ai", "cli", "tui"],
+    "technologies": [
+      "ctf",
+      "security",
+      "ai",
+      "cli",
+      "tui"
+    ],
     "achievements": [
       "tui-first workflows for quick triage during ctf competitions",
       "pluggable analysis flows for common ctf categories"
@@ -35,7 +59,13 @@
     "role": "creator",
     "period": "nov 2025",
     "href": "https://acc-excl.netlify.app/",
-    "technologies": ["ai", "research", "lead-generation", "saas", "hackathon"],
+    "technologies": [
+      "ai",
+      "research",
+      "lead-generation",
+      "saas",
+      "hackathon"
+    ],
     "achievements": [
       "structured lead research summaries from sparse inputs",
       "hackathon iteration loop from idea to deployed demo"
@@ -45,7 +75,7 @@
     "title": "auditoor",
     "description": "An AI tool for quickly understanding large Web3 codebases and identifying issues for rapid bug fixes.",
     "role": "creator",
-    "period": "jan 2024 - present",
+    "period": "jan 2024 - apr 2024",
     "href": "https://ai-next-seven.vercel.app/",
     "technologies": [
       "ai",
@@ -65,7 +95,12 @@
     "role": "creator",
     "period": "aug 2024",
     "href": "https://image-compressor-mauve.vercel.app/",
-    "technologies": ["javascript", "web", "image-processing", "compression"],
+    "technologies": [
+      "javascript",
+      "web",
+      "image-processing",
+      "compression"
+    ],
     "achievements": [
       "client-side compression without server round-trips",
       "simple resize and quality controls for quick exports"
