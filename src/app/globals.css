@@ -30,6 +30,8 @@
   --font-body: var(--font-stack-jetbrains), ui-monospace, monospace, sans-serif;
   --font-departure: var(--font-stack-departure), ui-monospace, monospace,
     sans-serif;
+  --font-geist-pixel: var(--font-geist-pixel-square), var(--font-stack-jetbrains), ui-monospace, monospace,
+    sans-serif;
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);

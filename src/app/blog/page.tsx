@@ -13,9 +13,9 @@ const Blogs = () => {
 
   return (
     <main className="font-body">
-      <h1 className="mb-8 text-4xl font-bold lowercase text-foreground">
+      <h1 className="mb-8 text-4xl font-bold lowercase text-foreground tracking-wider">
         <span className="accent-glow text-primary mr-2">*</span>
-        <TextScramble as="span">blog</TextScramble>
+        <TextScramble as="span" className="font-geist-pixel">blog</TextScramble>
       </h1>
       <div className="space-y-8">
       {blogs.map((blog) => (

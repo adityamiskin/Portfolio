@@ -14,9 +14,9 @@ export default function WorkPage() {
 
   return (
     <main className="font-body">
-      <h1 className="mb-8 text-4xl font-bold lowercase text-foreground">
+      <h1 className="mb-8 text-4xl font-bold lowercase text-foreground tracking-wider">
         <span className="accent-glow text-primary mr-2">*</span>
-        <TextScramble as="span">work</TextScramble>
+        <TextScramble as="span" className="font-geist-pixel">work</TextScramble>
       </h1>
       <p className="mb-6 leading-relaxed lowercase text-foreground/60">
         roles and teams i&apos;ve been part of — building products, shipping

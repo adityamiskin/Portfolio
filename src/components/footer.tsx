@@ -33,7 +33,7 @@ export function Footer() {
             </a>
           ))}
         </nav>
-        <p className="text-sm text-muted-foreground shrink-0">
+        <p className="text-sm text-muted-foreground shrink-0 font-geist-pixel">
           © {new Date().getFullYear()} {portfolio.name}
         </p>
       </div>

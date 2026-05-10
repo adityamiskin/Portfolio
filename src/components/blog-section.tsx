@@ -12,9 +12,9 @@ export function BlogSection() {
   return (
     <section className="mb-12 pt-10 border-t border-border">
       <div className="flex items-baseline justify-between mb-6">
-        <h2 className="text-2xl font-semibold flex items-center text-foreground">
+        <h2 className="text-2xl font-semibold flex items-center text-foreground tracking-wider">
           <span className="text-brand accent-glow mr-2">*</span>
-          blog
+          <span className="font-geist-pixel">blog</span>
         </h2>
         <Link
           href="/blog"

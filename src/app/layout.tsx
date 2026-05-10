@@ -2,6 +2,7 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { JetBrains_Mono } from "next/font/google";
+import { GeistPixelSquare } from "geist/font/pixel";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { Oneko } from "@/components/oneko";
@@ -104,7 +105,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${jetbrainsMono.variable} ${departureMono.variable}`}
+      className={`${jetbrainsMono.variable} ${departureMono.variable} ${GeistPixelSquare.variable}`}
     >
       <script async defer src="https://platform.twitter.com/widgets.js" />
       <body className="font-body">

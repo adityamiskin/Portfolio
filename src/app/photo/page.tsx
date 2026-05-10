@@ -72,7 +72,7 @@ const Photo = () => {
             <ProgressiveBlur position="bottom" height="30%" />
             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent z-10" />
             <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 z-20">
-              <h2 className="text-white font-medium mb-2 text-xl md:text-2xl drop-shadow-lg">
+              <h2 className="text-white font-medium mb-2 text-xl md:text-2xl drop-shadow-lg font-geist-pixel tracking-wider">
                 {category.name} Photography
               </h2>
               {category.description && (

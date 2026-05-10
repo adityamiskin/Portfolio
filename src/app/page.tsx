@@ -29,7 +29,7 @@ export default function Home() {
       <div className="space-y-12">
         <div className="mb-12 flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-10">
           <div className="flex flex-col gap-4 flex-1 min-w-0">
-            <h1 className="text-4xl font-medium text-foreground">
+            <h1 className="text-4xl font-medium text-foreground font-geist-pixel tracking-wider">
               <TextScramble as="span">{portfolioData.name}</TextScramble>
             </h1>
             <p className="text-muted-foreground leading-relaxed">
@@ -89,9 +89,9 @@ export default function Home() {
           id="interests-setup"
           className="mb-12 scroll-mt-24 border-t border-border pt-10"
         >
-          <h2 className="mb-6 flex items-center text-2xl font-semibold text-foreground">
+          <h2 className="mb-6 flex items-center text-2xl font-semibold text-foreground tracking-wider">
             <span className="text-brand accent-glow mr-2">*</span>
-            misc
+            <span className="font-geist-pixel">misc</span>
           </h2>
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-4">

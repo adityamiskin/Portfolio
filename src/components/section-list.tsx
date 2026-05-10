@@ -36,8 +36,9 @@ export function SectionList({
     >
       {showTitle && (
         <div className="flex items-baseline justify-between mb-6">
-          <h2 className="text-2xl font-semibold flex items-center text-foreground">
-            <span className="text-brand accent-glow mr-2">*</span> {title}
+          <h2 className="text-2xl font-semibold flex items-center text-foreground tracking-wider">
+            <span className="text-brand accent-glow mr-2">*</span>
+            <span className="font-geist-pixel">{title}</span>
           </h2>
           {viewAllHref && (
             <Link

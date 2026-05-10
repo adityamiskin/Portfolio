@@ -23,9 +23,9 @@ export default function ProjectsPage() {
 
   return (
     <main className="font-body">
-      <h1 className="mb-8 text-4xl font-bold lowercase text-foreground">
+      <h1 className="mb-8 text-4xl font-bold lowercase text-foreground tracking-wider">
         <span className="accent-glow text-primary mr-2">*</span>
-        <TextScramble as="span">projects</TextScramble>
+        <TextScramble as="span" className="font-geist-pixel">projects</TextScramble>
       </h1>
       <p className="mb-6 leading-relaxed lowercase text-foreground/60">
         here are some of the projects i&apos;ve worked on. i love building tools
