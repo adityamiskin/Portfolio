@@ -20,7 +20,7 @@ export function Oneko() {
     // Check if we're on a photo slug page (e.g., /photo/street, /photo/landscape, etc.)
     // but not on the main /photo page
     const isPhotoSlugPage =
-      pathname?.startsWith("/photo/") && pathname !== "/photo";
+      pathname?.startsWith("/photos/");
 
     // Function to hide/show oneko based on current pathname
     const updateOnekoVisibility = () => {

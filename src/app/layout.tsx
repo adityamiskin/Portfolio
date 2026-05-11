@@ -1,18 +1,22 @@
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, IBM_Plex_Mono } from "next/font/google";
 import { GeistPixelSquare } from "geist/font/pixel";
 import type { Metadata } from "next";
-import { Navbar } from "@/components/navbar";
-import { Oneko } from "@/components/oneko";
-import { ThemeProvider } from "@/components/theme-provider";
 import localFont from "next/font/local";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-stack-jetbrains",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-ibm-plex-mono",
 });
 
 const departureMono = localFont({
@@ -49,14 +53,6 @@ export const metadata: Metadata = {
       "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
     url: "https://adityamiskin.com",
     siteName: "Aditya Miskin",
-    // If you add an opengraph-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
-    // images: [
-    //   {
-    //     url: `https://${config.domainName}/share.png`,
-    //     width: 1200,
-    //     height: 660,
-    //   },
-    // ],
     locale: "en_US",
     type: "website",
   },
@@ -65,8 +61,6 @@ export const metadata: Metadata = {
     title: siteTitle,
     description:
       "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
-    // If you add an twitter-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
-    // images: [openGraph?.image || defaults.og.image],
     card: "summary_large_image",
     creator: "@ad1tyamiskin",
   },
@@ -105,26 +99,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${jetbrainsMono.variable} ${departureMono.variable} ${GeistPixelSquare.variable}`}
+      className={`${jetbrainsMono.variable} ${ibmPlexMono.variable} ${departureMono.variable} ${GeistPixelSquare.variable}`}
     >
-      <script async defer src="https://platform.twitter.com/widgets.js" />
       <body className="font-body">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Oneko />
-          <main className="min-h-screen flex items-start justify-center pt-16 md:pt-20 relative overflow-x-hidden">
-            <div className="w-full max-w-5xl px-4 md:px-16 py-8 md:py-12">
-              <Navbar />
-              <Analytics />
-              {children}
-              <SpeedInsights />
-            </div>
-          </main>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );

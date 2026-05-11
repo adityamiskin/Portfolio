@@ -38,7 +38,7 @@ export const OnekoToggle = ({ className }: { className?: string }) => {
 
       // If toggle is enabled, respect pathname logic (same as Oneko component)
       const isPhotoSlugPage =
-        pathname?.startsWith("/photo/") && pathname !== "/photo";
+        pathname?.startsWith("/photos/");
 
       if (isPhotoSlugPage) {
         onekoElement.style.display = "none";

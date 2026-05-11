@@ -103,7 +103,7 @@ export default function Home() {
                   <span key={index}>
                     {interest === "Photography" ? (
                       <a
-                        href="/photo"
+                        href="/photos"
                         className="underline underline-offset-4 decoration-muted-foreground/50 hover:text-brand hover:decoration-brand transition-colors"
                       >
                         {interest}

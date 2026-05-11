@@ -47,6 +47,28 @@
         "typescript": "^5.9.3",
       },
     },
+    "photos-app": {
+      "name": "photos.adityamiskin.com",
+      "version": "0.1.0",
+      "dependencies": {
+        "clsx": "^2.1.1",
+        "date-fns": "^4.1.0",
+        "lucide-react": "^0.564.0",
+        "next": "^16.2.4",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "tailwind-merge": "^2.6.0",
+      },
+      "devDependencies": {
+        "@tailwindcss/postcss": "^4.2.4",
+        "@types/node": "^25.2.3",
+        "@types/react": "19.2.7",
+        "@types/react-dom": "19.2.3",
+        "postcss": "^8",
+        "tailwindcss": "^4.2.4",
+        "typescript": "^5.9.3",
+      },
+    },
   },
   "overrides": {
     "@types/react": "19.2.7",
@@ -1066,6 +1088,8 @@
     "path-key": ["path-key@3.1.1", "", {}, "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q=="],
 
     "path-parse": ["path-parse@1.0.7", "", {}, "sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw=="],
+
+    "photos.adityamiskin.com": ["photos.adityamiskin.com@workspace:photos-app"],
 
     "picocolors": ["picocolors@1.1.1", "", {}, "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="],
 
