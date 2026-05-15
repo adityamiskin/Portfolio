@@ -129,7 +129,7 @@ export default function ImageLightbox({
           {currentImage && (
             <>
               {(currentImage.title || currentImage.description) && (
-                <div className="text-center max-w-2xl mx-auto">
+                <div className="text-center mx-auto">
                   {currentImage.title && (
                     <h3 className="text-white font-medium text-lg mb-2">
                       {currentImage.title}

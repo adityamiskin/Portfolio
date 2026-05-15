@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			priority: 1,
 		},
 		{
-			url: 'https://adityamiskin.com/photo',
+			url: 'https://adityamiskin.com/photos',
 			lastModified: new Date(),
 			priority: 1,
 		},

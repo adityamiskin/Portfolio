@@ -46,7 +46,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="text-foreground underline underline-offset-4 decoration-muted-foreground/60 hover:text-brand hover:decoration-brand transition-colors"
                 >
-                  For when someone asks for a file…
+                  résumé (in case the portfolio wasn't enough)
                 </a>
               </p>
             ) : null}
@@ -103,7 +103,7 @@ export default function Home() {
                   <span key={index}>
                     {interest === "Photography" ? (
                       <a
-                        href="/photo"
+                        href="/photos"
                         className="underline underline-offset-4 decoration-muted-foreground/50 hover:text-brand hover:decoration-brand transition-colors"
                       >
                         {interest}

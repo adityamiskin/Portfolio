@@ -20,8 +20,8 @@ const NAV_ITEMS: readonly NavItem[] = [
   { href: "/work", label: "work", key: "w" },
   { href: "/projects", label: "projects", key: "p" },
   {
-    href: "/photo",
-    label: "photo",
+    href: "/photos",
+    label: "photos",
     key: "o",
     shortcutTitle: "Keyboard: O (P is used for projects)",
   },

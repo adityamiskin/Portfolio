@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: '*',
 			allow: '/',
-			disallow: ['/photo/'],
+			disallow: ['/photos/'],
 		},
 		sitemap: 'https://adityamiskin.com/sitemap.xml',
 	};

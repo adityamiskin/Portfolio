@@ -2,9 +2,6 @@
 import createMDX from '@next/mdx';
 const nextConfig = {
 	pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-	async redirects() {
-		return [{ source: '/uses', destination: '/#interests-setup', permanent: true }];
-	},
 	typescript: {
 		ignoreBuildErrors: true,
 	},
