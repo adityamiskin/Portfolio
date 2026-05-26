@@ -1,11 +1,20 @@
 import { TextScramble } from "@/components/text-scramble";
 import { formatBlogDateShort, getBlogPosts } from "@/lib/utils";
+import { pageDescriptions } from "@/lib/seo";
 import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Blog posts by Aditya Miskin",
+  description: pageDescriptions.blog,
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog | Aditya Miskin",
+    description: pageDescriptions.blog,
+    url: "/blog",
+  },
 };
 
 const Blogs = () => {

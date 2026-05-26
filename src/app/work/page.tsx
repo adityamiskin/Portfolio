@@ -3,10 +3,19 @@ import { TextScramble } from "@/components/text-scramble";
 import { SectionList } from "@/components/section-list";
 import portfolioData from "@/data/portfolio.json";
 import { mapWorkToSectionItems, type WorkEntry } from "@/lib/work-section";
+import { pageDescriptions } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Places I've worked and what I've done there.",
+  description: pageDescriptions.work,
+  alternates: {
+    canonical: "/work",
+  },
+  openGraph: {
+    title: "Work | Aditya Miskin",
+    description: pageDescriptions.work,
+    url: "/work",
+  },
 };
 
 export default function WorkPage() {

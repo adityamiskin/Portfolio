@@ -2,10 +2,19 @@ import type { Metadata } from "next";
 import { TextScramble } from "@/components/text-scramble";
 import { ProjectCard } from "@/components/project-card";
 import projectsData from "@/data/projects.json";
+import { pageDescriptions } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Some of the projects I've worked on.",
+  description: pageDescriptions.projects,
+  alternates: {
+    canonical: "/projects",
+  },
+  openGraph: {
+    title: "Projects | Aditya Miskin",
+    description: pageDescriptions.projects,
+    url: "/projects",
+  },
 };
 
 type Project = {

@@ -5,6 +5,7 @@ import {
   getBlogReadingMinutes,
   parseBlogPublishedDate,
 } from "@/lib/utils";
+import { absoluteUrl, siteName } from "@/lib/seo";
 import { Metadata } from "next";
 
 // Generate static params at build time for instant navigation
@@ -35,11 +36,16 @@ export async function generateMetadata({
   return {
     title: post.metadata.title,
     description: post.metadata.description || "Aditya Miskin's blog",
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title: post.metadata.title,
       description: post.metadata.description || "Aditya Miskin's blog",
+      url: `/blog/${slug}`,
       type: "article",
       publishedTime,
+      authors: [siteName],
       images: post.metadata.image
         ? [
             {
@@ -71,11 +77,41 @@ export default async function Post({
   }
 
   const readingMinutes = getBlogReadingMinutes(post.content);
+  const published = parseBlogPublishedDate(post.metadata.publishedAt);
+  const publishedTime = published ? published.toISOString() : post.metadata.publishedAt;
 
   const { default: MdxBody } = await import(`@posts/${slug}.mdx`);
 
   return (
     <article className="font-body space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.metadata.title,
+            description: post.metadata.description,
+            image: post.metadata.image ? [post.metadata.image] : undefined,
+            datePublished: publishedTime,
+            dateModified: publishedTime,
+            author: {
+              "@type": "Person",
+              name: siteName,
+              url: absoluteUrl("/"),
+            },
+            publisher: {
+              "@type": "Person",
+              name: siteName,
+              url: absoluteUrl("/"),
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": absoluteUrl(`/blog/${slug}`),
+            },
+          }),
+        }}
+      />
       <Link
         href="/blog"
         className="inline-block text-base font-medium text-brand hover:text-brand/85 transition-colors"

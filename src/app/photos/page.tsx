@@ -2,9 +2,19 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import PhotoGrid from "@/components/photo-grid";
+import { pageDescriptions } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Photo",
+  title: "Photography",
+  description: pageDescriptions.photos,
+  alternates: {
+    canonical: "/photos",
+  },
+  openGraph: {
+    title: "Photography | Aditya Miskin",
+    description: pageDescriptions.photos,
+    url: "/photos",
+  },
 };
 
 type CloudinaryImage = {
@@ -59,7 +69,7 @@ async function getAllImages() {
     )
   );
 
-  const mixed = [];
+  const mixed: CloudinaryImage[] = [];
   const maxLength = Math.max(...results.map((group) => group.length));
 
   for (let i = 0; i < maxLength; i++) {

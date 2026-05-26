@@ -1,30 +1,49 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
+import { getBlogPosts, parseBlogPublishedDate } from "@/lib/utils";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	return [
-		{
-			url: 'https://adityamiskin.com',
-			lastModified: new Date(),
-			priority: 1,
-		},
-		{
-			url: 'https://adityamiskin.com/work',
-			lastModified: new Date(),
-			priority: 1,
-		},
-		{
-			url: 'https://adityamiskin.com/projects',
-			lastModified: new Date(),
-			priority: 1,
-		},
-		{
-			url: 'https://adityamiskin.com/photos',
-			lastModified: new Date(),
-			priority: 1,
-		},
-		{
-			url: 'https://adityamiskin.com/blog',
-			lastModified: new Date(),
-		},
-	];
+  const now = new Date();
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: absoluteUrl("/"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
+      url: absoluteUrl("/work"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: absoluteUrl("/projects"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: absoluteUrl("/photos"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    {
+      url: absoluteUrl("/blog"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+  ];
+
+  const blogRoutes: MetadataRoute.Sitemap = getBlogPosts().map((post) => ({
+    url: absoluteUrl(`/blog/${post.slug}`),
+    lastModified:
+      parseBlogPublishedDate(post.metadata.publishedAt)?.toISOString() ?? now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...blogRoutes];
 }

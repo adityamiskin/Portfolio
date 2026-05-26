@@ -7,6 +7,15 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { Oneko } from "@/components/oneko";
 import { ThemeProvider } from "@/components/theme-provider";
+import {
+  absoluteUrl,
+  pageDescriptions,
+  siteDescription,
+  siteHandle,
+  siteName,
+  siteUrl,
+  socialLinks,
+} from "@/lib/seo";
 import localFont from "next/font/local";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -22,9 +31,13 @@ const departureMono = localFont({
   fallback: ["ui-monospace", "Courier New", "monospace"],
 });
 
-const siteTitle = "Aditya Miskin";
-
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  applicationName: siteName,
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
+  category: "technology",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -33,42 +46,60 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   title: {
-    default: siteTitle,
-    template: `%s | ${siteTitle}`,
+    default: `${siteName} | Cofounder and Software Engineer`,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
-  keywords:
-    "data science, machine learning, ai, artificial intelligence, healthcare ai, web development, aditya miskin, photography, travel photography, street photography, urban photography, nature photography, portfolio, india, frontend developer, software engineer, associate data scientist, aditya, miskin, typescript, python",
-  applicationName: "Aditya Miskin",
-  metadataBase: new URL("https://adityamiskin.com"),
-
+  description: siteDescription,
+  keywords: [
+    "Aditya Miskin",
+    "software engineer",
+    "cofounder",
+    "enterprise AI",
+    "AI systems",
+    "developer tools",
+    "web development",
+    "TypeScript",
+    "Python",
+    "Bangalore",
+    "India",
+    "photography",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: siteTitle,
-    description:
-      "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
-    url: "https://adityamiskin.com",
-    siteName: "Aditya Miskin",
-    // If you add an opengraph-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
-    // images: [
-    //   {
-    //     url: `https://${config.domainName}/share.png`,
-    //     width: 1200,
-    //     height: 660,
-    //   },
-    // ],
+    title: `${siteName} | Cofounder and Software Engineer`,
+    description: siteDescription,
+    url: siteUrl,
+    siteName,
+    images: [
+      {
+        url: "/icon.png",
+        width: 512,
+        height: 512,
+        alt: siteName,
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
-
   twitter: {
-    title: siteTitle,
-    description:
-      "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
-    // If you add an twitter-image.(jpg|jpeg|png|gif) image to the /app folder, you don't need the code below
-    // images: [openGraph?.image || defaults.og.image],
+    title: `${siteName} | Cofounder and Software Engineer`,
+    description: siteDescription,
     card: "summary_large_image",
-    creator: "@ad1tyamiskin",
+    creator: siteHandle,
+    images: ["/icon.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -78,18 +109,20 @@ export const renderSchemaTags = () => {
       type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
-          "@context": "http://schema.org",
+          "@context": "https://schema.org",
           "@type": "Person",
-          name: "Aditya Miskin",
-          description:
-            "Passionate about creating meaningful software and exploring new technologies. I love building products that solve real problems and make people's lives better. When I'm not coding, you'll usually find me out with my camera, capturing moments and places that inspire me.",
-          image: `https://adityamiskin.com/icon.png`,
-          url: `https://adityamiskin.com`,
-          sameAs: [
-            "https://github.com/adityamiskin",
-            "https://linkedin.com/in/adityamiskin",
-            "https://twitter.com/ad1tyamiskin",
-          ],
+          "@id": absoluteUrl("/#person"),
+          name: siteName,
+          url: siteUrl,
+          image: absoluteUrl("/icon.png"),
+          jobTitle: "Cofounder and Software Engineer",
+          description: pageDescriptions.home,
+          sameAs: socialLinks,
+          worksFor: {
+            "@type": "Organization",
+            name: "Zapsight",
+            url: "https://zapsight.com/",
+          },
         }),
       }}
     ></script>
@@ -109,6 +142,7 @@ export default function RootLayout({
     >
       <script async defer src="https://platform.twitter.com/widgets.js" />
       <body className="font-body">
+        {renderSchemaTags()}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
