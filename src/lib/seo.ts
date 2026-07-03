@@ -3,6 +3,7 @@ import portfolioData from "@/data/portfolio.json";
 export const siteUrl = "https://adityamiskin.com";
 export const siteName = "Aditya Miskin";
 export const siteHandle = "@ad1tyamiskin";
+export const profileImagePath = "/profile.webp";
 
 export const siteDescription =
   "Aditya Miskin is a Bangalore-based cofounder and software engineer building enterprise AI systems, developer tools, and thoughtful web products.";
@@ -21,6 +22,7 @@ export const socialLinks = [
   portfolioData.githubUrl,
   portfolioData.linkedinUrl,
   portfolioData.twitterUrl,
+  portfolioData.bookingUrl,
 ].filter(Boolean);
 
 export function absoluteUrl(path = "/") {

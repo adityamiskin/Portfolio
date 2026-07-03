@@ -30,7 +30,7 @@
   --font-body: var(--font-stack-jetbrains), ui-monospace, monospace, sans-serif;
   --font-departure: var(--font-stack-departure), ui-monospace, monospace,
     sans-serif;
-  --font-geist-pixel: var(--font-geist-pixel-square), var(--font-stack-jetbrains), ui-monospace, monospace,
+  --font-geist-pixel: var(--font-stack-silkscreen), var(--font-stack-jetbrains), ui-monospace, monospace,
     sans-serif;
 
   --radius-lg: var(--radius);
@@ -134,7 +134,7 @@
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     /* Secondary text #6a7282 */
-    --muted-foreground: 220 10% 46%;
+    --muted-foreground: 220 10% 58%;
     --accent: 16 90% 94%;
     --accent-foreground: 16 90% 28%;
     --destructive: 0 84.2% 60.2%;
@@ -166,7 +166,7 @@
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     /* Secondary / de-emphasized #6a7282 */
-    --muted-foreground: 220 10% 46%;
+    --muted-foreground: 220 10% 68%;
     --accent: 16 40% 16%;
     --accent-foreground: 16 100% 72%;
     --destructive: 0 62.8% 30.6%;

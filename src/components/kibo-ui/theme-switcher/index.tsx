@@ -128,7 +128,7 @@ export const ThemeSwitcher = ({
   return (
     <div
       className={cn(
-        "relative isolate flex h-6 rounded-full bg-background p-0.5 ring-1 ring-border",
+        "relative isolate flex h-8 rounded-full bg-background p-1 ring-1 ring-border",
         className
       )}
     >
@@ -139,7 +139,7 @@ export const ThemeSwitcher = ({
         return (
           <button
             aria-label={label}
-            className="relative h-5 w-5 rounded-full overflow-visible"
+            className="relative h-6 w-6 rounded-full overflow-visible"
             key={key}
             onClick={() => handleThemeClick(key as "light" | "dark")}
             onMouseEnter={() => setHoveredTheme(key as "light" | "dark")}
@@ -199,7 +199,7 @@ export const ThemeSwitcher = ({
               </AnimatePresence>
             )}
 
-            <Icon className={cn("relative z-10 m-auto h-3 w-3", color)} />
+            <Icon className={cn("relative z-10 m-auto h-3.5 w-3.5", color)} />
           </button>
         );
       })}

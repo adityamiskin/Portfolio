@@ -7,7 +7,6 @@ import { SectionList } from "@/components/section-list";
 import { UsesSection } from "@/components/uses-section";
 import { Footer } from "@/components/footer";
 import Image from "next/image";
-import newProfilePhoto from "@/assets/images/new_profile.webp";
 import { mapWorkToSectionItems, type WorkEntry } from "@/lib/work-section";
 
 type ProjectEntry = {
@@ -53,7 +52,7 @@ export default function Home() {
           </div>
           <div className="relative w-full shrink-0 overflow-hidden rounded-md border border-border shadow-xs aspect-4/3 lg:aspect-auto lg:h-[min(380px,52vh)] lg:w-[min(380px,42%)] lg:max-w-md">
             <Image
-              src={newProfilePhoto}
+              src="/profile.webp"
               alt="Profile photo"
               fill
               sizes="(min-width: 1024px) 380px, 100vw"
