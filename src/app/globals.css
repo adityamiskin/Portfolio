@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('./DepartureMono-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
 @source '../../posts/**/*.{js,ts,jsx,tsx,mdx}';
 @source '../../src/**/*.{js,ts,jsx,tsx,mdx}';
 
@@ -117,6 +123,9 @@
 
 @layer base {
   :root {
+    --font-stack-jetbrains: "JetBrains Mono";
+    --font-geist-pixel-square: "Silkscreen";
+    --font-stack-departure: "Departure Mono";
     /* Accent #ff6b35 */
     --brand: 16 100% 60%;
     --brand-foreground: 240 20% 10%;

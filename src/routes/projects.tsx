@@ -1,21 +1,8 @@
-import type { Metadata } from "next";
-import { TextScramble } from "@/components/text-scramble";
+import { createFileRoute } from "@tanstack/react-router";
 import { ProjectCard } from "@/components/project-card";
+import { TextScramble } from "@/components/text-scramble";
 import projectsData from "@/data/projects.json";
-import { pageDescriptions } from "@/lib/seo";
-
-export const metadata: Metadata = {
-  title: "Projects",
-  description: pageDescriptions.projects,
-  alternates: {
-    canonical: "/projects",
-  },
-  openGraph: {
-    title: "Projects | Aditya Miskin",
-    description: pageDescriptions.projects,
-    url: "/projects",
-  },
-};
+import { buildSeoHead, pageDescriptions, siteName } from "@/lib/seo";
 
 type Project = {
   title: string;
@@ -27,14 +14,26 @@ type Project = {
   achievements: string[];
 };
 
-export default function ProjectsPage() {
+export const Route = createFileRoute("/projects")({
+  head: () =>
+    buildSeoHead({
+      title: `Projects | ${siteName}`,
+      description: pageDescriptions.projects,
+      path: "/projects",
+    }),
+  component: ProjectsPage,
+});
+
+function ProjectsPage() {
   const projects = projectsData as Project[];
 
   return (
     <main className="font-body">
-      <h1 className="mb-8 text-4xl font-bold lowercase text-foreground tracking-wider">
+      <h1 className="mb-8 text-4xl font-medium lowercase text-foreground tracking-wider">
         <span className="accent-glow text-primary mr-2">*</span>
-        <TextScramble as="span" className="font-geist-pixel">projects</TextScramble>
+        <TextScramble as="span" className="font-geist-pixel font-medium">
+          projects
+        </TextScramble>
       </h1>
       <p className="mb-6 leading-relaxed lowercase text-foreground/60">
         here are some of the projects i&apos;ve worked on. i love building tools

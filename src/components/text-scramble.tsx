@@ -1,5 +1,5 @@
 'use client';
-import { type JSX, useEffect, useState } from 'react';
+import { type JSX, useEffect, useRef, useState } from 'react';
 import { motion, MotionProps } from 'motion/react';
 
 export type TextScrambleProps = {
@@ -31,18 +31,25 @@ export function TextScramble({
     Component as keyof JSX.IntrinsicElements
   );
   const [scrambledText, setScrambledText] = useState<string | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const text = children;
   const displayText = scrambledText ?? children;
 
-  const scramble = async () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
+  useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    if (!trigger) {
+      setScrambledText(null);
+      return;
+    }
 
     const steps = duration / speed;
     let step = 0;
 
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       let scrambled = '';
       const progress = step / steps;
 
@@ -64,19 +71,22 @@ export function TextScramble({
       step++;
 
       if (step > steps) {
-        clearInterval(interval);
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+        }
         setScrambledText(null);
-        setIsAnimating(false);
         onScrambleComplete?.();
       }
     }, speed * 1000);
-  };
 
-  useEffect(() => {
-    if (!trigger) return;
-
-    scramble();
-  }, [trigger]);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [characterSet, duration, onScrambleComplete, speed, text, trigger]);
 
   return (
     <MotionComponent className={className} {...props}>

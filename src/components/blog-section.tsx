@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { getPublishedPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
@@ -12,12 +12,12 @@ export function BlogSection() {
   return (
     <section className="mb-12 pt-10 border-t border-border">
       <div className="flex items-baseline justify-between mb-6">
-        <h2 className="text-2xl font-semibold flex items-center text-foreground tracking-wider">
+        <h2 className="text-2xl font-medium flex items-center text-foreground tracking-wider">
           <span className="text-brand accent-glow mr-2">*</span>
-          <span className="font-geist-pixel">blog</span>
+          <span className="font-geist-pixel font-medium">blog</span>
         </h2>
         <Link
-          href="/blog"
+          to="/blog"
           className="inline-flex items-center gap-1 text-sm text-brand hover:text-brand/85 transition-colors group"
         >
           all posts{" "}
@@ -28,7 +28,8 @@ export function BlogSection() {
         {posts.map((post) => (
           <Link
             key={post.slug}
-            href={`/blog/${post.slug}`}
+            to="/blog/$slug"
+            params={{ slug: post.slug }}
             className="group flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4"
           >
             <span className="text-sm text-muted-foreground sm:w-28 shrink-0 tabular-nums">

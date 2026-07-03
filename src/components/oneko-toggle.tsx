@@ -1,8 +1,8 @@
 "use client";
 
+import { useLocation } from "@tanstack/react-router";
 import { Cat } from "lucide-react";
 import { motion } from "motion/react";
-import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +11,9 @@ const ONEKO_STORAGE_KEY = "oneko-enabled";
 export const OnekoToggle = ({ className }: { className?: string }) => {
   const [enabled, setEnabled] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
+  const pathname = useLocation({
+    select: (location) => location.pathname,
+  });
 
   // Load preference from localStorage on mount
   useEffect(() => {

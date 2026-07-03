@@ -1,21 +1,4 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { Spinner } from "@/components/ui/spinner";
-import PhotoGrid from "@/components/photo-grid";
-import { pageDescriptions } from "@/lib/seo";
-
-export const metadata: Metadata = {
-  title: "Photography",
-  description: pageDescriptions.photos,
-  alternates: {
-    canonical: "/photos",
-  },
-  openGraph: {
-    title: "Photography | Aditya Miskin",
-    description: pageDescriptions.photos,
-    url: "/photos",
-  },
-};
+import { v2 as cloudinary } from "cloudinary";
 
 type CloudinaryImage = {
   secure_url: string;
@@ -25,7 +8,16 @@ type CloudinaryImage = {
   context?: { custom?: { caption?: string; alt?: string } };
 };
 
-function mapCloudinaryImage(image: CloudinaryImage) {
+export type PhotoImage = {
+  img: string;
+  width?: number;
+  height?: number;
+  title?: string;
+  description?: string;
+  tags?: string[];
+};
+
+function mapCloudinaryImage(image: CloudinaryImage): PhotoImage {
   return {
     img: image.secure_url,
     width: image.width,
@@ -36,9 +28,7 @@ function mapCloudinaryImage(image: CloudinaryImage) {
   };
 }
 
-async function getAllImages() {
-  const cloudinary = require("cloudinary").v2;
-
+export async function getAllImages() {
   cloudinary.config({
     secure: true,
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -59,8 +49,8 @@ async function getAllImages() {
           tags: true,
           max_results: 200,
         })
-        .then((r: { resources: CloudinaryImage[] }) =>
-          r.resources.map((image) => ({
+        .then((result: { resources: CloudinaryImage[] }) =>
+          result.resources.map((image) => ({
             ...image,
             tags: [...new Set([...(image.tags ?? []).filter((tag) => tag !== "imgs"), slug])],
           }))
@@ -70,11 +60,13 @@ async function getAllImages() {
   );
 
   const mixed: CloudinaryImage[] = [];
-  const maxLength = Math.max(...results.map((group) => group.length));
+  const maxLength = Math.max(...results.map((group) => group.length), 0);
 
-  for (let i = 0; i < maxLength; i++) {
+  for (let i = 0; i < maxLength; i += 1) {
     for (const group of results) {
-      if (group[i]) mixed.push(group[i]);
+      if (group[i]) {
+        mixed.push(group[i]);
+      }
     }
   }
 
@@ -87,20 +79,9 @@ async function getAllImages() {
     (image) => image.width && image.height && image.width / image.height > 1.3
   );
   const heroSource = preferredHero ?? landscapeImages[0] ?? mixed[0];
-  const heroImage = heroSource ? mapCloudinaryImage(heroSource) : undefined;
-  const images = mixed.map(mapCloudinaryImage);
 
-  return { heroImage, images };
+  return {
+    heroImage: heroSource ? mapCloudinaryImage(heroSource) : undefined,
+    images: mixed.map(mapCloudinaryImage),
+  };
 }
-
-const Photo = async () => {
-  const { heroImage, images } = await getAllImages();
-
-  return (
-    <Suspense fallback={<Spinner />}>
-      <PhotoGrid images={images} heroImage={heroImage} />
-    </Suspense>
-  );
-};
-
-export default Photo;

@@ -1,10 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useLocation } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 export function Oneko() {
-  const pathname = usePathname();
+  const pathname = useLocation({
+    select: (location) => location.pathname,
+  });
 
   useEffect(() => {
     // Load the oneko script once when component mounts

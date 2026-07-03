@@ -1,22 +1,29 @@
-import { clsx, type ClassValue } from 'clsx';
-import { format, isValid, parse, parseISO } from 'date-fns';
-import { twMerge } from 'tailwind-merge';
-import fs from 'fs';
-import path from 'path';
+import { clsx, type ClassValue } from "clsx";
+import { format, isValid, parse, parseISO } from "date-fns";
+import type { ComponentType } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Metadata = {
-	title: string;
-	publishedAt: string;
-	image?: string;
-	description?: string;
+  title: string;
+  publishedAt: string;
+  image?: string;
+  description?: string;
+};
+
+type BlogPostModule = {
+  default: ComponentType;
+  frontmatter?: Partial<Metadata>;
 };
 
 export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs));
 }
 
 const BLOG_PARSE_REFERENCE = new Date(2000, 0, 1);
-const BLOG_PARSE_FORMATS = ['MMMM d, yyyy', 'MMM d, yyyy', 'yyyy-MM-dd'] as const;
+const BLOG_PARSE_FORMATS = ["MMMM d, yyyy", "MMM d, yyyy", "yyyy-MM-dd"] as const;
+const BLOG_POST_MODULES = import.meta.glob("../../posts/*.mdx", {
+  eager: true,
+}) as Record<string, BlogPostModule>;
 
 function blogDateCandidates(raw: string): string[] {
 	const s = raw.trim();
@@ -35,32 +42,32 @@ export function parseBlogPublishedDate(raw: string): Date | null {
 	const s = raw.trim();
 
 	if (/^\d{4}-\d{2}-\d{2}/.test(s)) {
-		const iso = parseISO(s);
-		if (isValid(iso)) return iso;
+    const iso = parseISO(s);
+    if (isValid(iso)) return iso;
 	}
 
 	for (const candidate of blogDateCandidates(raw)) {
 		for (const fmt of BLOG_PARSE_FORMATS) {
-			const d = parse(candidate, fmt, BLOG_PARSE_REFERENCE);
-			if (isValid(d)) return d;
+      const d = parse(candidate, fmt, BLOG_PARSE_REFERENCE);
+      if (isValid(d)) return d;
 		}
 	}
 
-	return null;
+  return null;
 }
 
 /** Display date as month day, year (e.g. December 27, 2025). Post pages. */
 export function formatBlogDate(raw: string): string {
-	const d = parseBlogPublishedDate(raw);
-	if (!d || !isValid(d)) return raw.trim();
-	return format(d, 'MMMM d, yyyy');
+  const d = parseBlogPublishedDate(raw);
+  if (!d || !isValid(d)) return raw.trim();
+  return format(d, "MMMM d, yyyy");
 }
 
 /** Listing: abbreviated lowercase month (e.g. dec 27, 2025). */
 export function formatBlogDateShort(raw: string): string {
-	const d = parseBlogPublishedDate(raw);
-	if (!d || !isValid(d)) return raw.trim().toLowerCase();
-	return format(d, 'MMM d, yyyy').toLowerCase();
+  const d = parseBlogPublishedDate(raw);
+  if (!d || !isValid(d)) return raw.trim().toLowerCase();
+  return format(d, "MMM d, yyyy").toLowerCase();
 }
 
 /** Blog listing rows (abbreviated lowercase date). */
@@ -69,61 +76,45 @@ export function formatDate(raw: string): string {
 }
 
 export function getBlogReadingMinutes(content: string): number {
-	const words = content.trim().split(/\s+/).filter(Boolean).length;
-	return Math.max(1, Math.round(words / 200));
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
 }
 
-function parseFrontmatter(fileContent: string) {
-	let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-	let match = frontmatterRegex.exec(fileContent);
-	let frontMatterBlock = match![1];
-	let content = fileContent.replace(frontmatterRegex, '').trim();
-	let frontMatterLines = frontMatterBlock.trim().split('\n');
-	let metadata: Partial<Metadata> = {};
-
-	frontMatterLines.forEach((line) => {
-		let [key, ...valueArr] = line.split(': ');
-		let value = valueArr.join(': ').trim();
-		value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
-		metadata[key.trim() as keyof Metadata] = value as any;
-	});
-
-	return { metadata: metadata as Metadata, content };
+function getSlugFromModulePath(modulePath: string) {
+  return modulePath.split("/").pop()?.replace(/\.mdx$/, "") ?? "";
 }
 
-function getMDXFiles(dir: string) {
-	return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
+function getPostMetadata(frontmatter?: Partial<Metadata>): Metadata {
+  return {
+    title: frontmatter?.title ?? "",
+    publishedAt: frontmatter?.publishedAt ?? "",
+    image: frontmatter?.image,
+    description: frontmatter?.description,
+  };
 }
-
-function readMDXFile(filePath: string) {
-	let rawContent = fs.readFileSync(filePath, 'utf-8');
-	return parseFrontmatter(rawContent);
-}
-
-function getMDXData(dir: string) {
-	let mdxFiles = getMDXFiles(dir);
-	return mdxFiles.map((file) => {
-		let { metadata, content } = readMDXFile(path.join(dir, file));
-		let slug = path.basename(file, path.extname(file));
-
-		return {
-			metadata,
-			slug,
-			content,
-		};
-	});
-}
-
-/** MDX posts at repo root `posts/`; dynamic imports use `@posts/<slug>.mdx` → same files. */
-const BLOG_POSTS_DIR = path.join(process.cwd(), 'posts');
 
 export function getBlogPosts() {
-	const posts = getMDXData(BLOG_POSTS_DIR);
-	return [...posts].sort((a, b) => {
-		const ta = parseBlogPublishedDate(a.metadata.publishedAt)?.getTime() ?? 0;
-		const tb = parseBlogPublishedDate(b.metadata.publishedAt)?.getTime() ?? 0;
-		return tb - ta;
-	});
+  const posts = Object.entries(BLOG_POST_MODULES).map(([modulePath, module]) => {
+    return {
+      metadata: getPostMetadata(module.frontmatter),
+      slug: getSlugFromModulePath(modulePath),
+      content: "",
+    };
+  });
+
+  return posts.sort((a, b) => {
+    const ta = parseBlogPublishedDate(a.metadata.publishedAt)?.getTime() ?? 0;
+    const tb = parseBlogPublishedDate(b.metadata.publishedAt)?.getTime() ?? 0;
+    return tb - ta;
+  });
+}
+
+export function getBlogPostComponent(slug: string): ComponentType | null {
+  const entry = Object.entries(BLOG_POST_MODULES).find(([modulePath]) =>
+    modulePath.endsWith(`/${slug}.mdx`)
+  );
+
+  return entry?.[1].default ?? null;
 }
 
 /**
@@ -133,85 +124,85 @@ export function getBlogPosts() {
  * @returns Optimized Cloudinary URL
  */
 export function getOptimizedCloudinaryUrl(
-	url: string,
-	options: {
-		width?: number;
-		height?: number;
-		quality?: 'auto' | number;
-		format?: 'auto' | 'webp' | 'avif' | 'jpg' | 'png';
-		crop?: 'scale' | 'limit' | 'fill' | 'fit';
-	} = {}
+  url: string,
+  options: {
+    width?: number;
+    height?: number;
+    quality?: "auto" | number;
+    format?: "auto" | "webp" | "avif" | "jpg" | "png";
+    crop?: "scale" | "limit" | "fill" | "fit";
+  } = {}
 ): string {
-	if (!url || !url.includes('cloudinary.com')) {
-		return url;
-	}
+  if (!url || !url.includes("cloudinary.com")) {
+    return url;
+  }
 
-	const {
-		width,
-		height,
-		quality = 'auto',
-		format = 'auto',
-		crop = 'limit',
-	} = options;
+  const {
+    width,
+    height,
+    quality = "auto",
+    format = "auto",
+    crop = "limit",
+  } = options;
 
 	// Parse the Cloudinary URL
 	// Format: https://res.cloudinary.com/{cloud_name}/image/upload/{transformations}/{version}/{public_id}.{format}
-	const urlParts = url.split('/upload/');
-	if (urlParts.length !== 2) {
-		return url;
-	}
+  const urlParts = url.split("/upload/");
+  if (urlParts.length !== 2) {
+    return url;
+  }
 
-	const baseUrl = urlParts[0];
-	const afterUpload = urlParts[1];
+  const baseUrl = urlParts[0];
+  const afterUpload = urlParts[1];
 
 	// Extract the public ID and version
 	// Cloudinary URL structure: {transformations}/{version}/{public_id}
 	// Version pattern: v{number}/
-	const versionMatch = afterUpload.match(/\/v(\d+)\/(.+)/);
-	
-	const version = versionMatch ? `v${versionMatch[1]}/` : '';
-	const publicId = versionMatch ? versionMatch[2] : afterUpload;
+  const versionMatch = afterUpload.match(/\/v(\d+)\/(.+)/);
+
+  const version = versionMatch ? `v${versionMatch[1]}/` : "";
+  const publicId = versionMatch ? versionMatch[2] : afterUpload;
 
 	// Build new transformation parameters (replacing any existing ones)
-	const transformations: string[] = [];
+  const transformations: string[] = [];
 
 	// Crop mode
-	if (crop === 'limit') {
-		transformations.push('c_limit');
-	} else if (crop === 'scale') {
-		transformations.push('c_scale');
-	} else if (crop === 'fill') {
-		transformations.push('c_fill');
-	} else if (crop === 'fit') {
-		transformations.push('c_fit');
-	}
+  if (crop === "limit") {
+    transformations.push("c_limit");
+  } else if (crop === "scale") {
+    transformations.push("c_scale");
+  } else if (crop === "fill") {
+    transformations.push("c_fill");
+  } else if (crop === "fit") {
+    transformations.push("c_fit");
+  }
 
 	// Width
-	if (width) {
-		transformations.push(`w_${width}`);
-	}
+  if (width) {
+    transformations.push(`w_${width}`);
+  }
 
 	// Height
-	if (height) {
-		transformations.push(`h_${height}`);
-	}
+  if (height) {
+    transformations.push(`h_${height}`);
+  }
 
 	// Format (f_auto for automatic format selection - AVIF/WebP)
-	if (format === 'auto') {
-		transformations.push('f_auto');
-	} else {
-		transformations.push(`f_${format}`);
-	}
+  if (format === "auto") {
+    transformations.push("f_auto");
+  } else {
+    transformations.push(`f_${format}`);
+  }
 
 	// Quality (q_auto for automatic quality optimization)
-	if (quality === 'auto') {
-		transformations.push('q_auto');
-	} else {
-		transformations.push(`q_${quality}`);
-	}
+  if (quality === "auto") {
+    transformations.push("q_auto");
+  } else {
+    transformations.push(`q_${quality}`);
+  }
 
 	// Construct the optimized URL
-	const transformationString = transformations.join(',');
-	const versionPart = version || '';
-	return `${baseUrl}/upload/${transformationString}/${versionPart}${publicId}`;
+  const transformationString = transformations.join(",");
+  const versionPart = version || "";
+  return `${baseUrl}/upload/${transformationString}/${versionPart}${publicId}`;
 }

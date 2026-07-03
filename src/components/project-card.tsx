@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export type ProjectCardProps = {
@@ -20,7 +19,7 @@ export function ProjectCard({
   href,
 }: ProjectCardProps) {
   return (
-    <Link
+    <a
       href={href}
       target="_blank"
       rel="noreferrer"
@@ -56,6 +55,6 @@ export function ProjectCard({
         </div>
         <ArrowUpRight className="mt-1.5 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
       </div>
-    </Link>
+    </a>
   );
 }

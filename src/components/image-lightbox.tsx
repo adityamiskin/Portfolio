@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { X } from "lucide-react";
 import { getOptimizedCloudinaryUrl } from "@/lib/utils";
 import {
@@ -98,7 +97,7 @@ export default function ImageLightbox({
                 className="pl-0 basis-full flex items-center justify-center h-full"
               >
                 <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
+                  <img
                     src={getOptimizedCloudinaryUrl(image.img, {
                       width: 1920,
                       quality: "auto",
@@ -109,8 +108,7 @@ export default function ImageLightbox({
                     width={1920}
                     height={1080}
                     className="object-contain max-w-[calc(95vw-16px)] max-h-[calc(95vh-120px-16px)]"
-                    sizes="95vw"
-                    priority={index === initialIndex}
+                    loading={index === initialIndex ? "eager" : "lazy"}
                   />
                 </div>
               </CarouselItem>
