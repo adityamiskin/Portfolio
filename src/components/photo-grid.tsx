@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import ImageLightbox from "./image-lightbox";
 import { TextScramble } from "@/components/text-scramble";
 import { getOptimizedCloudinaryUrl } from "@/lib/utils";
@@ -140,12 +139,11 @@ export default function PhotoGrid({
             </>
           )}
 
-          <ResponsiveMasonry columnsCountBreakPoints={{ 0: 1, 640: 2, 1024: 3, 1280: 4 }}>
-            <Masonry gutter="1rem">
-              {displayedImages.map((image, index) => (
+          <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+            {displayedImages.map((image, index) => (
             <div
               key={index}
-              className="group relative w-full cursor-pointer overflow-hidden"
+              className="group relative mb-4 w-full break-inside-avoid cursor-pointer overflow-hidden"
               onClick={() => setLightboxIndex(showHero ? index + 1 : index)}
             >
               <Image
@@ -181,9 +179,8 @@ export default function PhotoGrid({
                 </div>
               )}
             </div>
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
+            ))}
+          </div>
         </div>
       </div>
 

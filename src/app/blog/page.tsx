@@ -1,5 +1,6 @@
 import { TextScramble } from "@/components/text-scramble";
-import { formatBlogDateShort, getBlogPosts } from "@/lib/utils";
+import { formatBlogDateShort } from "@/lib/utils";
+import { getBlogPosts } from "@/lib/blog";
 import { pageDescriptions } from "@/lib/seo";
 import { Metadata } from "next";
 import Link from "next/link";

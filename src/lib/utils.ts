@@ -1,15 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { format, isValid, parse, parseISO } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
-import fs from 'fs';
-import path from 'path';
-
-type Metadata = {
-	title: string;
-	publishedAt: string;
-	image?: string;
-	description?: string;
-};
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -71,59 +62,6 @@ export function formatDate(raw: string): string {
 export function getBlogReadingMinutes(content: string): number {
 	const words = content.trim().split(/\s+/).filter(Boolean).length;
 	return Math.max(1, Math.round(words / 200));
-}
-
-function parseFrontmatter(fileContent: string) {
-	let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-	let match = frontmatterRegex.exec(fileContent);
-	let frontMatterBlock = match![1];
-	let content = fileContent.replace(frontmatterRegex, '').trim();
-	let frontMatterLines = frontMatterBlock.trim().split('\n');
-	let metadata: Partial<Metadata> = {};
-
-	frontMatterLines.forEach((line) => {
-		let [key, ...valueArr] = line.split(': ');
-		let value = valueArr.join(': ').trim();
-		value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
-		metadata[key.trim() as keyof Metadata] = value as any;
-	});
-
-	return { metadata: metadata as Metadata, content };
-}
-
-function getMDXFiles(dir: string) {
-	return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx');
-}
-
-function readMDXFile(filePath: string) {
-	let rawContent = fs.readFileSync(filePath, 'utf-8');
-	return parseFrontmatter(rawContent);
-}
-
-function getMDXData(dir: string) {
-	let mdxFiles = getMDXFiles(dir);
-	return mdxFiles.map((file) => {
-		let { metadata, content } = readMDXFile(path.join(dir, file));
-		let slug = path.basename(file, path.extname(file));
-
-		return {
-			metadata,
-			slug,
-			content,
-		};
-	});
-}
-
-/** MDX posts at repo root `posts/`; dynamic imports use `@posts/<slug>.mdx` → same files. */
-const BLOG_POSTS_DIR = path.join(process.cwd(), 'posts');
-
-export function getBlogPosts() {
-	const posts = getMDXData(BLOG_POSTS_DIR);
-	return [...posts].sort((a, b) => {
-		const ta = parseBlogPublishedDate(a.metadata.publishedAt)?.getTime() ?? 0;
-		const tb = parseBlogPublishedDate(b.metadata.publishedAt)?.getTime() ?? 0;
-		return tb - ta;
-	});
 }
 
 /**

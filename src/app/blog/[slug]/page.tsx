@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {
   formatBlogDate,
-  getBlogPosts,
   getBlogReadingMinutes,
   parseBlogPublishedDate,
 } from "@/lib/utils";
+import { getBlogPosts } from "@/lib/blog";
 import { absoluteUrl, siteName } from "@/lib/seo";
 import { Metadata } from "next";
 

@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
-import { getBlogPosts, parseBlogPublishedDate } from "@/lib/utils";
+import { parseBlogPublishedDate } from "@/lib/utils";
+import { getBlogPosts } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
