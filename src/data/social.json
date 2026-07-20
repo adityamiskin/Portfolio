@@ -1,0 +1,23 @@
+{
+  "x": {
+    "handle": "ad1tyamiskin",
+    "url": "https://x.com/ad1tyamiskin"
+  },
+  "github": {
+    "user": "adityamiskin",
+    "url": "https://github.com/adityamiskin"
+  },
+  "linkedin": {
+    "name": "Aditya Miskin",
+    "handle": "adityamiskin",
+    "title": "Cofounder · Zapsight",
+    "bio": "building the future of enterprise AI systems. previously SDE II at Carelon, founding eng at Magnimus.",
+    "location": "Bengaluru, India",
+    "url": "https://linkedin.com/in/adityamiskin"
+  },
+  "email": {
+    "address": "adityamiskin@gmail.com",
+    "fromName": "ADITYA MISKIN",
+    "fromCity": "BENGALURU"
+  }
+}

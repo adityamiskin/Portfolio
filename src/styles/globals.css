@@ -1,5 +1,6 @@
 @import "@fontsource-variable/jetbrains-mono";
 @import "tailwindcss";
+@import "tw-animate-css";
 @plugin '@tailwindcss/typography';
 
 @source '../../posts/**/*.{js,ts,jsx,tsx,mdx}';
@@ -105,6 +106,31 @@
       height: 0;
     }
   }
+
+  /* Hover / popover enter+exit (own keyframes — reliable with Radix Presence) */
+  --animate-hover-in: hover-in 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-hover-out: hover-out 120ms ease-in forwards;
+
+  @keyframes hover-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  @keyframes hover-out {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.97) translateY(2px);
+    }
+  }
 }
 
 /*
@@ -201,7 +227,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground text-base;
+    @apply bg-background text-foreground text-sm leading-relaxed;
   }
 }
 
@@ -224,4 +250,76 @@ body {
   a {
     text-decoration: none;
   }
+}
+
+/* Email envelope hover card (only the bits Tailwind can't express cleanly) */
+.email-envelope {
+  background:
+    radial-gradient(
+      circle at 18% 24%,
+      color-mix(in oklab, currentColor 4%, transparent) 0 0.5px,
+      transparent 0.75px
+    ),
+    #f7f4ee;
+  background-size: 13px 11px, auto;
+}
+
+.dark .email-envelope {
+  background-color: #1c1a17;
+}
+
+/* airmail edge */
+.email-envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.62;
+  background:
+    repeating-linear-gradient(
+        135deg,
+        oklch(0.58 0.12 25) 0 7px,
+        transparent 7px 14px,
+        oklch(0.53 0.09 245) 14px 21px,
+        transparent 21px 28px
+      )
+      top / 100% 3px no-repeat,
+    repeating-linear-gradient(
+        135deg,
+        oklch(0.58 0.12 25) 0 7px,
+        transparent 7px 14px,
+        oklch(0.53 0.09 245) 14px 21px,
+        transparent 21px 28px
+      )
+      bottom / 100% 3px no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        oklch(0.58 0.12 25) 0 7px,
+        transparent 7px 14px,
+        oklch(0.53 0.09 245) 14px 21px,
+        transparent 21px 28px
+      )
+      left / 3px 100% no-repeat,
+    repeating-linear-gradient(
+        45deg,
+        oklch(0.58 0.12 25) 0 7px,
+        transparent 7px 14px,
+        oklch(0.53 0.09 245) 14px 21px,
+        transparent 21px 28px
+      )
+      right / 3px 100% no-repeat;
+}
+
+.email-envelope-flap {
+  clip-path: polygon(0 100%, 0 75%, 50% 25%, 100% 75%, 100% 100%);
+  filter: drop-shadow(0 -1px 0 color-mix(in oklab, currentColor 34%, transparent));
+}
+
+.email-envelope-postmark-bars {
+  background: repeating-linear-gradient(
+    to bottom,
+    color-mix(in oklab, currentColor 58%, transparent) 0 1px,
+    transparent 1px 5px
+  );
 }

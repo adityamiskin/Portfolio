@@ -1,16 +1,45 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import portfolioData from "@/data/portfolio.json";
 import projectsData from "@/data/projects.json";
+import social from "@/data/social.json";
 import { TextScramble } from "@/components/text-scramble";
 import { Markdown } from "@/components/markdown";
 import { BlogSection } from "@/components/blog-section";
 import { SectionList } from "@/components/section-list";
 import { UsesSection } from "@/components/uses-section";
 import { Footer } from "@/components/footer";
+import {
+  EmailCard,
+  GitHubCard,
+  ResumeCard,
+  XCard,
+  socialInlineLinkClass,
+} from "@/components/social-cards";
 import { pageHead } from "@/lib/meta";
+import { getResumePreviewUrl } from "@/lib/resume";
 
 export const Route = createFileRoute("/")({
-  head: () => pageHead(),
+  head: () => {
+    const base = pageHead();
+    const resumePreview = getResumePreviewUrl();
+    return {
+      ...base,
+      links: [
+        ...base.links,
+        ...(resumePreview
+          ? [
+              {
+                rel: "preload" as const,
+                as: "image" as const,
+                href: resumePreview,
+                // low so it doesn't fight the profile photo LCP
+                fetchPriority: "low" as const,
+              },
+            ]
+          : []),
+      ],
+    };
+  },
   component: Home,
 });
 
@@ -28,16 +57,21 @@ function Home() {
             </h1>
             <p className="leading-relaxed text-muted-foreground">{portfolioData.tagline}</p>
             <Markdown className="leading-relaxed text-foreground">{portfolioData.about}</Markdown>
+            <p className="leading-relaxed text-muted-foreground">
+              Find me at{" "}
+              <XCard trigger={`@${social.x.handle}`} triggerClassName={socialInlineLinkClass} />,{" "}
+              <GitHubCard trigger="GitHub" triggerClassName={socialInlineLinkClass} /> and{" "}
+              <EmailCard
+                trigger={social.email.address}
+                triggerClassName={socialInlineLinkClass}
+              />
+            </p>
             {portfolioData.resumeUrl ? (
               <p className="leading-relaxed text-foreground">
-                <a
-                  href={portfolioData.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-foreground underline decoration-muted-foreground/60 underline-offset-4 transition-colors hover:text-brand hover:decoration-brand"
-                >
-                  résumé (in case the portfolio wasn't enough)
-                </a>
+                <ResumeCard
+                  trigger="résumé (in case the portfolio wasn't enough)"
+                  triggerClassName={socialInlineLinkClass}
+                />
               </p>
             ) : null}
           </div>
