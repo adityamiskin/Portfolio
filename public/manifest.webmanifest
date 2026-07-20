@@ -1,0 +1,21 @@
+{
+  "name": "Aditya Miskin",
+  "short_name": "Aditya Miskin",
+  "description": "Aditya Miskin is a Bangalore-based cofounder and software engineer building enterprise AI systems, developer tools, and thoughtful web products.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2f3f4",
+  "theme_color": "#f2f3f4",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

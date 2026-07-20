@@ -1,7 +1,4 @@
-"use client";
-
 import { useState } from "react";
-import Image from "next/image";
 import ImageLightbox from "./image-lightbox";
 import { TextScramble } from "@/components/text-scramble";
 import { getOptimizedCloudinaryUrl } from "@/lib/utils";
@@ -21,27 +18,17 @@ interface PhotoGridProps {
   categoryName?: string;
 }
 
-export default function PhotoGrid({
-  images,
-  heroImage,
-  categoryName = "Photo",
-}: PhotoGridProps) {
+export default function PhotoGrid({ images, heroImage, categoryName = "Photo" }: PhotoGridProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeTag, setActiveTag] = useState("all");
 
   const tags = Array.from(
-    new Set(
-      [heroImage, ...images]
-        .flatMap((image) => image?.tags ?? [])
-        .filter(Boolean)
-    )
+    new Set([heroImage, ...images].flatMap((image) => image?.tags ?? []).filter(Boolean)),
   ).sort();
 
   const showHero = activeTag === "all" && heroImage;
   const filteredImages =
-    activeTag === "all"
-      ? images
-      : images.filter((image) => image.tags?.includes(activeTag));
+    activeTag === "all" ? images : images.filter((image) => image.tags?.includes(activeTag));
 
   const displayedImages = showHero
     ? filteredImages.filter((image) => image.img !== heroImage.img)
@@ -49,11 +36,7 @@ export default function PhotoGrid({
   const lightboxImages = showHero ? [heroImage, ...displayedImages] : displayedImages;
 
   if (lightboxImages.length === 0) {
-    return (
-      <div className="text-center text-muted-foreground py-12">
-        No images found
-      </div>
-    );
+    return <div className="text-center text-muted-foreground py-12">No images found</div>;
   }
 
   return (
@@ -68,8 +51,8 @@ export default function PhotoGrid({
               </TextScramble>
             </h1>
             <p className="leading-relaxed lowercase text-foreground/60">
-              frames from places i have been, people i have noticed, and quiet
-              things that stayed with me.
+              frames from places i have been, people i have noticed, and quiet things that stayed
+              with me.
             </p>
           </header>
 
@@ -103,7 +86,7 @@ export default function PhotoGrid({
                 className="group relative mb-12 w-full cursor-pointer overflow-hidden rounded-sm lg:hidden"
                 onClick={() => setLightboxIndex(0)}
               >
-                <Image
+                <img
                   src={getOptimizedCloudinaryUrl(heroImage.img, {
                     width: 1200,
                     quality: "auto",
@@ -115,14 +98,14 @@ export default function PhotoGrid({
                   height={heroImage.height ?? 900}
                   className="w-full h-auto object-cover shadow-sm transition-transform duration-300 ease group-hover:scale-[1.015]"
                   sizes="100vw"
-                  priority
+                  fetchPriority="high"
                 />
               </div>
               <div
                 className="group relative mb-12 hidden aspect-[21/9] w-full cursor-pointer overflow-hidden rounded-sm lg:block"
                 onClick={() => setLightboxIndex(0)}
               >
-                <Image
+                <img
                   src={getOptimizedCloudinaryUrl(heroImage.img, {
                     width: 2000,
                     quality: "auto",
@@ -130,10 +113,11 @@ export default function PhotoGrid({
                     crop: "fill",
                   })}
                   alt={heroImage.description || heroImage.title || "Featured photo"}
-                  fill
-                  className="object-cover shadow-sm transition-transform duration-300 ease group-hover:scale-[1.015]"
+                  width={heroImage.width ?? 2000}
+                  height={heroImage.height ?? 857}
+                  className="absolute inset-0 size-full object-cover shadow-sm transition-transform duration-300 ease group-hover:scale-[1.015]"
                   sizes="100vw"
-                  priority
+                  fetchPriority="high"
                 />
               </div>
             </>
@@ -141,44 +125,40 @@ export default function PhotoGrid({
 
           <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
             {displayedImages.map((image, index) => (
-            <div
-              key={index}
-              className="group relative mb-4 w-full break-inside-avoid cursor-pointer overflow-hidden"
-              onClick={() => setLightboxIndex(showHero ? index + 1 : index)}
-            >
-              <Image
-                src={getOptimizedCloudinaryUrl(image.img, {
-                  width: 1200,
-                  quality: "auto",
-                  format: "auto",
-                  crop: "limit",
-                })}
-                alt={
-                  image.description ||
-                  image.title ||
-                  `${categoryName} photo ${index + 1}`
-                }
-                width={image.width ?? 1200}
-                height={image.height ?? 900}
-                className="w-full h-auto object-cover shadow-sm transition-transform duration-300 ease group-hover:scale-[1.015]"
-                loading="lazy"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              />
-              {(image.title || image.description) && (
-                <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
-                  {image.title && (
-                    <p className="text-white font-medium text-base mb-1 drop-shadow-lg">
-                      {image.title}
-                    </p>
-                  )}
-                  {image.description && (
-                    <p className="text-white/90 text-xs tracking-wider font-light drop-shadow-lg">
-                      {image.description}
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
+              <div
+                key={index}
+                className="group relative mb-4 w-full break-inside-avoid cursor-pointer overflow-hidden"
+                onClick={() => setLightboxIndex(showHero ? index + 1 : index)}
+              >
+                <img
+                  src={getOptimizedCloudinaryUrl(image.img, {
+                    width: 1200,
+                    quality: "auto",
+                    format: "auto",
+                    crop: "limit",
+                  })}
+                  alt={image.description || image.title || `${categoryName} photo ${index + 1}`}
+                  width={image.width ?? 1200}
+                  height={image.height ?? 900}
+                  className="w-full h-auto object-cover shadow-sm transition-transform duration-300 ease group-hover:scale-[1.015]"
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                />
+                {(image.title || image.description) && (
+                  <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                    {image.title && (
+                      <p className="text-white font-medium text-base mb-1 drop-shadow-lg">
+                        {image.title}
+                      </p>
+                    )}
+                    {image.description && (
+                      <p className="text-white/90 text-xs tracking-wider font-light drop-shadow-lg">
+                        {image.description}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>

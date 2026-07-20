@@ -22,7 +22,17 @@ const themes = [
 ];
 
 // Star component for dark theme hover
-const Star = ({ delay = 0, size = 2, x = 0, y = 0 }: { delay?: number; size?: number; x?: number; y?: number }) => {
+const Star = ({
+  delay = 0,
+  size = 2,
+  x = 0,
+  y = 0,
+}: {
+  delay?: number;
+  size?: number;
+  x?: number;
+  y?: number;
+}) => {
   return (
     <motion.div
       className="absolute rounded-full bg-slate-300"
@@ -45,7 +55,15 @@ const Star = ({ delay = 0, size = 2, x = 0, y = 0 }: { delay?: number; size?: nu
 };
 
 // Light beam component for light theme hover
-const LightBeam = ({ delay = 0, rotation = 0, length = 8 }: { delay?: number; rotation?: number; length?: number }) => {
+const LightBeam = ({
+  delay = 0,
+  rotation = 0,
+  length = 8,
+}: {
+  delay?: number;
+  rotation?: number;
+  length?: number;
+}) => {
   return (
     <motion.div
       className="absolute"
@@ -95,7 +113,7 @@ export const ThemeSwitcher = ({
     (themeKey: "light" | "dark") => {
       setTheme(themeKey);
     },
-    [setTheme]
+    [setTheme],
   );
 
   // Prevent hydration mismatch
@@ -129,7 +147,7 @@ export const ThemeSwitcher = ({
     <div
       className={cn(
         "relative isolate flex h-8 rounded-full bg-background p-1 ring-1 ring-border",
-        className
+        className,
       )}
     >
       {themes.map(({ key, icon: Icon, label, color }) => {
@@ -153,20 +171,14 @@ export const ThemeSwitcher = ({
                 transition={{ type: "spring", duration: 0.5 }}
               />
             )}
-            
+
             {/* Stars effect for dark theme */}
             {key === "dark" && (
               <AnimatePresence>
                 {isHovered && (
                   <div className="absolute inset-0 pointer-events-none">
                     {starPositions.map((star, index) => (
-                      <Star
-                        key={index}
-                        x={star.x}
-                        y={star.y}
-                        size={star.size}
-                        delay={star.delay}
-                      />
+                      <Star key={index} x={star.x} y={star.y} size={star.size} delay={star.delay} />
                     ))}
                   </div>
                 )}

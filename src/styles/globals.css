@@ -1,8 +1,25 @@
-@import 'tailwindcss';
+@import "@fontsource-variable/jetbrains-mono";
+@import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
 @source '../../posts/**/*.{js,ts,jsx,tsx,mdx}';
 @source '../../src/**/*.{js,ts,jsx,tsx,mdx}';
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url("../assets/fonts/silkscreen-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Silkscreen";
+  src: url("../assets/fonts/silkscreen-latin-700-normal.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -27,11 +44,8 @@
     var(--tw-gradient-stops)
   );
 
-  --font-body: var(--font-stack-jetbrains), ui-monospace, monospace, sans-serif;
-  --font-departure: var(--font-stack-departure), ui-monospace, monospace,
-    sans-serif;
-  --font-geist-pixel: var(--font-stack-silkscreen), var(--font-stack-jetbrains), ui-monospace, monospace,
-    sans-serif;
+  --font-body: "JetBrains Mono Variable", ui-monospace, monospace, sans-serif;
+  --font-geist-pixel: "Silkscreen", "JetBrains Mono Variable", ui-monospace, monospace, sans-serif;
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);

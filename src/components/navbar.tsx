@@ -1,8 +1,5 @@
-"use client";
-
-import Link from "next/link";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { ThemeSwitcher } from "@/components/kibo-ui/theme-switcher";
 import { OnekoToggle } from "@/components/oneko-toggle";
@@ -37,7 +34,7 @@ function isEditableTarget(target: EventTarget | null): boolean {
 export const Navbar = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const currentTheme = (resolvedTheme || theme) as "light" | "dark";
-  const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const isDesktop = () =>
@@ -54,12 +51,12 @@ export const Navbar = () => {
       if (!item) return;
 
       e.preventDefault();
-      router.push(item.href);
+      void navigate({ to: item.href });
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [router]);
+  }, [navigate]);
 
   return (
     <nav aria-label="Primary">
@@ -71,15 +68,12 @@ export const Navbar = () => {
                 <Link
                   key={href}
                   className="hover:text-brand transition-colors"
-                  href={href}
+                  to={href}
+                  preload={href === "/photos" ? "render" : "intent"}
                   aria-keyshortcuts={key}
-                  title={
-                    shortcutTitle ?? `${label} — keyboard: ${key.toUpperCase()}`
-                  }
+                  title={shortcutTitle ?? `${label} — keyboard: ${key.toUpperCase()}`}
                 >
-                  <span className="hidden md:inline text-muted-foreground">
-                    [{key}]{" "}
-                  </span>
+                  <span className="hidden md:inline text-muted-foreground">[{key}] </span>
                   {label}
                 </Link>
               ))}
@@ -87,10 +81,7 @@ export const Navbar = () => {
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <OnekoToggle />
-            <ThemeSwitcher
-              value={currentTheme}
-              onChange={(newTheme) => setTheme(newTheme)}
-            />
+            <ThemeSwitcher value={currentTheme} onChange={(newTheme) => setTheme(newTheme)} />
           </div>
         </div>
       </div>

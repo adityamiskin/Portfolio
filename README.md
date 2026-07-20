@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# adityamiskin.com
 
-## Getting Started
+Aditya Miskin's portfolio, built with TanStack Start, React 19, the React
+Compiler, Tailwind CSS, and Vite+. The application is server-rendered by
+TanStack Start and configured for Cloudflare Workers.
 
-First, run the development server:
+## Local development
+
+Install dependencies and start the Cloudflare-backed Vite development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app is available at <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Vite+ provides the project toolchain:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+bun run check
+bun run test
+bun run build
+bun run preview
+```
 
-## Learn More
+## Photography environment variables
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.dev.vars.example` to `.dev.vars` and add the Cloudinary credentials used
+by the server-side photo loader:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```dotenv
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The site still renders when these variables are absent; the photography route
+shows its empty state.
 
-## Deploy on Vercel
+For a deployed Worker, add the same values as encrypted Cloudflare secrets:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+wrangler secret put CLOUDINARY_CLOUD_NAME
+wrangler secret put CLOUDINARY_API_KEY
+wrangler secret put CLOUDINARY_API_SECRET
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Cloudflare
+
+`wrangler.jsonc` uses TanStack Start's Worker server entry and enables
+`nodejs_compat`. Test the production Worker bundle locally before deployment:
+
+```bash
+bun run build
+bun run preview
+```
+
+Deployment is intentionally manual:
+
+```bash
+bun run deploy
+```
+
+No Vercel adapter or configuration is used.

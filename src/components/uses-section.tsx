@@ -6,26 +6,19 @@ interface UsesSectionProps {
   uses: Record<string, UsesEntry>;
 }
 
-/** Two-column rows with specs stacked below the title for breathing room. */
 export function UsesSection({ uses }: UsesSectionProps) {
-  const rows = Object.entries(uses).map(([key, value]) => ({
-    category: key.toLowerCase(),
-    title: value.title,
-    specs: value.specs,
-  }));
-
   return (
     <div className="space-y-4">
-      {rows.map((row, i) => (
-        <div key={i} className="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-4">
+      {Object.entries(uses).map(([category, details]) => (
+        <div key={category} className="flex flex-col sm:flex-row sm:items-start gap-0.5 sm:gap-4">
           <span className="text-sm text-muted-foreground sm:w-28 shrink-0 pt-px">
-            {row.category}
+            {category.toLowerCase()}
           </span>
           <div className="flex flex-col gap-0.5">
-            <span className="text-foreground">{row.title}</span>
-            {row.specs ? (
+            <span className="text-foreground">{details.title}</span>
+            {details.specs ? (
               <Markdown className="text-muted-foreground text-sm [&>p]:m-0">
-                {row.specs}
+                {details.specs}
               </Markdown>
             ) : null}
           </div>

@@ -1,5 +1,4 @@
 import ReactMarkdown from "react-markdown";
-import Link from "next/link";
 
 interface MarkdownProps {
   children: string;
@@ -11,16 +10,14 @@ export function Markdown({ children, className = "" }: MarkdownProps) {
     <div className={className}>
       <ReactMarkdown
         components={{
-          p: ({ children }) => (
-            <p className="whitespace-pre-line mb-4 last:mb-0">{children}</p>
-          ),
+          p: ({ children }) => <p className="whitespace-pre-line mb-4 last:mb-0">{children}</p>,
           a: ({ href, children }) => (
-            <Link
+            <a
               href={href || "#"}
               className="text-foreground underline underline-offset-4 decoration-muted-foreground/60 hover:text-brand hover:decoration-brand transition-colors"
             >
               {children}
-            </Link>
+            </a>
           ),
         }}
       >

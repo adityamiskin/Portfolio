@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 
 export type Item = {
@@ -31,9 +31,7 @@ export function SectionList({
   showSectionBorder = true,
 }: SectionListProps) {
   return (
-    <section
-      className={`mb-12 ${showSectionBorder ? "border-t border-border pt-10" : ""}`}
-    >
+    <section className={`mb-12 ${showSectionBorder ? "border-t border-border pt-10" : ""}`}>
       {showTitle && (
         <div className="flex items-baseline justify-between mb-6">
           <h2 className="text-2xl font-semibold flex items-center text-foreground tracking-wider">
@@ -42,7 +40,7 @@ export function SectionList({
           </h2>
           {viewAllHref && (
             <Link
-              href={viewAllHref}
+              to={viewAllHref}
               className="inline-flex items-center gap-1 text-sm text-brand hover:text-brand/85 transition-colors group"
             >
               {viewAllText}{" "}
@@ -55,13 +53,12 @@ export function SectionList({
         {items.map((item) => {
           const external = isExternalHref(item.href);
           return (
-            <Link
+            <a
               key={item.href}
               href={item.href}
-              {...(external
-                ? { target: "_blank" as const, rel: "noopener noreferrer" }
-                : {})}
-              className="group block rounded-lg p-4 -mx-4 transition-colors hover:bg-muted/70 dark:hover:bg-neutral-900/50"
+              target={external ? "_blank" : undefined}
+              rel={external ? "noopener noreferrer" : undefined}
+              className="group -mx-4 block rounded-lg p-4 transition-colors hover:bg-muted/70 dark:hover:bg-neutral-900/50"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
@@ -71,10 +68,7 @@ export function SectionList({
                   <p className="text-sm text-muted-foreground mt-1">
                     {item.role}
                     {item.period && (
-                      <span className="text-muted-foreground/80">
-                        {" "}
-                        · {item.period}
-                      </span>
+                      <span className="text-muted-foreground/80"> · {item.period}</span>
                     )}
                   </p>
                   {item.description ? (
@@ -85,13 +79,13 @@ export function SectionList({
                 </div>
                 <ArrowUpRight className="size-4 mt-1.5 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" />
               </div>
-            </Link>
+            </a>
           );
         })}
       </div>
       {viewAllHref && !showTitle && (
         <Link
-          href={viewAllHref}
+          to={viewAllHref}
           className="inline-flex items-center gap-1 mt-6 text-brand hover:text-brand/85 transition-colors group"
         >
           {viewAllText}{" "}

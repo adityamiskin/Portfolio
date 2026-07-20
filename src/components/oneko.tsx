@@ -1,10 +1,10 @@
-"use client";
-
-import { usePathname } from "next/navigation";
+import { useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 export function Oneko() {
-  const pathname = usePathname();
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
 
   useEffect(() => {
     // Load the oneko script once when component mounts
@@ -18,8 +18,7 @@ export function Oneko() {
     }
 
     // Check if we're on a photos slug page, but not on the main /photos page.
-    const isPhotoSlugPage =
-      pathname?.startsWith("/photos/") && pathname !== "/photos";
+    const isPhotoSlugPage = pathname?.startsWith("/photos/") && pathname !== "/photos";
 
     // Function to hide/show oneko based on current pathname
     const updateOnekoVisibility = () => {

@@ -1,7 +1,4 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { X } from "lucide-react";
 import { getOptimizedCloudinaryUrl } from "@/lib/utils";
 import {
@@ -23,11 +20,7 @@ interface ImageLightboxProps {
   onClose: () => void;
 }
 
-export default function ImageLightbox({
-  images,
-  initialIndex = 0,
-  onClose,
-}: ImageLightboxProps) {
+export default function ImageLightbox({ images, initialIndex = 0, onClose }: ImageLightboxProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -98,7 +91,7 @@ export default function ImageLightbox({
                 className="pl-0 basis-full flex items-center justify-center h-full"
               >
                 <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
+                  <img
                     src={getOptimizedCloudinaryUrl(image.img, {
                       width: 1920,
                       quality: "auto",
@@ -110,7 +103,7 @@ export default function ImageLightbox({
                     height={1080}
                     className="object-contain max-w-[calc(95vw-16px)] max-h-[calc(95vh-120px-16px)]"
                     sizes="95vw"
-                    priority={index === initialIndex}
+                    fetchPriority={index === initialIndex ? "high" : "auto"}
                   />
                 </div>
               </CarouselItem>
@@ -131,14 +124,10 @@ export default function ImageLightbox({
               {(currentImage.title || currentImage.description) && (
                 <div className="text-center mx-auto">
                   {currentImage.title && (
-                    <h3 className="text-white font-medium text-lg mb-2">
-                      {currentImage.title}
-                    </h3>
+                    <h3 className="text-white font-medium text-lg mb-2">{currentImage.title}</h3>
                   )}
                   {currentImage.description && (
-                    <p className="text-white/80 text-base">
-                      {currentImage.description}
-                    </p>
+                    <p className="text-white/80 text-base">{currentImage.description}</p>
                   )}
                 </div>
               )}

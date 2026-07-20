@@ -25,9 +25,7 @@ export function Footer() {
               key={label}
               href={href}
               className="hover:text-brand transition-colors"
-              {...(external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {label}
             </a>

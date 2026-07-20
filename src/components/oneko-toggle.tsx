@@ -1,8 +1,6 @@
-"use client";
-
+import { useRouterState } from "@tanstack/react-router";
 import { Cat } from "lucide-react";
 import { motion } from "motion/react";
-import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +9,9 @@ const ONEKO_STORAGE_KEY = "oneko-enabled";
 export const OnekoToggle = ({ className }: { className?: string }) => {
   const [enabled, setEnabled] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
 
   // Load preference from localStorage on mount
   useEffect(() => {
@@ -37,8 +37,7 @@ export const OnekoToggle = ({ className }: { className?: string }) => {
       }
 
       // If toggle is enabled, respect pathname logic (same as Oneko component)
-      const isPhotoSlugPage =
-        pathname?.startsWith("/photos/") && pathname !== "/photos";
+      const isPhotoSlugPage = pathname?.startsWith("/photos/") && pathname !== "/photos";
 
       if (isPhotoSlugPage) {
         onekoElement.style.display = "none";
@@ -100,7 +99,7 @@ export const OnekoToggle = ({ className }: { className?: string }) => {
         "relative h-6 w-6 rounded-full overflow-visible flex items-center justify-center",
         "ring-1 ring-border bg-background transition-colors",
         "hover:bg-secondary/50",
-        className
+        className,
       )}
       onClick={handleToggle}
       type="button"
@@ -115,7 +114,7 @@ export const OnekoToggle = ({ className }: { className?: string }) => {
       <Cat
         className={cn(
           "relative z-10 h-3 w-3 transition-colors",
-          enabled ? "text-foreground" : "text-muted-foreground"
+          enabled ? "text-foreground" : "text-muted-foreground",
         )}
       />
     </button>
