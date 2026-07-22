@@ -21,17 +21,16 @@ function escapeXml(value: string) {
 }
 
 function renderSitemap() {
-  const now = new Date().toISOString();
   const urls = [
     ...staticRoutes.map((route) => ({
       url: absoluteUrl(route.path),
-      lastModified: now,
+      lastModified: undefined,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
     ...blogPosts.map((post) => ({
       url: absoluteUrl(`/blog/${post.slug}`),
-      lastModified: parseBlogPublishedDate(post.publishedAt)?.toISOString() ?? now,
+      lastModified: parseBlogPublishedDate(post.updatedAt ?? post.publishedAt)?.toISOString(),
       changeFrequency: "monthly",
       priority: 0.6,
     })),
@@ -40,8 +39,9 @@ function renderSitemap() {
   const entries = urls
     .map(
       (entry) => `  <url>
-    <loc>${escapeXml(entry.url)}</loc>
-    <lastmod>${entry.lastModified}</lastmod>
+    <loc>${escapeXml(entry.url)}</loc>${
+      entry.lastModified ? `\n    <lastmod>${entry.lastModified}</lastmod>` : ""
+    }
     <changefreq>${entry.changeFrequency}</changefreq>
     <priority>${entry.priority}</priority>
   </url>`,
