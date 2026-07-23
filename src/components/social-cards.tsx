@@ -1,7 +1,7 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { Github, Linkedin, Mail, X } from "lucide-react";
+import { CalendarCheck, Linkedin, Mail, X } from "lucide-react";
 import { type ReactNode, useEffect, useState } from "react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import portfolio from "@/data/portfolio.json";
@@ -258,7 +258,6 @@ export function GitHubCard({
                 </span>
               </>
             ) : null}
-            <Github className="ml-auto size-3.5 text-muted-foreground" aria-hidden />
           </CardStat>
         </>
       }
@@ -434,6 +433,55 @@ export function EmailCard({
             <span className="mb-1 block text-[6px] tracking-[0.18em] opacity-70">TO</span>
             {data.address}
           </div>
+        </div>
+      }
+    >
+      {trigger}
+    </SocialPreviewCard>
+  );
+}
+
+export function CalCard({
+  href,
+  trigger = "book a call",
+  triggerClassName,
+}: {
+  href?: string;
+  trigger?: ReactNode;
+  triggerClassName?: string;
+}) {
+  if (!href) return null;
+
+  return (
+    <SocialPreviewCard
+      href={href}
+      triggerClassName={triggerClassName}
+      className="w-72 overflow-hidden rounded-md border-border bg-popover p-3 text-popover-foreground shadow-md"
+      popup={
+        <div className="space-y-3">
+          <CardHead name="Aditya Miskin" sub="book a meeting" icon={CalendarCheck} />
+          <div className="rounded-md border border-border bg-muted/40 p-3">
+            <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+              <span>availability</span>
+              <span className="flex items-center gap-1.5 font-medium text-foreground">
+                <span className="size-1.5 rounded-full bg-emerald-500" />
+                all days
+              </span>
+            </div>
+            <div className="mt-3 grid grid-cols-7 gap-1 font-mono text-[10px] text-muted-foreground">
+              {["M", "T", "W", "T", "F", "S", "S"].map((day, index) => (
+                <span
+                  key={`${day}-${index}`}
+                  className="grid aspect-square place-items-center rounded-sm border border-border/70 bg-background"
+                >
+                  {day}
+                </span>
+              ))}
+            </div>
+          </div>
+          <CardStat>
+            <span>cal.com/adityamiskin</span>
+          </CardStat>
         </div>
       }
     >

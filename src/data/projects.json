@@ -1,5 +1,17 @@
 [
   {
+    "title": "zolk",
+    "description": "The personal operator that keeps your tools, tasks, and conversations moving in one thread.",
+    "role": "creator",
+    "period": "jul 2026 - present",
+    "href": "https://getzolk.com/",
+    "technologies": ["ai", "cloudflare", "durable-objects", "agents", "mcp", "tanstack-start"],
+    "achievements": [
+      "works across the web, Telegram, WhatsApp, and RCS to connect apps, follow up on schedule, and keep context",
+      "always-on Cloudflare workspaces that can browse, run code, and ship generated websites"
+    ]
+  },
+  {
     "title": "vlense",
     "description": "Vision-language OCR and multimodal document QA for images and PDFs.",
     "role": "creator",
@@ -52,7 +64,6 @@
     "description": "An AI tool for quickly understanding large Web3 codebases and identifying issues for rapid bug fixes.",
     "role": "creator",
     "period": "jan 2024 - apr 2024",
-    "href": "https://ai-next-seven.vercel.app/",
     "technologies": ["ai", "web3", "security", "code-analysis", "smart-contracts"],
     "achievements": [
       "high-level codebase maps for unfamiliar smart contract repos",

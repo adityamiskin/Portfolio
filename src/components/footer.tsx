@@ -1,5 +1,5 @@
 import portfolio from "@/data/portfolio.json";
-import { EmailCard, GitHubCard, LinkedInCard, XCard } from "@/components/social-cards";
+import { CalCard, EmailCard, GitHubCard, LinkedInCard, XCard } from "@/components/social-cards";
 
 export function Footer() {
   return (
@@ -13,16 +13,7 @@ export function Footer() {
           <XCard />
           <GitHubCard />
           <LinkedInCard />
-          {portfolio.bookingUrl ? (
-            <a
-              href={portfolio.bookingUrl}
-              className="hover:text-brand transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              book a call
-            </a>
-          ) : null}
+          <CalCard href={portfolio.bookingUrl} />
         </nav>
         <p className="text-sm text-muted-foreground shrink-0 font-geist-pixel">
           © {new Date().getFullYear()} {portfolio.name}

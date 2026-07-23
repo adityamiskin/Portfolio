@@ -113,6 +113,7 @@ function Home() {
           }))}
           viewAllHref="/projects"
           viewAllText="all projects"
+          previewItems
         />
 
         <section id="interests-setup" className="mb-12 scroll-mt-24 border-t border-border pt-10">
