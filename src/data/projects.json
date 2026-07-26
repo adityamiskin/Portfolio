@@ -12,10 +12,22 @@
     ]
   },
   {
+    "title": "loki",
+    "description": "Security scanning for large codebases, with matchers for speed and AI for deeper investigation.",
+    "role": "creator",
+    "period": "nov 2025 - present",
+    "href": "https://github.com/adityamiskin/loki",
+    "technologies": ["security", "static-analysis", "ai", "cli", "tui"],
+    "achievements": [
+      "fast code matchers narrow the search before agents investigate what actually matters",
+      "a terminal UI keeps findings, evidence, and scan progress easy to explore"
+    ]
+  },
+  {
     "title": "vlense",
     "description": "Vision-language OCR and multimodal document QA for images and PDFs.",
     "role": "creator",
-    "period": "nov 2024 - present",
+    "period": "nov 2024 - mar 2026",
     "href": "https://github.com/adityamiskin/vlense",
     "technologies": ["python", "ocr", "multimodal-ai", "document-qa", "retrieval"],
     "achievements": [
@@ -33,18 +45,6 @@
     "achievements": [
       "encrypted env storage with sqlite and keychain-friendly workflows",
       "cross-project access patterns for local development teams"
-    ]
-  },
-  {
-    "title": "loki",
-    "description": "An AI-powered CTF solver and security analysis assistant.",
-    "role": "creator",
-    "period": "may 2025",
-    "href": "https://github.com/adityamiskin/loki",
-    "technologies": ["ctf", "security", "ai", "cli", "tui"],
-    "achievements": [
-      "tui-first workflows for quick triage during ctf competitions",
-      "pluggable analysis flows for common ctf categories"
     ]
   },
   {
