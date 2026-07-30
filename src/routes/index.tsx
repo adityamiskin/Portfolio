@@ -1,7 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import portfolioData from "@/data/portfolio.json";
 import projectsData from "@/data/projects.json";
-import social from "@/data/social.json";
 import { TextScramble } from "@/components/text-scramble";
 import { Markdown } from "@/components/markdown";
 import { BlogSection } from "@/components/blog-section";
@@ -10,9 +9,8 @@ import { UsesSection } from "@/components/uses-section";
 import { Footer } from "@/components/footer";
 import {
   EmailCard,
-  GitHubCard,
   ResumeCard,
-  XCard,
+  SocialIconLinks,
   socialInlineLinkClass,
 } from "@/components/social-cards";
 import { pageHead } from "@/lib/meta";
@@ -57,15 +55,13 @@ function Home() {
             </h1>
             <p className="leading-relaxed text-muted-foreground">{portfolioData.tagline}</p>
             <Markdown className="leading-relaxed text-foreground">{portfolioData.about}</Markdown>
-            <p className="leading-relaxed text-muted-foreground">
-              Find me at{" "}
-              <XCard trigger={`@${social.x.handle}`} triggerClassName={socialInlineLinkClass} />,{" "}
-              <GitHubCard trigger="GitHub" triggerClassName={socialInlineLinkClass} /> and{" "}
+            <div className="flex flex-wrap items-center gap-1.5 text-muted-foreground">
               <EmailCard
-                trigger={social.email.address}
-                triggerClassName={socialInlineLinkClass}
+                trigger="email me"
+                triggerClassName="rounded-md bg-foreground px-3 py-1.5 text-background transition-[background-color,transform] hover:bg-brand hover:text-brand-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/70 active:scale-[0.98]"
               />
-            </p>
+              <SocialIconLinks />
+            </div>
             {portfolioData.resumeUrl ? (
               <p className="leading-relaxed text-foreground">
                 <ResumeCard

@@ -107,29 +107,31 @@
     }
   }
 
-  /* Hover / popover enter+exit (own keyframes — reliable with Radix Presence) */
-  --animate-hover-in: hover-in 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-hover-out: hover-out 120ms ease-in forwards;
+  /* Social previews mirror the reference's quick, opacity-only transition. */
+  --animate-hover-in: hover-in 120ms linear both;
+  --animate-hover-out: hover-out 120ms linear forwards;
 
   @keyframes hover-in {
     from {
       opacity: 0;
-      transform: scale(0.96) translateY(4px);
     }
     to {
       opacity: 1;
-      transform: scale(1) translateY(0);
     }
   }
   @keyframes hover-out {
     from {
       opacity: 1;
-      transform: scale(1) translateY(0);
     }
     to {
       opacity: 0;
-      transform: scale(0.97) translateY(2px);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-radix-popper-content-wrapper] > [data-state] {
+    animation-duration: 1ms !important;
   }
 }
 

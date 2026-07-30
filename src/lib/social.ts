@@ -19,6 +19,7 @@ export type XLive = {
   handle: string;
   bio: string;
   avatar: string;
+  banner: string;
   followers: string;
   following: string;
   url: string;
@@ -108,6 +109,7 @@ async function fetchX(): Promise<XLive> {
       name?: string;
       description?: string;
       avatar_url?: string;
+      banner_url?: string;
       followers?: number;
       following?: number;
       url?: string;
@@ -127,6 +129,7 @@ async function fetchX(): Promise<XLive> {
     handle: user.screen_name,
     bio: user.description ?? "",
     avatar: avatar || `https://unavatar.io/x/${user.screen_name}`,
+    banner: user.banner_url ?? "",
     followers: formatCount(user.followers ?? 0),
     following: formatCount(user.following ?? 0),
     url: user.url ?? `https://x.com/${user.screen_name}`,

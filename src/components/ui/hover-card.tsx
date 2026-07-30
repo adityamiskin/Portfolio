@@ -20,7 +20,6 @@ const HoverCardContent = React.forwardRef<
       collisionPadding={16}
       className={cn(
         "z-50 outline-hidden",
-        "origin-[var(--radix-hover-card-content-transform-origin)]",
         "data-[state=open]:animate-hover-in data-[state=closed]:animate-hover-out",
         className,
       )}

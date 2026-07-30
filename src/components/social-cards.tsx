@@ -1,7 +1,9 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { CalendarCheck, Linkedin, Mail, X } from "lucide-react";
+import { CalendarCheck, Github, Mail } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { type ReactNode, useEffect, useState } from "react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import portfolio from "@/data/portfolio.json";
@@ -80,7 +82,7 @@ function SocialPreviewCard({
   triggerClassName?: string;
 }) {
   return (
-    <HoverCard openDelay={150} closeDelay={80}>
+    <HoverCard openDelay={0} closeDelay={0}>
       <HoverCardTrigger asChild>
         <a
           href={href}
@@ -93,7 +95,7 @@ function SocialPreviewCard({
       <HoverCardContent
         side="top"
         className={cn(
-          "pointer-events-none flex w-64 select-none flex-col gap-2 rounded-md border border-border bg-popover p-3 text-popover-foreground shadow-md",
+          "pointer-events-none flex w-64 select-none flex-col gap-2 rounded-md border border-border bg-popover p-3 text-popover-foreground shadow-[0_20px_50px_-18px_hsl(var(--foreground)/0.28)]",
           className,
         )}
       >
@@ -132,10 +134,6 @@ function CardHead({
       <Icon className={cn("size-4 shrink-0 self-start text-muted-foreground", iconClassName)} aria-hidden />
     </div>
   );
-}
-
-function CardBio({ children }: { children: ReactNode }) {
-  return <p className="whitespace-pre-line text-sm leading-relaxed text-foreground">{children}</p>;
 }
 
 function CardStat({ children }: { children: ReactNode }) {
@@ -180,6 +178,7 @@ export function XCard({
     handle: social.x.handle || X_HANDLE,
     bio: "",
     avatar: `https://unavatar.io/x/${social.x.handle || X_HANDLE}`,
+    banner: "",
     followers: "",
     following: "",
     url: social.x.url,
@@ -189,26 +188,40 @@ export function XCard({
     <SocialPreviewCard
       href={data.url}
       triggerClassName={triggerClassName}
+      className="w-72 overflow-hidden rounded-xl p-0"
       popup={
-        <>
-          <CardHead name={data.name} sub={`@${data.handle}`} icon={X} avatar={data.avatar} />
-          {data.bio ? <CardBio>{data.bio}</CardBio> : null}
-          {(data.following || data.followers) && (
-            <CardStat>
-              {data.following ? (
-                <span>
-                  <span className="font-medium text-foreground">{data.following}</span> following
-                </span>
-              ) : null}
-              {data.followers && data.following ? <span aria-hidden>·</span> : null}
-              {data.followers ? (
-                <span>
-                  <span className="font-medium text-foreground">{data.followers}</span> followers
-                </span>
-              ) : null}
-            </CardStat>
-          )}
-        </>
+        <div className="overflow-hidden">
+          <div className="relative h-16 overflow-hidden bg-muted">
+            <img
+              src={data.banner || "/profile.webp"}
+              alt=""
+              width={1500}
+              height={500}
+              className="size-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
+          </div>
+          <div className="relative px-3 pt-7 pb-3">
+            <img
+              src={data.avatar || "/profile.webp"}
+              alt=""
+              width={48}
+              height={48}
+              className="absolute -top-6 left-3 size-12 rounded-full border-2 border-popover object-cover"
+            />
+            <span className="absolute top-2 right-3 rounded-full bg-foreground px-3 py-1 text-[11px] font-medium text-background">
+              follow
+            </span>
+            <p className="truncate text-sm font-medium text-foreground">@{data.handle}</p>
+            {data.bio ? (
+              <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
+                {data.bio}
+              </p>
+            ) : (
+              <p className="mt-1 text-xs text-muted-foreground">{data.name}</p>
+            )}
+          </div>
+        </div>
       }
     >
       {trigger}
@@ -240,8 +253,22 @@ export function GitHubCard({
     <SocialPreviewCard
       href={data.url}
       triggerClassName={triggerClassName}
+      className="w-72 rounded-xl p-3"
       popup={
         <>
+          <div className="flex items-center gap-2.5">
+            <img
+              src={data.avatar || "/profile.webp"}
+              alt=""
+              width={40}
+              height={40}
+              className="size-10 rounded-full border border-border object-cover"
+            />
+            <div className="min-w-0">
+              <p className="truncate text-sm font-medium text-foreground">{data.name}</p>
+              <p className="truncate text-xs text-muted-foreground">@{data.user}</p>
+            </div>
+          </div>
           <ContribGrid levels={data.levels} />
           <CardStat>
             <span>
@@ -279,20 +306,77 @@ export function LinkedInCard({
     <SocialPreviewCard
       href={data.url}
       triggerClassName={triggerClassName}
+      className="w-72 overflow-hidden rounded-xl p-0"
       popup={
-        <>
-          <CardHead name={data.name} sub={data.title} icon={Linkedin} />
-          <CardBio>{data.bio}</CardBio>
-          <CardStat>
-            <span>{data.location}</span>
-            <span aria-hidden>·</span>
-            <span>/{data.handle}</span>
-          </CardStat>
-        </>
+        <div className="overflow-hidden">
+          <div className="relative h-16 overflow-hidden bg-[linear-gradient(120deg,#0a66c2,#8bc2eb)]">
+            {data.banner ? (
+              <img
+                src={data.banner}
+                alt=""
+                width={1500}
+                height={500}
+                className="size-full object-cover"
+              />
+            ) : null}
+          </div>
+          <div className="relative px-3 pt-7 pb-3">
+            <img
+              src={data.avatar}
+              alt=""
+              width={48}
+              height={48}
+              className="absolute -top-6 left-3 size-12 rounded-full border-2 border-popover object-cover"
+            />
+            <span className="absolute top-2 right-3 rounded-full bg-[#0a66c2] px-3 py-1 text-[11px] font-medium text-white dark:bg-[#71b7fb] dark:text-zinc-950">
+              connect
+            </span>
+            <p className="truncate text-sm font-medium text-foreground">{data.name}</p>
+            <p className="mt-1 truncate text-xs text-muted-foreground">{data.title}</p>
+            <p className="truncate text-xs text-muted-foreground">{data.location}</p>
+          </div>
+        </div>
       }
     >
       {trigger}
     </SocialPreviewCard>
+  );
+}
+
+const socialIconTriggerClass =
+  "grid size-10 place-items-center rounded-md text-muted-foreground transition-[color,transform] duration-150 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/70 active:scale-95";
+
+export function SocialIconLinks() {
+  return (
+    <div className="flex items-center" aria-label="Social profiles">
+      <GitHubCard
+        trigger={
+          <>
+            <Github className="size-5" strokeWidth={2} aria-hidden />
+            <span className="sr-only">GitHub</span>
+          </>
+        }
+        triggerClassName={socialIconTriggerClass}
+      />
+      <LinkedInCard
+        trigger={
+          <>
+            <FaLinkedin className="size-5" aria-hidden />
+            <span className="sr-only">LinkedIn</span>
+          </>
+        }
+        triggerClassName={socialIconTriggerClass}
+      />
+      <XCard
+        trigger={
+          <>
+            <FaXTwitter className="size-4.5" aria-hidden />
+            <span className="sr-only">X</span>
+          </>
+        }
+        triggerClassName={socialIconTriggerClass}
+      />
+    </div>
   );
 }
 
